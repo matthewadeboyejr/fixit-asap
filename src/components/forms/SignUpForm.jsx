@@ -36,7 +36,7 @@ const SignUpForm = () => {
       <button className="btn-primary ">
         Sign<span className="italic">up</span>
       </button>
-      <div className="font-medium text-center text-sm">
+      <div className="font-medium text-center text-sm flex gap-2 justify-center">
         Dont have an account?
         <Link to={"/login"} className="text-secondary hover:underline t">
           Sign<span className="italic  ">in</span>

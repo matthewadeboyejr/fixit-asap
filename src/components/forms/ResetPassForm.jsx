@@ -13,12 +13,9 @@ const ResetPassForm = () => {
       <button className="btn-primary ">
         Sign<span className="italic">up</span>
       </button>
-      <div className="font-medium text-center text-sm">
+      <div className="font-medium text-center text-sm flex gap-2 justify-center">
         Return to
-        <Link
-          to={"/reset-password"}
-          className="text-secondary hover:underline t"
-        >
+        <Link to={"/login"} className="text-secondary hover:underline t">
           Log<span className="italic  ">in</span>
         </Link>
       </div>
