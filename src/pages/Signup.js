@@ -1,6 +1,6 @@
 import React from "react";
 import SignUpForm from "../components/forms/SignUpForm";
-import Logo from "../pages/Logo.png";
+import Logo from "../components/Images/Logo.png";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple, IoLogoFacebook } from "react-icons/io5";
 

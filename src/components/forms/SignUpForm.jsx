@@ -38,7 +38,7 @@ const SignUpForm = () => {
       </button>
       <div className="font-medium text-center text-sm flex gap-2 justify-center">
         Dont have an account?
-        <Link to={"/login"} className="text-secondary hover:underline t">
+        <Link to={"/"} className="text-secondary hover:underline t">
           Sign<span className="italic  ">in</span>
         </Link>
       </div>

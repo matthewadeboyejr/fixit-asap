@@ -1,6 +1,6 @@
 import React from "react";
 import ResetPassForm from "../components/forms/ResetPassForm";
-import Logo from "../pages/Logo.png";
+import Logo from "../components/Images/Logo.png";
 
 const Resetpass = () => {
   return (

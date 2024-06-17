@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../pages/Logo.png";
+import Logo from "../components/Images/Logo.png";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple, IoLogoFacebook } from "react-icons/io5";
 import LoginForm from "../components/forms/LoginForm";

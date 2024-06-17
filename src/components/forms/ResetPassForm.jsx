@@ -15,7 +15,7 @@ const ResetPassForm = () => {
       </button>
       <div className="font-medium text-center text-sm flex gap-2 justify-center">
         Return to
-        <Link to={"/login"} className="text-secondary hover:underline t">
+        <Link to={"/"} className="text-secondary hover:underline t">
           Log<span className="italic  ">in</span>
         </Link>
       </div>
