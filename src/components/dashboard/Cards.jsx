@@ -145,7 +145,7 @@ export const CloseToYou = () => {
 export const FeaturedServices = () => {
   return (
     <section className="space-y-5">
-      <h2 className="px-5 text-lg">Fixed of the day</h2>
+      <h2 className="px-5 text-lg">Featured services</h2>
 
       <div className="flex gap-5 overflow-x-auto">
         {serviceCard.map((e) => (
