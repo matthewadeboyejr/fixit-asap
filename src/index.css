@@ -29,3 +29,11 @@ body {
     ),
     radial-gradient(at 29% 67%, hsla(240, 0%, 100%, 1) 0px, transparent 50%);
 }
+
+/* .active {
+  @apply bg-black;
+} */
+
+.link {
+  @apply p-5 gap-2 md:cursor-pointer cursor-default duration-300 font-medium flex rounded-md items-center  hover:bg-teriary hover:bg-opacity-40;
+}
