@@ -192,7 +192,7 @@ const Review = () => {
           <p className=" text-sm opacity-50">based on 23 reviews</p>
         </div>
       </section>
-
+      section
       <section className="space-y-4 ">
         <div className="flex gap-5 py-3 ">
           <img

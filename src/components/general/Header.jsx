@@ -6,25 +6,34 @@ import {
   RiAccountCircleLine,
 } from "react-icons/ri";
 import Logo from "../Images/Logo-yellow.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ProfileModal from "../dashboard/Modals/ProfileModal";
 import { useState } from "react";
 
 const nav = [
-  { icon: <RiHomeLine />, name: "Home" },
-  { icon: <RiTimeLine />, name: "Booking" },
-  { icon: <RiChat3Line />, name: "Chat" },
+  { icon: <RiHomeLine />, name: "Home", path: "/dashboard" },
+  { icon: <RiTimeLine />, name: "Booking", path: "/bookings" },
+  { icon: <RiChat3Line />, name: "Chat", path: "/chat" },
 ];
 
 const Header = () => {
   const [openProfile, setOpenProfile] = useState(false);
 
+  const navigate = useNavigate();
+
   return (
     <header className="flex items-center justify-between ">
-      <img src={Logo} className="w-28 h-auto " alt="logo" />
+      <img
+        onClick={() => {
+          navigate("/");
+        }}
+        src={Logo}
+        className="w-28 h-auto "
+        alt="logo"
+      />
       <nav className="hidden md:flex  bg-primary px-7 py-2 rounded-full gap-7  ">
         {nav.map((navLink) => (
-          <NavLink className="flex items-center gap-2  ">
+          <NavLink to={navLink.path} className="flex items-center gap-2  ">
             <span className="text-secondary text-xl hover:text-teriary ">
               {navLink.icon}
             </span>
@@ -63,7 +72,7 @@ export const MobileNav = () => {
   return (
     <nav className=" flex justify-evenly bg-primary  py-3  rounded-full mx-5 gap-7 shadow-2xl  drop-shadow-lg">
       {nav.map((navLink) => (
-        <NavLink className="flex flex-col items-center gap-1  ">
+        <NavLink to={nav.path} className="flex flex-col items-center gap-1  ">
           <span className="text-secondary text-xl hover:text-teriary ">
             {navLink.icon}
           </span>
