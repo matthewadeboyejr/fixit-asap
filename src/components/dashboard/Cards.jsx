@@ -49,7 +49,7 @@ const serviceCard = [
 
 export const FixOfDay = () => {
   return (
-    <section className="space-y-5">
+    <section className="space-y-5 ">
       <h2 className="px-5 text-lg">Fixed of the day</h2>
 
       <div className="flex gap-5 overflow-x-auto">

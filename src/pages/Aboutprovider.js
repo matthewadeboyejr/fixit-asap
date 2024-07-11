@@ -3,17 +3,18 @@ import {
   RiStarSFill,
   RiChat3Line,
   RiPhoneLine,
-  //RiVerifiedBadgeFill,
   RiStarFill,
-  //RiCloseFill,
   RiGroupFill,
   RiPoliceBadgeFill,
   RiChat4Fill,
-  RiArrowLeftLine,
 } from "react-icons/ri";
 import { MostBooked, Others } from "../components/dashboard/Cards";
 
+import { SubHeader } from "../components/general/Header";
+
 const Aboutprovider = () => {
+  //const navigate = useNavigate();
+
   const title = {
     0: "Services",
     1: "Works",
@@ -43,12 +44,7 @@ const Aboutprovider = () => {
   return (
     <div className="md:mx-72 md:py-5 bg-white/50">
       <main className="space-y-10 m-5 ">
-        <div className="flex items-center gap-5 md:pt-0 pt-10  ">
-          <p className="bg-primary/30 text-primary p-2 rounded-sm">
-            <RiArrowLeftLine />
-          </p>
-          <h4 className="text-lg font-semibold">Service provider</h4>
-        </div>
+        <SubHeader title={"Service provider"} />
         <section className="relative rounded-lg overflow-hidden  w-full ">
           <div className="flex items-center justify-between px-5  sticky bottom-20 z-50 bg-white py-5">
             <div className="flex gap-5 items-center">

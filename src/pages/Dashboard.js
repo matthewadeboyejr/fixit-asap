@@ -9,13 +9,14 @@ import {
   FeaturedServices,
 } from "../components/dashboard/Cards";
 import RequestServiceModal from "../components/dashboard/Modals/RequestServiceModal";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="">
       <main className=" m-5 space-y-7 md:pb-5 pb-20">
-        <section className="bg-secondary md:p-10 p-5 space-y-10 rounded-md ">
+        <section className="drop-shadow-lg bg-secondary md:p-10 p-5 space-y-10 rounded-md sticky top-0 z-10">
           <Header />
           <div className="flex items-center gap-1 ">
             <div className="w-full bg-white flex items-center rounded-md px-4 p-2.5">
@@ -37,16 +38,17 @@ const Dashboard = () => {
         <FeaturedServices />
       </main>
 
-      <div
+      <motion.div
+        whileHover={{ scale: 1.2, rotate: 20 }}
         onClick={() => {
           setOpen(true);
         }}
-        className=" max-w-lg fixed z-10 md:bottom-16 bottom-24 right-4 cursor-pointer "
+        className=" hover:scale-50 max-w-lg fixed z-10 md:bottom-16 bottom-24 right-4 cursor-pointer drop-shadow-lg "
       >
         <p className="bg-secondary p-3  text-2xl w-fit rounded-full hover:bg-opacity-90  transition-opacity ">
           <IoAdd />
         </p>
-      </div>
+      </motion.div>
       <footer className="fixed md:hidden z-10  w-full max-w-lg  h-16 bottom-4 ">
         <MobileNav />
       </footer>

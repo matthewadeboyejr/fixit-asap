@@ -1,28 +1,11 @@
-import {
-  //RiStarSFill,
-  RiChat3Line,
-
-  //RiVerifiedBadgeFill,
-  RiStarFill,
-  //RiCloseFill,
-  //RiGroupFill,
-  //RiPoliceBadgeFill,
-  //RiChat4Fill,
-  RiArrowLeftLine,
-  RiInfoI,
-} from "react-icons/ri";
+import { RiChat3Line, RiStarFill, RiInfoI } from "react-icons/ri";
+import { SubHeader } from "../components/general/Header";
 
 const Bookings = () => {
   return (
     <div className="md:mx-72 md:py-5 bg-white/50">
       <main className="space-y-10 m-5">
-        <section className="flex items-center gap-5 md:pt-0 pt-5">
-          <p className="bg-primary/30 text-primary p-2 rounded-sm">
-            <RiArrowLeftLine />
-          </p>
-          <h4 className="text-lg font-semibold">My Bookings</h4>
-        </section>
-
+        <SubHeader title={"My Bookings"} />
         <section className="">
           <h4 className="pb-5">Upcoming Service</h4>
 

@@ -17,7 +17,7 @@ const Categories = () => {
       <h3 className="px-5 text-sm">Feature Categories</h3>
       <ul className="grid items-center grid-cols-3 md:grid-cols-8  gap-3 text-sm ">
         {category.map((e) => (
-          <li className="p-3 text-nowrap border-secondary border rounded-3xl  text-center  ">
+          <li className="p-3 text-nowrap bg-teriary/20  rounded-3xl  text-center  ">
             {e.name}
           </li>
         ))}
