@@ -7,15 +7,16 @@ import {
   RiArrowLeftLine,
 } from "react-icons/ri";
 import Logo from "../Images/Logo-yellow.png";
+import LogoMain from "../Images/Logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import ProfileModal from "../dashboard/Modals/ProfileModal";
 import { useState } from "react";
 
 const nav = [
-  { icon: <RiHomeLine />, name: "Home", path: "/dashboard" },
-  { icon: <RiTimeLine />, name: "Booking", path: "/bookings" },
-  { icon: <RiChat3Line />, name: "Chat", path: "/chat" },
-  { icon: <RiChat3Line />, name: "Chat", path: "/chat" },
+  { id: 1, icon: <RiHomeLine />, name: "Home", path: "/dashboard" },
+  { id: 2, icon: <RiTimeLine />, name: "Booking", path: "/bookings" },
+  { id: 3, icon: <RiChat3Line />, name: "Chat", path: "/chat" },
+  { id: 4, icon: <RiChat3Line />, name: "Chat", path: "/chat" },
 ];
 
 const Header = () => {
@@ -35,7 +36,11 @@ const Header = () => {
       />
       <nav className="hidden md:flex  bg-primary px-7 py-2 rounded-full gap-7  ">
         {nav.map((navLink) => (
-          <NavLink to={navLink.path} className="flex items-center gap-2  ">
+          <NavLink
+            key={navLink.id}
+            to={navLink.path}
+            className="flex items-center gap-2  "
+          >
             <span className="text-secondary text-xl hover:text-teriary ">
               {navLink.icon}
             </span>
@@ -76,12 +81,12 @@ export const LandingHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="flex items-center justify-between   ">
+    <header className="flex items-center justify-between  px-10 ">
       <img
         onClick={() => {
           navigate("/");
         }}
-        src={Logo}
+        src={LogoMain}
         className="w-28 h-auto "
         alt="logo"
       />
@@ -112,16 +117,7 @@ export const LandingHeader = () => {
         </NavLink>
       </nav>
       <div className="flex items-center gap-4 text-primary ">
-        <IoNotificationsSharp className="hover:opacity-70 transition-opacity" />
-        <div
-          onClick={() => {
-            setOpenProfile(true);
-          }}
-          className="flex items-center gap-2 hover:underline cursor-pointer "
-        >
-          <RiAccountCircleLine className="text-xl" />
-          <p className="">Profile</p>
-        </div>
+        <button></button>
       </div>
 
       <ProfileModal

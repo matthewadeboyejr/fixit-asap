@@ -3,6 +3,7 @@ import Logo from "../components/Images/Logo.png";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple, IoLogoFacebook } from "react-icons/io5";
 import LoginForm from "../components/forms/LoginForm";
+import { GoogleLogin } from "../components/api/socialLogin";
 
 const Login = () => {
   return (
@@ -16,7 +17,7 @@ const Login = () => {
           <p className=" font-medium text-sm">Social login's </p>
           <p className=" font-medium">|</p>
           <div className="flex items-center gap-5 text-2xl">
-            <FcGoogle />
+            <FcGoogle onClick={GoogleLogin()} className="cursor-pointer" />
             <IoLogoFacebook className="text-[#1877F2]" />
             <IoLogoApple />
           </div>

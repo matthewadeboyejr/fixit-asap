@@ -10,22 +10,47 @@ import Searchprovider from "./pages/Searchprovider";
 import Requestedprovider from "./pages/Requestedprovider";
 import Chat from "./pages/Chat";
 import Landing from "./pages/Landing";
+import Address from "./pages/Address";
+import Otp from "./pages/Otp";
+import { UserRegProvider } from "./components/context/UserRegContext";
+import RequireAuth from "./components/layout/RequireAuth";
 
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Landing />} />
+
+        {/*    {Public routes} */}
         <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
+        <Route
+          path="signup"
+          element={
+            <UserRegProvider>
+              <Signup />
+            </UserRegProvider>
+          }
+        />
+        <Route
+          path="otp"
+          element={
+            <UserRegProvider>
+              <Otp />
+            </UserRegProvider>
+          }
+        />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="reset-password" element={<Resetpass />} />
-        <Route path="about-provider" element={<Aboutprovider />} />
-        <Route path="bookings" element={<Bookings />} />
-        <Route path="Search-provider" element={<Searchprovider />} />
-        <Route path="requested-provider" element={<Requestedprovider />} />
+        {/*    {Needs to be protected} */}
 
-        <Route path="chat" element={<Chat />} />
+        <Route element={<RequireAuth />}>
+          <Route path="about-provider" element={<Aboutprovider />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="Search-provider" element={<Searchprovider />} />
+          <Route path="requested-provider" element={<Requestedprovider />} />
+          <Route path="address" element={<Address />} />
+        </Route>
       </Routes>
     </div>
   );

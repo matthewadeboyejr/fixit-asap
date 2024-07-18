@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { CgSpinnerTwo } from "react-icons/cg";
 import {
   RiAccountCircleLine,
   RiLockPasswordLine,
@@ -6,18 +7,32 @@ import {
   RiLogoutCircleLine,
 } from "react-icons/ri";
 import { AnimatePresence, motion } from "framer-motion";
+import axios from "../../api/axios";
+import { useEffect, useState } from "react";
+import { UseAuthContext } from "../../hooks/UseAuthContext";
+//import useRegContext from "../../hooks/useUserRegContext";
 
 const ProfileModal = ({ openProfile, closeProfile }) => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const { logout } = UseAuthContext;
+
+  const handleSignOut = async () => {
+    const url = "/account/api/v1/logout/";
+    try {
+      setIsLoading(true);
+      const response = await axios.post(url);
+      console.log(response);
+      localStorage.removeItem("token");
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
-      {" "}
-      {/*  <section
-        className={`${
-          openProfile ? `flex` : `hidden`
-        }  bg-black/70  fixed inset-0  h-screen`}
-      /> */}
       <AnimatePresence>
         {" "}
         {openProfile && (
@@ -79,15 +94,23 @@ const ProfileModal = ({ openProfile, closeProfile }) => {
                 <span className="text-sm">Security</span>
               </Link>
 
-              <p
-                onClick={() => navigate("/")}
-                className="flex items-center gap-3 text-end  text-red-600 bg-red-200 flex-1 p-3 mb-10 hover:opacity-80 rounded-md cursor-pointer"
+              <button
+                onClick={handleSignOut}
+                className="flex items-center gap-3 text-end  text-red-600 bg-red-200 flex-1 p-3 mb-10 hover:opacity-80 rounded-md cursor-pointer "
               >
                 <span className=" text-xl">
                   <RiLogoutCircleLine />
                 </span>
-                <span className="text-sm">Sign Out</span>
-              </p>
+                <span className="text-sm r">
+                  <div className="flex justify-center items-center">
+                    {isLoading ? (
+                      <CgSpinnerTwo className="animate-spin text-2xl" />
+                    ) : (
+                      "Sign Out"
+                    )}
+                  </div>
+                </span>
+              </button>
             </motion.div>
           </motion.div>
         )}
