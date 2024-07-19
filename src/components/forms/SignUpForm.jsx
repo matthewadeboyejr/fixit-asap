@@ -2,13 +2,13 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../api/axios";
 import useUserRegContext from "../hooks/UseUserRegContext";
+import Otp from "../Modal/Otp";
 
 const SignUpForm = () => {
   const { setUserRegData } = useUserRegContext();
-  const navigate = useNavigate();
 
   const errRef = useRef();
   const firstNameRef = useRef();
@@ -28,6 +28,7 @@ const SignUpForm = () => {
 
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccessful, SetIsSuccessfull] = useState(false);
 
   useEffect(() => firstNameRef.current.focus(), []);
   useEffect(() => setErrMsg(""), [password, password2]);
@@ -58,7 +59,8 @@ const SignUpForm = () => {
       const response = await axios.post(url, data);
       const regData = response.data;
       setUserRegData(regData);
-      navigate("/otp");
+      SetIsSuccessfull(true);
+      //navigate("/otp");
 
       //clear form
       setRegisterData({ email: "", first_name: "", last_name: "" });
@@ -70,7 +72,11 @@ const SignUpForm = () => {
     setIsLoading(false);
   };
 
-  return (
+  return isSuccessful ? (
+    <>
+      <Otp />{" "}
+    </>
+  ) : (
     <form className="w-full space-y-5" onSubmit={handleSubmit}>
       <p
         ref={errRef}

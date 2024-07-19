@@ -39,9 +39,10 @@ const LoginForm = () => {
       localStorage.setItem("token", token);
 
       login();
-      navigate("/address", { replace: true });
-      setIsLoading(false);
+      //navigate("/address", { replace: true });
+      navigate("/dashboard");
 
+      setIsLoading(false);
       setLoginData({ email: "", password: "" });
     } catch (error) {
       setErrMsg(error.response?.data?.message);
@@ -50,7 +51,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full space-y-5">
+    <form onSubmit={handleSubmit} className="w-full space-y-4">
       <p
         ref={errRef}
         className={
@@ -69,7 +70,7 @@ const LoginForm = () => {
         name="email"
         value={loginData.email}
         onChange={handleChange}
-        autoComplete="off"
+        autoComplete="on"
         required
       />
 
@@ -81,7 +82,7 @@ const LoginForm = () => {
           name="password"
           value={loginData.password}
           onChange={handleChange}
-          autoComplete="off"
+          autoComplete="on"
           required
         />
         <div

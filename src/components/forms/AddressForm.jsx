@@ -28,14 +28,13 @@ const AddressForm = () => {
     try {
       const response = await axios.post(url, data);
       console.log(response);
-
       navigate("/dashboard");
-      isLoading(false);
 
       setPostal("");
       setAddress("");
     } catch (error) {
       setErrMsg(error.response?.data?.message);
+      isLoading(false);
     }
   };
 

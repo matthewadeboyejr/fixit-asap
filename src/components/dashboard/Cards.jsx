@@ -1,6 +1,6 @@
 import React from "react";
 import { RiAccountCircleLine, RiStarSFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const serviceCard = [
   {
@@ -48,13 +48,17 @@ const serviceCard = [
 ];
 
 export const FixOfDay = () => {
+  const navigate = useNavigate();
   return (
     <section className="space-y-5 ">
       <h2 className="px-5 text-lg">Fixed of the day</h2>
 
       <div className="flex gap-5 overflow-x-auto">
         {serviceCard.map((e) => (
-          <div className="space-y-5 rounded-lg bg-white p-3 ">
+          <div
+            onClick={() => navigate("/about-provider")}
+            className="space-y-5 rounded-lg bg-white p-3 "
+          >
             <div className="relative rounded-lg overflow-hidden  md:w-64  w-48">
               <img
                 className="object-cover min-w-full  h-40  "

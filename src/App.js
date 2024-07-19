@@ -11,7 +11,6 @@ import Requestedprovider from "./pages/Requestedprovider";
 import Chat from "./pages/Chat";
 import Landing from "./pages/Landing";
 import Address from "./pages/Address";
-import Otp from "./pages/Otp";
 import { UserRegProvider } from "./components/context/UserRegContext";
 import RequireAuth from "./components/layout/RequireAuth";
 
@@ -31,14 +30,7 @@ const App = () => {
             </UserRegProvider>
           }
         />
-        <Route
-          path="otp"
-          element={
-            <UserRegProvider>
-              <Otp />
-            </UserRegProvider>
-          }
-        />
+
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="reset-password" element={<Resetpass />} />
         {/*    {Needs to be protected} */}

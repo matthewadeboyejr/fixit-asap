@@ -130,11 +130,22 @@ export const LandingHeader = () => {
   );
 };
 
+export const PreHeader = () => {
+  return (
+    <header className="p-10">
+      <img src={LogoMain} className="w-24 h-auto " alt="logo" />
+    </header>
+  );
+};
+
 export const MobileNav = () => {
   return (
     <nav className=" flex justify-evenly bg-primary  py-3  rounded-full mx-5 gap-7 shadow-2xl  drop-shadow-lg">
       {nav.map((navLink) => (
-        <NavLink to={nav.path} className="flex flex-col items-center gap-1  ">
+        <NavLink
+          to={navLink.path}
+          className="flex flex-col items-center gap-1  "
+        >
           <span className="text-secondary text-xl hover:text-teriary ">
             {navLink.icon}
           </span>
