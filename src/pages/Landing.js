@@ -34,7 +34,7 @@ const Landing = () => {
               onClick={() => {
                 navigate("/dashboard");
               }}
-              className=" border-teriary bg-teriary p-2 rounded-full hover:bg-teriary border-b   text-sm font-normal py-3 px-10  hover:bg-transparent text-primary  transition-colors "
+              className=" border-primary bg-teriary p-2 rounded-full hover:bg-teriary border-b-4   text-sm font-normal py-3 px-10  hover:bg-transparent text-primary  transition-colors "
             >
               Explore services
             </button>
@@ -60,7 +60,7 @@ const Landing = () => {
           <GooglePlay />
           <AppStore />
         </div>
-        <div className="  flex items-center justify-center  ">
+        <div className="flex items-center justify-center">
           <motion.img
             initial={{
               x: 100,
@@ -68,74 +68,10 @@ const Landing = () => {
             whileInView={{ x: 0 }}
             transition={{ duration: 1 }}
             src={mockup}
-            className="w-72  h-auto animate-pulse"
+            className="w-72  h-auto "
             alt=""
           />
         </div>
-      </section>
-
-      <section className="space-y-10 md:mx-96 mx-12 pt-10">
-        <h2 className="text-center text-3xl font-semibold">
-          Who can use <span className="italic text-secondary">Fixit-ASAP</span>
-        </h2>
-        <div className="flex gap-10  flex-col md:flex-row">
-          <motion.div
-            initial={{
-              x: -100,
-            }}
-            whileInView={{ x: 0 }}
-            transition={{ duration: 1 }}
-            className=" bg-primary text-white  rounded-md p-7 space-y-5"
-          >
-            <h4 className="text-2xl">Need Tradesmen </h4>
-            <p className="text-teriary">
-              Find Professionals for all Needs, Find Professionals for Your
-              Domestic Needs
-            </p>
-            <button
-              onClick={() => {
-                navigate("/dashboard");
-              }}
-              className="border-b border-teriary p-2 rounded-full hover:bg-teriary hover:text-primary"
-            >
-              explore
-            </button>
-          </motion.div>
-          <motion.div
-            initial={{
-              x: 100,
-            }}
-            whileInView={{ x: 0 }}
-            transition={{ duration: 1 }}
-            className=" bg-primary text-white border rounded-md p-7 space-y-5"
-          >
-            <h4 className="text-2xl ">Be Tradesmen </h4>
-            <p className="text-teriary">
-              Have a Skill? Provide Services and Expand Your Customer Base,Join
-              our platform to connect with customers in need of your expertise.
-            </p>
-
-            <button className="border-b border-teriary p-2 rounded-full hover:bg-teriary hover:text-primary">
-              Join to connect
-            </button>
-          </motion.div>
-          {/*  <div className=" bg-primary text-white border rounded-md p-7 space-y-5">
-            <h4 className="font-medium">Set Your Schedule</h4>
-            <p>
-              Find Professionals for all Needs, Find Professionals for Your
-              Domestic Needs
-            </p>
-          </div> */}
-        </div>
-      </section>
-      <section className=" pt-10 bg-primary text-white my-20">
-        <h2 className="text-center text-3xl font-semibold ">
-          Our Wall of Love
-          <span className="italic text-secondary"></span>
-        </h2>
-        <p className="text-center">
-          Read what trademen community members are saying about Fixit-Asap
-        </p>
       </section>
     </div>
   );

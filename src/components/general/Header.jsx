@@ -16,7 +16,6 @@ const nav = [
   { id: 1, icon: <RiHomeLine />, name: "Home", path: "/dashboard" },
   { id: 2, icon: <RiTimeLine />, name: "Booking", path: "/bookings" },
   { id: 3, icon: <RiChat3Line />, name: "Chat", path: "/chat" },
-  { id: 4, icon: <RiChat3Line />, name: "Chat", path: "/chat" },
 ];
 
 const Header = () => {
@@ -59,7 +58,7 @@ const Header = () => {
           className="flex items-center gap-2 hover:underline cursor-pointer "
         >
           <RiAccountCircleLine className="text-xl" />
-          <p className="">Profile</p>
+          <p className="">My Account</p>
         </div>
       </div>
 
@@ -90,7 +89,7 @@ export const LandingHeader = () => {
         className="w-28 h-auto "
         alt="logo"
       />
-      <nav className="hidden md:flex  bg-primary px-7 py-2 rounded-full gap-10  ">
+      <nav className="hidden md:flex  bg-primary px-7 py-2 rounded-full gap-10 border-b-4 border-teriary  ">
         <NavLink
           to={""}
           className="flex items-center gap-2 text-white text-sm hover:underline  "
@@ -131,9 +130,16 @@ export const LandingHeader = () => {
 };
 
 export const PreHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="p-10">
-      <img src={LogoMain} className="w-24 h-auto " alt="logo" />
+      <img
+        onClick={() => navigate("/")}
+        src={LogoMain}
+        className="w-24 h-auto  hover:scale-110"
+        alt="logo"
+      />
     </header>
   );
 };

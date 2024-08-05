@@ -14,8 +14,6 @@ const Login = () => {
       <PreHeader />
       <section className=" flex  justify-center md:items-center  ">
         <div className="flex flex-col items-left md:w-1/3 w-full space-y-5 py-20 px-5 md:px-14">
-          {/*        <img src={Logo} className="w-36 h-auto " alt="logo" /> */}
-
           <div className="flex items-center gap-3 px-3">
             <IoIosArrowRoundBack
               onClick={() => navigate(-1)}

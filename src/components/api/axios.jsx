@@ -1,20 +1,24 @@
 import axios from "axios";
 
-export default axios.create({
+const axiosInstance = axios.create({
   baseURL: "https://artisanapi-48408c1be722.herokuapp.com",
   headers: {
     "Content-Type": "application/json",
-    withCredentials: false,
   },
 });
 
-axios.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  console.log(token);
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken");
 
-  if (token) {
-    config.headers.Authorization = `Token ${token}`;
+    if (token) {
+      config.headers.Authorization = `Token ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
+);
 
-  return config;
-});
+export default axiosInstance;

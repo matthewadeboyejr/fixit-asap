@@ -3,52 +3,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import axios from "../api/axios";
-import { UseAuthContext } from "../hooks/UseAuthContext";
+import useLoginContext from "../hooks/useLoginContext";
 
 const LoginForm = () => {
+  const { errMsg, loginData, handleChange, isLoading, handleSubmit } =
+    useLoginContext();
+
   const errRef = useRef();
-  const navigate = useNavigate();
-  const { login } = UseAuthContext();
-
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
-
   const [showPassword, setShowPassword] = useState(false);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
-
   useEffect(() => errRef.current.focus(), []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLoginData((values) => ({ ...values, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const url = "/account/api/v1/login/?login_type=user";
-    const data = { username: loginData.email, password: loginData.password };
-
-    try {
-      setIsLoading(true);
-      const response = await axios.post(url, data);
-      const token = response?.data?.data?.token;
-      localStorage.setItem("token", token);
-
-      login();
-      //navigate("/address", { replace: true });
-      navigate("/dashboard");
-
-      setIsLoading(false);
-      setLoginData({ email: "", password: "" });
-    } catch (error) {
-      setErrMsg(error.response?.data?.message);
-      setIsLoading(false);
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit} className="w-full space-y-4">
@@ -68,7 +31,7 @@ const LoginForm = () => {
         placeholder="Email"
         type="email"
         name="email"
-        value={loginData.email}
+        value={loginData?.email}
         onChange={handleChange}
         autoComplete="on"
         required
@@ -80,7 +43,7 @@ const LoginForm = () => {
           placeholder="Password"
           type={showPassword ? "text" : "password"}
           name="password"
-          value={loginData.password}
+          value={loginData?.password}
           onChange={handleChange}
           autoComplete="on"
           required

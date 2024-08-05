@@ -1,6 +1,8 @@
 import React from "react";
 import { RiAccountCircleLine, RiStarSFill } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+//import axios from "../api/axios";
+//import { ArtisanProvider } from "../context/ArtisanContext";
 
 const serviceCard = [
   {
@@ -97,8 +99,21 @@ export const FixOfDay = () => {
     </section>
   );
 };
-
+/* 
 export const CloseToYou = () => {
+  useEffect(() => {
+    handleDashData();
+  }, []);
+
+  const handleDashData = async (response) => {
+    const url = "/service-user/api/v1/user-dashboard/";
+
+    try {
+      response = await axios.get(url);
+      console.log("user-dashboard", response);
+    } catch (error) {}
+  };
+
   return (
     <section className="space-y-5">
       <div className="flex justify-between px-5">
@@ -144,7 +159,7 @@ export const CloseToYou = () => {
       </div>
     </section>
   );
-};
+}; */
 
 export const FeaturedServices = () => {
   return (

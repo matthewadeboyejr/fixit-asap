@@ -3,78 +3,37 @@ import { useState } from "react";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { Link } from "react-router-dom";
-import axios from "../api/axios";
-import useUserRegContext from "../hooks/UseUserRegContext";
 import Otp from "../Modal/Otp";
+import useSignupContext from "../hooks/useSignupContext";
 
 const SignUpForm = () => {
-  const { setUserRegData } = useUserRegContext();
-
+  const {
+    handleChange,
+    handleSubmit,
+    setPassword,
+    setPassword2,
+    passwordFocus,
+    password2Focus,
+    setPassword2Focus,
+    setPasswordFocus,
+    password,
+    password2,
+    errMsg,
+    registerData,
+    validPassword,
+    validPassword2,
+    isLoading,
+    isSuccessful,
+  } = useSignupContext();
   const errRef = useRef();
   const firstNameRef = useRef();
-  const [registerData, setRegisterData] = useState({
-    email: "",
-    first_name: "",
-    last_name: "",
-  });
-  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [validPassword, setValidPassword] = useState(false);
-  const [passwordFocus, setPasswordFocus] = useState(false);
-
-  const [password2, setPassword2] = useState("");
-  const [validPassword2, setValidPassword2] = useState(false);
-  const [password2Focus, setPassword2Focus] = useState(false);
-
-  const [errMsg, setErrMsg] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccessful, SetIsSuccessfull] = useState(false);
 
   useEffect(() => firstNameRef.current.focus(), []);
-  useEffect(() => setErrMsg(""), [password, password2]);
-  useEffect(() => {
-    setValidPassword(password.length >= 6);
-    setValidPassword2(password2 === password);
-  }, [password2, password]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRegisterData((values) => ({ ...values, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const url = "/account/api/v1/register/?user_type=user";
-    const data = {
-      email: registerData.email,
-      first_name: registerData.first_name,
-      last_name: registerData.last_name,
-      password: password,
-      password2: password2,
-    };
-
-    try {
-      setIsLoading(true);
-      const response = await axios.post(url, data);
-      const regData = response.data;
-      setUserRegData(regData);
-      SetIsSuccessfull(true);
-      //navigate("/otp");
-
-      //clear form
-      setRegisterData({ email: "", first_name: "", last_name: "" });
-      setPassword("");
-      setPassword2("");
-    } catch (error) {
-      setErrMsg(error.response.data.message);
-    }
-    setIsLoading(false);
-  };
 
   return isSuccessful ? (
     <>
-      <Otp />{" "}
+      <Otp />
     </>
   ) : (
     <form className="w-full space-y-5" onSubmit={handleSubmit}>

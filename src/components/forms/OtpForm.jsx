@@ -3,10 +3,11 @@ import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import axios from "../api/axios";
-import UseUserRegContext from "../hooks/UseUserRegContext";
+
+import useSignupContext from "../hooks/useSignupContext";
 
 const OtpForm = () => {
-  const { userRegData } = UseUserRegContext();
+  const { userRegData } = useSignupContext();
 
   const otpRef = useRef();
 
