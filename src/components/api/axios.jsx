@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: "https://artisanapi-48408c1be722.herokuapp.com",
   headers: {
     "Content-Type": "application/json",

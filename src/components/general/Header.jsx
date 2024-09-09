@@ -3,14 +3,13 @@ import {
   RiHomeLine,
   RiTimeLine,
   RiChat3Line,
-  RiAccountCircleLine,
   RiArrowLeftLine,
 } from "react-icons/ri";
 import Logo from "../Images/Logo-yellow.png";
 import LogoMain from "../Images/Logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import ProfileModal from "../dashboard/Modals/ProfileModal";
-import { useState } from "react";
+import { GoPerson } from "react-icons/go";
+import useOpenModalContext from "../hooks/useOpenModalContext";
 
 const nav = [
   { id: 1, icon: <RiHomeLine />, name: "Home", path: "/dashboard" },
@@ -19,12 +18,12 @@ const nav = [
 ];
 
 const Header = () => {
-  const [openProfile, setOpenProfile] = useState(false);
+  const { setOpenProfile, openProfile } = useOpenModalContext();
 
   const navigate = useNavigate();
 
   return (
-    <header className="flex items-center justify-between   ">
+    <header className="flex items-center justify-between">
       <img
         onClick={() => {
           navigate("/");
@@ -33,7 +32,7 @@ const Header = () => {
         className="w-28 h-auto "
         alt="logo"
       />
-      <nav className="hidden md:flex  bg-primary px-7 py-2 rounded-full gap-7  ">
+      <nav className="hidden md:flex bg-primary p-4 rounded-full gap-7">
         {nav.map((navLink) => (
           <NavLink
             key={navLink.id}
@@ -48,26 +47,24 @@ const Header = () => {
             </span>
           </NavLink>
         ))}
-      </nav>
-      <div className="flex items-center gap-4 text-primary ">
-        <IoNotificationsSharp className="hover:opacity-70 transition-opacity" />
+
         <div
           onClick={() => {
-            setOpenProfile(true);
+            setOpenProfile(!openProfile);
           }}
-          className="flex items-center gap-2 hover:underline cursor-pointer "
+          className="flex md:flex-row flex-col items-center gap-1 cursor-pointer "
         >
-          <RiAccountCircleLine className="text-xl" />
-          <p className="">My Account</p>
+          <p className="text-secondary text-xl hover:text-teriary ">
+            <GoPerson />
+          </p>
+          <p className="text-white text-sm hover:underline  ">Profile</p>
         </div>
+      </nav>
+      <div className="flex items-center gap-4 text-primary ">
+        <p className="text-white bg-white/25 p-2 rounded-md">
+          <IoNotificationsSharp className="hover:opacity-70 transition-opacity" />
+        </p>
       </div>
-
-      <ProfileModal
-        openProfile={openProfile}
-        closeProfile={() => {
-          setOpenProfile(false);
-        }}
-      />
     </header>
   );
 };
@@ -75,7 +72,7 @@ const Header = () => {
 export default Header;
 
 export const LandingHeader = () => {
-  const [openProfile, setOpenProfile] = useState(false);
+  //const [openProfile, setOpenProfile] = useState(false);
 
   const navigate = useNavigate();
 
@@ -118,13 +115,6 @@ export const LandingHeader = () => {
       <div className="flex items-center gap-4 text-primary ">
         <button></button>
       </div>
-
-      <ProfileModal
-        openProfile={openProfile}
-        closeProfile={() => {
-          setOpenProfile(false);
-        }}
-      />
     </header>
   );
 };
@@ -145,10 +135,12 @@ export const PreHeader = () => {
 };
 
 export const MobileNav = () => {
+  const { setOpenProfile, openProfile } = useOpenModalContext();
   return (
-    <nav className=" flex justify-evenly bg-primary  py-3  rounded-full mx-5 gap-7 shadow-2xl  drop-shadow-lg">
+    <nav className=" flex justify-evenly bg-primary  py-3  rounded-full mx-5  shadow-2xl  drop-shadow-lg">
       {nav.map((navLink) => (
         <NavLink
+          key={navLink.id}
           to={navLink.path}
           className="flex flex-col items-center gap-1  "
         >
@@ -160,6 +152,17 @@ export const MobileNav = () => {
           </span>
         </NavLink>
       ))}
+      <div
+        onClick={() => {
+          setOpenProfile(!openProfile);
+        }}
+        className="flex md:flex-row flex-col items-center gap-1  "
+      >
+        <p className="text-secondary text-xl hover:text-teriary ">
+          <GoPerson />
+        </p>
+        <p className="text-white text-sm hover:underline  ">Profile</p>
+      </div>
     </nav>
   );
 };

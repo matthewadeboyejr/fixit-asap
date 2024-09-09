@@ -13,59 +13,56 @@ import Landing from "./pages/Landing";
 import Address from "./pages/Address";
 import RequireAuth from "./components/layout/RequireAuth";
 import NotFound from "./pages/NotFound";
-import { LoginProvider } from "./components/context/LoginContext";
 import { SignupProvider } from "./components/context/SignupContext";
 import Profile from "./pages/Profile";
-import { ProfileProvider } from "./components/context/ProfileContext";
+//import { ProfileProvider } from "./components/context/ProfileContext";
+
+import { LoginProvider } from "./components/context/LoginContext";
+import { OpenModalProvider } from "./components/context/OpenModalContext";
 
 const App = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="*" element={<NotFound />} />
+    <OpenModalProvider>
+      <div>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="*" element={<NotFound />} />
 
-        {/*    {Public routes} */}
-        <Route
-          path="login"
-          element={
-            <LoginProvider>
-              <Login />
-            </LoginProvider>
-          }
-        />
-        <Route
-          path="signup"
-          element={
-            <SignupProvider>
-              <Signup />
-            </SignupProvider>
-          }
-        />
-
-        <Route path="reset-password" element={<Resetpass />} />
-
-        {/*    {Needs to be protected} */}
-
-        <Route element={<RequireAuth />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="about-provider" element={<Aboutprovider />} />
-          <Route path="bookings" element={<Bookings />} />
-          <Route path="chat" element={<Chat />} />
-          <Route path="Search-provider" element={<Searchprovider />} />
-          <Route path="requested-provider" element={<Requestedprovider />} />
-          <Route path="address" element={<Address />} />
+          {/*    {Public routes} */}
           <Route
-            path="profile"
+            path="login"
             element={
-              <ProfileProvider>
-                <Profile />
-              </ProfileProvider>
+              <LoginProvider>
+                <Login />
+              </LoginProvider>
             }
           />
-        </Route>
-      </Routes>
-    </div>
+          <Route
+            path="signup"
+            element={
+              <SignupProvider>
+                <Signup />
+              </SignupProvider>
+            }
+          />
+
+          <Route path="reset-password" element={<Resetpass />} />
+
+          {/*    {Needs to be protected} */}
+
+          <Route element={<RequireAuth />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="about-provider" element={<Aboutprovider />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="chat" element={<Chat />} />
+            <Route path="Search-provider" element={<Searchprovider />} />
+            <Route path="requested-provider" element={<Requestedprovider />} />
+            <Route path="address" element={<Address />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </div>
+    </OpenModalProvider>
   );
 };
 

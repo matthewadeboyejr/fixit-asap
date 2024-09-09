@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import axiosInstance from "../api/axios";
-import Dashboard from "../../pages/Dashboard";
 
 const ProfileContext = createContext({});
 

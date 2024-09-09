@@ -1,12 +1,13 @@
-//import React, { useState } from "react";
-import { RiCloseFill, RiMapPinUserFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import RequestServiceForm from "../../forms/RequestServiceForm";
+import { RiCloseFill } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
-import useOpenModalContext from "../../hooks/useOpenModalContext";
+import useOpenModalContext from "../hooks/useOpenModalContext";
+import GoogleMap from "../map/GoogleMap";
+import useAddressContext from "../hooks/useAddressContext";
 
-const RequestServiceModal = () => {
-  const { setOpenRequest, openRequest } = useOpenModalContext();
+const SelectAddress = () => {
+  const { openAddress, setOpenAddress } = useOpenModalContext();
+  const { address } = useAddressContext();
+
   return (
     <>
       <motion.div
@@ -14,15 +15,15 @@ const RequestServiceModal = () => {
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
         exit={{ opacity: 0 }}
         className={`${
-          openRequest ? `flex` : `hidden`
+          openAddress ? `flex` : `hidden`
         }  bg-black/70 fixed inset-0 h-screen justify-center md:items-center items-end z-30`}
       />
 
       <AnimatePresence>
-        {openRequest && (
+        {openAddress && (
           <div className="flex md:items-center items-end justify-center inset-0 fixed z-50 ">
             <motion.div
-              className="bg-white p-5 md:rounded-md rounded-t-md   md:w-fit w-full  "
+              className="bg-white p-5 md:rounded-md rounded-t-md md:w-1/4 w-full  "
               initial={{
                 y: 100,
                 opacity: 0,
@@ -35,6 +36,7 @@ const RequestServiceModal = () => {
               transition={{ duration: 0.5 }}
             >
               <motion.div
+                className="relative"
                 initial={{
                   y: 50,
                   opacity: 0,
@@ -47,31 +49,22 @@ const RequestServiceModal = () => {
                 transition={{ delay: 0.3 }}
               >
                 <div className="flex items-center justify-between ">
-                  <h4 className="text-lg font-semibold">Request service</h4>
+                  <h4 className="text-lg font-semibold">Select Address</h4>
                   <p
-                    onClick={() => {
-                      setOpenRequest(false);
-                    }}
+                    onClick={() => setOpenAddress(!openAddress)}
                     className="bg-primary/20 p-2 rounded-md text-2xl cursor-pointer hover:bg-primary/30 transition-opacity"
                   >
                     <RiCloseFill />
                   </p>
                 </div>
-                <div className="flex items-center gap-2 pt-5">
-                  <p className="flex items-center gap-2">
-                    <span className="text-teriary">
-                      <RiMapPinUserFill />
-                    </span>
-                    <span className=" text-xs opacity-50">
-                      No. 2 Lake street, London central, Uk
-                    </span>
-                  </p>
-                  <Link className="text-secondary underline text-xs">
-                    {" "}
-                    Change
-                  </Link>
+                <GoogleMap />
+                <div className="space-y-2 absolute bottom-0  shadow-md p-4 rounded-t-md bg-white  w-full">
+                  <h5 className="text-lg font-semibold">Current Location</h5>
+                  <p className="opacity-50 text-sm font-light">{address}</p>
+                  <button className={`btn-primary`}>
+                    Select This Location
+                  </button>
                 </div>
-                <RequestServiceForm />
               </motion.div>
             </motion.div>
           </div>
@@ -81,4 +74,4 @@ const RequestServiceModal = () => {
   );
 };
 
-export default RequestServiceModal;
+export default SelectAddress;

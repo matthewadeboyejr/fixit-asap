@@ -4,56 +4,64 @@ import { RiStarSFill } from "react-icons/ri";
 import useArtisanContext from "../hooks/useArtisanContext";
 import { GoPerson } from "react-icons/go";
 
-const ArtisanCloseToYou = () => {
-  const { closestArtisan, isLoading } = useArtisanContext();
-
+const FixOfTheMonth = () => {
+  const { fixOFTheMonth, isLoading } = useArtisanContext();
   return (
     <section className="space-y-5">
       <div className="flex justify-between px-5">
-        <h2 className=" text-sm">Artisan close to you</h2>
+        <h2 className=" text-sm">Fix of the Month</h2>
         <Link className="text-secondary hover:underline">view all</Link>
       </div>
 
-      <div className="flex gap-5 overflow-x-auto ">
+      <div className="flex gap-5 overflow-x-auto w-full">
         {isLoading && <CardSkeleton />}
-        {closestArtisan.map((item) => (
+        {fixOFTheMonth.map((item) => (
           <div
             key={item.id}
-            className="space-y-5 rounded-lg bg-white p-3 md:w-96 w-full "
+            className="space-y-5 rounded-lg bg-white p-3 md:w-fit  w-full aspect-square "
           >
-            <div className="relative rounded-lg overflow-hidden  w-full">
-              <img
-                className="object-cover min-w-full aspect-square md:h-60  "
-                src={item.image}
-                alt=""
-              />
-              <div className="absolute bg-primary/20 inset-0 "></div>
-              <div className="absolute inset-0 ">
-                <div className="flex items-center bg-white w-12  m-3 rounded-sm justify-evenly">
-                  <p>
-                    <RiStarSFill className="text-teriary text-sm" />
-                  </p>
+            {item.receiver.services?.map((service) => (
+              <>
+                <div
+                  key={service.id}
+                  className="relative rounded-lg overflow-hidden  w-full"
+                >
+                  <img
+                    className="object-cover min-w-full aspect-square md:h-60  "
+                    src={service.image}
+                    alt={service.service_name}
+                  />
+                  <div className="absolute bg-primary/20 inset-0 "></div>
+                  <div className="absolute inset-0 ">
+                    <div className="flex items-center bg-white w-12  m-3 rounded-sm justify-evenly">
+                      <p>
+                        <RiStarSFill className="text-teriary text-sm" />
+                      </p>
 
-                  <p className="text-xs">{"star"}</p>
+                      <p className="text-xs">{"star"}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="flex justify-between px-2">
-              <div className="flex flex-col gap-2">
-                <h5 className="text-xs font-medium ">
-                  {item.service_category.category}
-                </h5>
-                <div className=" flex  items-center gap-2 text-xs">
-                  <GoPerson className="text-secondary" />
-                  <p className="opacity-50 text-xs">
-                    {item.artisan.business_name}
+                <div className="flex justify-between px-2">
+                  <div className="flex flex-col gap-2">
+                    <h5 className="text-xs font-medium ">
+                      {service.service_category?.category}
+                    </h5>
+                    <div className=" flex  items-center gap-2 text-xs">
+                      <GoPerson className="text-secondary" />
+                      <p className="opacity-50 text-xs">
+                        {service.business_name}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="font-medium text-xs text-secondary">
+                    {"1 km+"}
                   </p>
                 </div>
-              </div>
-
-              <p className="font-medium text-xs text-secondary">{"1 km+"}</p>
-            </div>
+              </>
+            ))}
           </div>
         ))}
       </div>
@@ -61,7 +69,7 @@ const ArtisanCloseToYou = () => {
   );
 };
 
-export default ArtisanCloseToYou;
+export default FixOfTheMonth;
 
 export const CardSkeleton = (cards) => {
   return Array(cards)

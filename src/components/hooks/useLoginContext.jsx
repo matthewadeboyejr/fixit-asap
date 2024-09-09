@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import LoginContext from "../context/LoginContext";
 
-const UseLoginContext = () => {
+const useLoginContext = () => {
   return useContext(LoginContext);
 };
 
-export default UseLoginContext;
+export default useLoginContext;

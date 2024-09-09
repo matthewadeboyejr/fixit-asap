@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { CgSpinnerTwo } from "react-icons/cg";
 
@@ -16,6 +16,7 @@ const SignoutButton = () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.post(url);
+      console.log(response);
       logout();
       setIsLoading(false);
     } catch (error) {
