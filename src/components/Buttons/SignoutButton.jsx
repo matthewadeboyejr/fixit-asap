@@ -2,12 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { CgSpinnerTwo } from "react-icons/cg";
-
 import axiosInstance from "../api/axios";
-import { useAuthContext } from "../hooks/useAuthContext";
+import useAuthenticateContext from "../hooks/useAuthenticateContext";
 
 const SignoutButton = () => {
-  const { logout } = useAuthContext();
+  const { logout } = useAuthenticateContext();
 
   const [isLoading, setIsLoading] = useState(false);
 

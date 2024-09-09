@@ -1,8 +1,8 @@
 import { useState, createContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../hooks/useAuthContext";
 import axiosInstance from "../api/axios";
 import axios from "axios";
+import useAuthenticateContext from "../hooks/useAuthenticateContext";
 
 const LoginContext = createContext({});
 
@@ -10,7 +10,7 @@ export const LoginProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { login } = useAuthContext();
+  const { login } = useAuthenticateContext();
 
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
