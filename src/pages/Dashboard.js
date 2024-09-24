@@ -17,7 +17,7 @@ const Dashboard = () => {
   return (
     <div className="">
       <main className=" m-5 space-y-7 md:pb-5 pb-20">
-        <section className="drop-shadow-lg bg-secondary md:p-10 p-5 space-y-5  rounded-md sticky top-0 z-10">
+        <section className="drop-shadow-lg bg-secondary md:p-10 p-5 space-y-5  rounded-md sticky top-0  z-10">
           <Header />
           <div className="flex items-center gap-1 ">
             <div className="w-full bg-white flex items-center rounded-md px-4 p-2.5">

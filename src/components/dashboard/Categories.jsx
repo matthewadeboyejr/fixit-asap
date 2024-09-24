@@ -7,7 +7,10 @@ const Categories = () => {
 
   return (
     <section className="space-y-5 overflow-hidden">
-      <h3 className="px-5 text-xl font-bold">Feature Categories</h3>
+      <div className="flex justify-between px-3">
+        <h3 className=" text-sm font-medium">Feature Categories</h3>
+        <Link className="text-primary hover:underline text-sm ">view all</Link>
+      </div>
       <ul className="grid items-center grid-cols-3 md:grid-cols-8  gap-3 text-sm ">
         {category.map((item) => (
           <li
@@ -17,7 +20,6 @@ const Categories = () => {
             {item.category}
           </li>
         ))}
-        <Link className="text-secondary hover:underline">view all</Link>
       </ul>
     </section>
   );

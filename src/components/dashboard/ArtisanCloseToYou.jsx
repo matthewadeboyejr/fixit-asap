@@ -11,9 +11,9 @@ const ArtisanCloseToYou = () => {
 
   return (
     <section className="space-y-5">
-      <div className="flex justify-between px-5">
-        <h2 className="text-xl font-bold">Artisan close to you</h2>
-        <Link className="text-secondary hover:underline text-lg">view all</Link>
+      <div className="flex justify-between px-3">
+        <h2 className="text-sm font-medium">Artisan close to you</h2>
+        <Link className="text-primary hover:underline text-sm">view all</Link>
       </div>
 
       {closestArtisan.length === 0 ? (

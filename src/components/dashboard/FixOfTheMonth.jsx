@@ -11,9 +11,9 @@ const FixOfTheMonth = () => {
 
   return (
     <section className="space-y-5">
-      <div className="flex justify-between px-5">
-        <h2 className="text-xl font-bold">Fix of the Month</h2>
-        <Link className="text-secondary hover:underline text-lg">view all</Link>
+      <div className="flex justify-between px-3">
+        <h2 className="text-lg font-bold">Fix of the Month</h2>
+        <Link className="text-primary hover:underline text-sm">view all</Link>
       </div>
 
       <div className="flex gap-4 overflow-x-auto pb-4">
