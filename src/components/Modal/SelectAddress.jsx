@@ -1,8 +1,8 @@
 import { RiCloseFill } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
-import useOpenModalContext from "../hooks/useOpenModalContext";
+import useOpenModalContext from "../../hooks/useOpenModalContext";
 import GoogleMap from "../map/GoogleMap";
-import useAddressContext from "../hooks/useAddressContext";
+import useAddressContext from "../../hooks/useAddressContext";
 
 const SelectAddress = () => {
   const { openAddress, setOpenAddress } = useOpenModalContext();
@@ -21,7 +21,7 @@ const SelectAddress = () => {
 
       <AnimatePresence>
         {openAddress && (
-          <div className="flex md:items-center items-end justify-center inset-0 fixed z-50 ">
+          <div className=" flex md:items-center items-end justify-center inset-0 fixed z-50 ">
             <motion.div
               className="bg-white p-5 md:rounded-md rounded-t-md md:w-1/4 w-full  "
               initial={{
@@ -36,7 +36,7 @@ const SelectAddress = () => {
               transition={{ duration: 0.5 }}
             >
               <motion.div
-                className="relative"
+                className=""
                 initial={{
                   y: 50,
                   opacity: 0,
@@ -57,13 +57,14 @@ const SelectAddress = () => {
                     <RiCloseFill />
                   </p>
                 </div>
+
                 <GoogleMap />
-                <div className="space-y-2 absolute bottom-0  shadow-md p-4 rounded-t-md bg-white  w-full">
+                <div className="space-y-2 shadow-md p-4 rounded-t-md bg-white  w-full">
                   <h5 className="text-lg font-semibold">Current Location</h5>
-                  <p className="opacity-50 text-sm font-light">{address}</p>
-                  <button className={`btn-primary`}>
+                  <p className=" text-sm opacity-50">{address}</p>
+                  {/* <button className={`btn-primary`}>
                     Select This Location
-                  </button>
+                  </button> */}
                 </div>
               </motion.div>
             </motion.div>

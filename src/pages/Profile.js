@@ -1,6 +1,6 @@
 import { SubHeader } from "../components/general/Header";
 import ProfileDetails from "../components/Profile/ProfileDetails";
-import { LoginProvider } from "../components/context/LoginContext";
+import { LoginProvider } from "../context/LoginContext";
 
 const Profile = () => {
   return (

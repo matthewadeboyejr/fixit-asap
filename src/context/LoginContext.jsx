@@ -5,19 +5,17 @@ import axios from "axios";
 import useAuthenticateContext from "../hooks/useAuthenticateContext";
 
 const LoginContext = createContext({});
+export default LoginContext;
 
 export const LoginProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const { login } = useAuthenticateContext();
-
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [profileIsLoading, setProfileIsLoading] = useState(false);
-
   const [errMsg, setErrMsg] = useState("");
-
   const [profileData, setProfileData] = useState(null);
   const [errorProfileMsg, setErrorProfileMsg] = useState(null);
 
@@ -92,5 +90,3 @@ export const LoginProvider = ({ children }) => {
     </LoginContext.Provider>
   );
 };
-
-export default LoginContext;

@@ -5,11 +5,11 @@ import {
   RiChat3Line,
   RiArrowLeftLine,
 } from "react-icons/ri";
-import Logo from "../Images/Logo-yellow.png";
-import LogoMain from "../Images/Logo.png";
+import Logo from "../../Images/Logo-yellow.png";
+import LogoMain from "../../Images/Logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GoPerson } from "react-icons/go";
-import useOpenModalContext from "../hooks/useOpenModalContext";
+import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 const nav = [
   { id: 1, icon: <RiHomeLine />, name: "Home", path: "/dashboard" },

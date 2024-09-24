@@ -1,7 +1,7 @@
 import React from "react";
 import { PreHeader } from "../components/general/Header";
 import { NavLink } from "react-router-dom";
-import undraw from "../components/Images/undraw.png";
+import undraw from "../Images/undraw.png";
 
 const NotFound = () => {
   const nav = [

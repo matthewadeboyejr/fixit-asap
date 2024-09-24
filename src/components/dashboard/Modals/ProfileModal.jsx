@@ -6,7 +6,7 @@ import {
 } from "react-icons/ri";
 import { AnimatePresence, motion } from "framer-motion";
 import SignoutButton from "../../Buttons/SignoutButton";
-import useOpenModalContext from "../../hooks/useOpenModalContext";
+import useOpenModalContext from "../../../hooks/useOpenModalContext";
 
 const ProfileModal = () => {
   const { setOpenProfile, openProfile } = useOpenModalContext();

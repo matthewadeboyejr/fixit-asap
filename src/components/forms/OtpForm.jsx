@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { Link } from "react-router-dom";
-import axios from "../api/axios";
+import axiosInstance from "../../api/axios";
 
-import useSignupContext from "../hooks/useSignupContext";
+import useSignupContext from "../../hooks/useSignupContext";
 
 const OtpForm = () => {
   const { userRegData } = useSignupContext();
@@ -28,7 +28,7 @@ const OtpForm = () => {
 
     try {
       setIsLoading(true);
-      const response = await axios.post(url, data);
+      const response = await axiosInstance.post(url, data);
       console.log(response);
     } catch (error) {
       setErrMsg(error.response.data.message);

@@ -1,10 +1,10 @@
 import React from "react";
 import { LandingHeader } from "../components/general/Header";
-import mockup from "../components/Images/mockup.png";
-import HeaderPic from "../components/Images/HeaderPics2.jpg";
+import mockup from "../Images/mockup.png";
+import HeaderPic from "../Images/HeaderPics2.jpg";
 import { useNavigate } from "react-router-dom";
-import GooglePlay from "../components/Images/GooglePlay";
-import AppStore from "../components/Images/AppStore";
+import GooglePlay from "../Images/GooglePlay";
+import AppStore from "../Images/AppStore";
 import { motion } from "framer-motion";
 /* import { IoFilterOutline, IoAdd } from "react-icons/io5";
 import { RiSearch2Line } from "react-icons/ri"; */

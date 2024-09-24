@@ -1,66 +1,59 @@
-//import  { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RiStarSFill } from "react-icons/ri";
-import useArtisanContext from "../hooks/useArtisanContext";
 import { GoPerson } from "react-icons/go";
+import useArtisanContext from "../../hooks/useArtisanContext";
 
 const FixOfTheMonth = () => {
   const { fixOFTheMonth, isLoading } = useArtisanContext();
+
+  const placeHolderImg =
+    "https://savvyplumbing.co.za/wp-content/uploads/2021/06/professional-plumber.jpg";
+
   return (
     <section className="space-y-5">
       <div className="flex justify-between px-5">
-        <h2 className=" text-sm">Fix of the Month</h2>
-        <Link className="text-secondary hover:underline">view all</Link>
+        <h2 className="text-xl font-bold">Fix of the Month</h2>
+        <Link className="text-secondary hover:underline text-lg">view all</Link>
       </div>
 
-      <div className="flex gap-5 overflow-x-auto w-full">
-        {isLoading && <CardSkeleton />}
+      <div className="flex gap-4 overflow-x-auto pb-4">
+        {isLoading && <CardSkeleton cards={3} />}
         {fixOFTheMonth.map((item) => (
           <div
+            className="bg-white rounded-lg shadow-md min-w-[250px] flex-shrink-0"
             key={item.id}
-            className="space-y-5 rounded-lg bg-white p-3 md:w-fit  w-full aspect-square "
           >
-            {item.receiver.services?.map((service) => (
-              <>
-                <div
-                  key={service.id}
-                  className="relative rounded-lg overflow-hidden  w-full"
-                >
+            {item.receiver?.services.map((service) => (
+              <div key={service.id}>
+                <div className="relative">
                   <img
-                    className="object-cover min-w-full aspect-square md:h-60  "
-                    src={service.image}
+                    className="w-full h-48 object-cover rounded-t-lg"
+                    src={
+                      service.image === null ? placeHolderImg : service.image
+                    }
                     alt={service.service_name}
                   />
-                  <div className="absolute bg-primary/20 inset-0 "></div>
-                  <div className="absolute inset-0 ">
-                    <div className="flex items-center bg-white w-12  m-3 rounded-sm justify-evenly">
-                      <p>
-                        <RiStarSFill className="text-teriary text-sm" />
-                      </p>
-
-                      <p className="text-xs">{"star"}</p>
-                    </div>
+                  <div className="absolute top-0 left-0 m-3 p-2 flex items-center gap-2 bg-white rounded-sm">
+                    <RiStarSFill className="text-teriary text-sm" />
+                    <p className="text-xs">4.5</p>
                   </div>
                 </div>
 
-                <div className="flex justify-between px-2">
-                  <div className="flex flex-col gap-2">
-                    <h5 className="text-xs font-medium ">
+                <div className="p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h5 className="text-sm font-medium">
                       {service.service_category?.category}
                     </h5>
-                    <div className=" flex  items-center gap-2 text-xs">
-                      <GoPerson className="text-secondary" />
-                      <p className="opacity-50 text-xs">
-                        {service.business_name}
-                      </p>
-                    </div>
+                    <p className="font-medium text-xs text-secondary">1 km+</p>
                   </div>
-
-                  <p className="font-medium text-xs text-secondary">
-                    {"1 km+"}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <GoPerson className="text-secondary" />
+                    <p className="opacity-50 text-xs">
+                      {service.business_name}
+                    </p>
+                  </div>
                 </div>
-              </>
+              </div>
             ))}
           </div>
         ))}
@@ -71,13 +64,15 @@ const FixOfTheMonth = () => {
 
 export default FixOfTheMonth;
 
-export const CardSkeleton = (cards) => {
+export const CardSkeleton = ({ cards }) => {
   return Array(cards)
     .fill(0)
-    .map((index) => (
-      <div className="space-y-5 rounded-lg bg-gray-50/70 p-3  " key={index}>
-        <div className="relative h-52  mb-4 flex justify-center items-center bg-gray-300 animate-pulse md:w-80  w-64">
-          {" "}
+    .map((_, index) => (
+      <div
+        className="space-y-5 rounded-lg bg-gray-50/70 p-3 min-w-[250px] flex-shrink-0"
+        key={index}
+      >
+        <div className="relative h-48 mb-4 flex justify-center items-center bg-gray-300 animate-pulse rounded-t-lg">
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"
@@ -92,7 +87,7 @@ export const CardSkeleton = (cards) => {
         <div className="flex justify-between px-2 animate-pulse">
           <div className="flex flex-col gap-2">
             <div className="rounded-full h-2 w-24 bg-gray-300"></div>
-            <div className=" flex  items-center gap-2 text-xs">
+            <div className="flex items-center gap-2 text-xs">
               <div className="rounded-full h-2 w-2 bg-gray-300"></div>
               <p className="rounded-full h-2 w-40 bg-gray-300"></p>
             </div>

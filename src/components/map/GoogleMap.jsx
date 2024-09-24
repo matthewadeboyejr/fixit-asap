@@ -10,7 +10,7 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 
-import useAddressContext from "../hooks/useAddressContext";
+import useAddressContext from "../../hooks/useAddressContext";
 import PlaceAutocompleteForm from "../forms/PlaceAutoCompleteForm";
 
 const GoogleMap = () => {

@@ -11,6 +11,25 @@ export const AddressProvider = ({ children }) => {
   });
   const [address, setAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [postalCode, setPostalCode] = useState("");
+
+  const GetAddress = useCallback(async (latitude, longitude) => {
+    const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
+
+    try {
+      setIsLoading(true);
+      const response = await axios.get(url);
+      const postal = response.data.results[0].address_components[5].long_name;
+      const formattededAddress = response.data.results[0].formatted_address;
+      setAddress(formattededAddress);
+      setPostalCode(postal);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   const GetCoordinate = useCallback(() => {
     navigator.geolocation.getCurrentPosition(
@@ -22,28 +41,11 @@ export const AddressProvider = ({ children }) => {
       (error) => console.log(error),
       { enableHighAccuracy: true }
     );
-  }, []);
-
-  const GetAddress = async (latitude, longitude) => {
-    const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
-
-    try {
-      setIsLoading(true);
-      const response = await axios.get(url);
-      const data = response.data.results[0].formatted_address;
-      setAddress(data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [GetAddress]);
 
   useEffect(() => {
     GetCoordinate();
-  }, []);
+  }, [GetCoordinate]);
 
   return (
     <AddressContext.Provider
@@ -53,6 +55,8 @@ export const AddressProvider = ({ children }) => {
         address,
         isLoading,
         setAddress,
+        postalCode,
+        setPostalCode,
       }}
     >
       {children}

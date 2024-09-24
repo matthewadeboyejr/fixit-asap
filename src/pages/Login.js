@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple, IoLogoFacebook } from "react-icons/io5";
 import LoginForm from "../components/forms/LoginForm";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { GoogleLogin } from "../components/api/socialLogin";
+import { GoogleLogin } from "../api/socialLogin";
 import { useNavigate } from "react-router-dom";
 import { PreHeader } from "../components/general/Header";
 

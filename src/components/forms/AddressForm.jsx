@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
 
-import axios from "../api/axios";
+import axiosInstance from "../../api/axios";
 
 const AddressForm = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const AddressForm = () => {
     //const config = { Authorization: `Token ${access}` };
 
     try {
-      const response = await axios.post(url, data);
+      const response = await axiosInstance.post(url, data);
       console.log(response);
       navigate("/dashboard");
 

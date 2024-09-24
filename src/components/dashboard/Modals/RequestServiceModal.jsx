@@ -1,12 +1,12 @@
-//import React, { useState } from "react";
-import { RiCloseFill, RiMapPinUserFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { RiCloseFill } from "react-icons/ri";
 import RequestServiceForm from "../../forms/RequestServiceForm";
 import { motion, AnimatePresence } from "framer-motion";
-import useOpenModalContext from "../../hooks/useOpenModalContext";
+import useOpenModalContext from "../../../hooks/useOpenModalContext";
+import UserAddress from "../../general/UserAddress";
 
 const RequestServiceModal = () => {
   const { setOpenRequest, openRequest } = useOpenModalContext();
+
   return (
     <>
       <motion.div
@@ -57,19 +57,8 @@ const RequestServiceModal = () => {
                     <RiCloseFill />
                   </p>
                 </div>
-                <div className="flex items-center gap-2 pt-5">
-                  <p className="flex items-center gap-2">
-                    <span className="text-teriary">
-                      <RiMapPinUserFill />
-                    </span>
-                    <span className=" text-xs opacity-50">
-                      No. 2 Lake street, London central, Uk
-                    </span>
-                  </p>
-                  <Link className="text-secondary underline text-xs">
-                    {" "}
-                    Change
-                  </Link>
+                <div className="py-5">
+                  <UserAddress />
                 </div>
                 <RequestServiceForm />
               </motion.div>

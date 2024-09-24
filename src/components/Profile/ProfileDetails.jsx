@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axiosInstance from "../api/axios";
+import axiosInstance from "../../api/axios";
 import SignoutButton from "../Buttons/SignoutButton";
 
 const ProfileDetails = () => {
