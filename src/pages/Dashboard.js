@@ -16,28 +16,30 @@ const Dashboard = () => {
 
   return (
     <div className="">
-      <main className=" m-5 space-y-7 md:pb-5 pb-20">
-        <section className="drop-shadow-lg bg-secondary md:p-10 p-5 space-y-5  rounded-md sticky top-0  z-10">
+      <main className="  md:pb-5 pb-20">
+        <section className=" bg-secondary md:p-10 p-5 space-y-10 rounded-b-3xl sticky top-0  z-10">
           <Header />
+          {/*  <div className="text-5xl font-medium">How can we Help you?</div> */}
           <div className="flex items-center gap-1 ">
-            <div className="w-full bg-white flex items-center rounded-md px-4 p-2.5">
+            <div className="w-full bg-white flex items-center rounded-md px-4 p-5">
               <RiSearch2Line />
               <input
-                className=" bg-transparent  w-full rounded-md placeholder:text-sm pl-3 outline-none placeholder:text-primary"
+                className=" bg-transparent  w-full rounded-md placeholder:text-sm pl-3 outline-none placeholder:text-primary/50"
                 placeholder="Search e.g cleaner "
                 type="text"
               />
             </div>
-            <div className="p-2.5 bg-white rounded-md">
+            <div className="p-5 bg-white rounded-md">
               <IoFilterOutline className="text-xl" />
             </div>
           </div>
-          <UserAddress />
+          <UserAddress color="text-white" />
         </section>
-
-        <Categories />
-        <FixOfTheMonth />
-        <ArtisanCloseToYou />
+        <section className="mx-5 my-10 space-y-10 ">
+          <Categories />
+          <FixOfTheMonth />
+          <ArtisanCloseToYou />
+        </section>
       </main>
 
       <motion.div

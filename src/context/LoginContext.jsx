@@ -52,8 +52,12 @@ export const LoginProvider = ({ children }) => {
       setIsLoading(true);
       const response = await axios.post(url, data);
       const token = response?.data?.data?.token;
+      const userID = response?.data?.data?.user_id;
       if (token) {
         localStorage.setItem("accessToken", token);
+      }
+      if (userID) {
+        localStorage.setItem("userId", userID);
       }
       login();
       const from = location.state?.from?.pathname || "/dashboard";

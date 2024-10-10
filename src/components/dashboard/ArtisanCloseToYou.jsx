@@ -11,9 +11,11 @@ const ArtisanCloseToYou = () => {
 
   return (
     <section className="space-y-5">
-      <div className="flex justify-between px-3">
-        <h2 className="text-sm font-medium">Artisan close to you</h2>
-        <Link className="text-primary hover:underline text-sm">view all</Link>
+      <div className="flex  items-center justify-between px-3">
+        <h2 className="text-2xl font-medium">Artisan close to you</h2>
+        <Link className="text-secondary hover:underline text-2xl md:text-lg font-medium">
+          view all
+        </Link>
       </div>
 
       {closestArtisan.length === 0 ? (
@@ -26,7 +28,7 @@ const ArtisanCloseToYou = () => {
           {closestArtisan.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-lg shadow-md min-w-[250px] flex-shrink-0"
+              className="bg-white rounded-lg shadow-md min-w-[350px] max-w-[350px]  flex-shrink-0"
             >
               <div className="relative">
                 <img

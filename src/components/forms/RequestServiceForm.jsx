@@ -7,6 +7,7 @@ import useArtisanContext from "../../hooks/useArtisanContext";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import { useNavigate } from "react-router-dom";
+import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 const RequestServiceForm = () => {
   const [category, setCategory] = useState([]);
@@ -17,9 +18,12 @@ const RequestServiceForm = () => {
     name: "",
   });
   const [description, setDescription] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
   const { postalCode } = useAddressContext();
   const { setAvailableService } = useArtisanContext();
+
+  const { setOpenRequest } = useOpenModalContext();
 
   const navigate = useNavigate();
 
@@ -48,11 +52,14 @@ const RequestServiceForm = () => {
       setIsLoading(true);
       const response = await axiosInstance.post(url, data);
       if (response) {
-        console.log(response.data?.data, "test test test");
-        setAvailableService(response.data?.data?.services);
+        setAvailableService(response.data?.data);
       }
-      navigate("/requested-providers");
-      setIsLoading(false);
+      navigate("/available-providers");
+      if (navigate) {
+        setOpenRequest(false);
+      } else {
+        setIsLoading(false);
+      }
       setBudget("");
       setSelectionRange({
         id: null,

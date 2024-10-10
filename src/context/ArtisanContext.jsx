@@ -9,11 +9,32 @@ export const ArtisanProvider = ({ children }) => {
   const [fixOFTheMonth, setFixOFTheMonth] = useState([]);
   const [category, setCategory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [availableService, setAvailableService] = useState([]);
+  const [availableService, setAvailableService] = useState({});
+  const [acceptedProvider, setAcceptedProvider] = useState(null);
+  const [loadingAcceptedProvider, setLoadingAcceptedProvider] = useState(false);
+  const [startedConv, setStartedConv] = useState({});
+  const [contactList, setContactList] = useState({});
+
+  const [requestInput, setRequestInput] = useState({});
 
   useEffect(() => {
     handleDashData();
   }, []);
+
+  useEffect(() => {
+    handleContactList();
+  }, []);
+
+  const handleContactList = async () => {
+    const url = "/service-user/api/v1/service-conversation/";
+
+    try {
+      const response = await axiosInstance.get(url);
+      if (response) {
+        setContactList(response?.data?.data);
+      }
+    } catch (error) {}
+  };
 
   const handleDashData = async () => {
     setIsLoading(true);
@@ -37,6 +58,16 @@ export const ArtisanProvider = ({ children }) => {
         availableService,
         setAvailableService,
         category,
+        loadingAcceptedProvider,
+        setLoadingAcceptedProvider,
+        acceptedProvider,
+        setAcceptedProvider,
+        startedConv,
+        setStartedConv,
+        contactList,
+        setContactList,
+        requestInput,
+        setRequestInput,
       }}
     >
       {children}

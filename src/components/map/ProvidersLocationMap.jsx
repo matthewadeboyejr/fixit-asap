@@ -10,18 +10,11 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 import useAddressContext from "../../hooks/useAddressContext";
-
 import useArtisanContext from "../../hooks/useArtisanContext";
-import { useEffect } from "react";
 
 const ProvidersLocationMap = () => {
   const { currentCoordinate } = useAddressContext();
   const { availableService } = useArtisanContext();
-
-  useEffect(() => {
-    console.log(availableService, "jjjjjj");
-    console.log(currentCoordinate, "aaaaaa");
-  }, []);
 
   return (
     <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
@@ -34,7 +27,7 @@ const ProvidersLocationMap = () => {
           fullscreenControl={false}
           disableDefaultUI={true}
         >
-          {availableService.map((response) => (
+          {availableService?.services?.map((response) => (
             <AdvancedMarker
               key={response?.id}
               position={{

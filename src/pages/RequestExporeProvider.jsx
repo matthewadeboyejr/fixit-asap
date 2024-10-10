@@ -1,9 +1,9 @@
+import React from "react";
+import ExploreProvider from "../components/general/ExploreProvider";
 import { SubHeader } from "../components/general/Header";
-import AcceptedProvider from "../components/general/AcceptedProvider";
-import ExploreOption from "../components/Modal/ExploreOption";
 import { ChatProvider } from "../context/ChatContext";
 
-const RequestAcceptedProviders = () => {
+const RequestExporeProvider = () => {
   return (
     <ChatProvider>
       <main className="w-screen flex  flex-col md:items-center  ">
@@ -11,14 +11,15 @@ const RequestAcceptedProviders = () => {
           <div className="mx-5 pb-5">
             <SubHeader title={"Requested service"} />
           </div>
-          <div className="bg-white p-3 rounded-lg shadow-md h-screen">
-            <AcceptedProvider />
+
+          <div className="bg-white space-y-4 p-3 rounded-lg shadow-md h-screen">
+            <p className="">List of Merchant base on your interest</p>
+            <ExploreProvider />
           </div>
         </div>
-        <ExploreOption />
       </main>
     </ChatProvider>
   );
 };
 
-export default RequestAcceptedProviders;
+export default RequestExporeProvider;

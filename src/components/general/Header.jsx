@@ -173,7 +173,7 @@ export const SubHeader = (props) => {
     <section className="flex items-center gap-5 md:pt-0 pt-5">
       <p
         onClick={() => navigate(-1)}
-        className="bg-primary/30 text-primary p-2 rounded-sm"
+        className="bg-secondary hover:cursor-pointer text-primary p-2 rounded-sm"
       >
         <RiArrowLeftLine />
       </p>

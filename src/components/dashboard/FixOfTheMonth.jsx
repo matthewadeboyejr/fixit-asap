@@ -11,16 +11,18 @@ const FixOfTheMonth = () => {
 
   return (
     <section className="space-y-5">
-      <div className="flex justify-between px-3">
-        <h2 className="text-lg font-bold">Fix of the Month</h2>
-        <Link className="text-primary hover:underline text-sm">view all</Link>
+      <div className="flex items-center justify-between px-3">
+        <h2 className="text-3xl font-semibold">Fix of the Month</h2>
+        <Link className="text-secondary hover:underline text-2xl md:text-lg font-medium">
+          view all
+        </Link>
       </div>
 
       <div className="flex gap-4 overflow-x-auto pb-4">
         {isLoading && <CardSkeleton cards={3} />}
         {fixOFTheMonth.map((item) => (
           <div
-            className="bg-white rounded-lg shadow-md min-w-[250px] flex-shrink-0"
+            className="bg-white rounded-lg shadow-md min-w-[250px] max-w-[250px] flex-shrink-0"
             key={item.id}
           >
             {item.receiver?.services.map((service) => (

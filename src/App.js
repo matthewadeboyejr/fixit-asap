@@ -6,7 +6,6 @@ import Dashboard from "./pages/Dashboard";
 import Resetpass from "./pages/Resetpass";
 import Aboutprovider from "./pages/Aboutprovider";
 import Bookings from "./pages/Bookings";
-import Searchprovider from "./pages/Searchprovider";
 import Chat from "./pages/Chat";
 import Landing from "./pages/Landing";
 import Address from "./pages/Address";
@@ -18,8 +17,11 @@ import { LoginProvider } from "./context/LoginContext";
 import { OpenModalProvider } from "./context/OpenModalContext";
 import { AddressProvider } from "./context/AddressContext";
 import { ArtisanProvider } from "./context/ArtisanContext";
-import ViewRequestAcceptedProviders from "./pages/ViewRequestAcceptedProviders";
+import RequestAvailableProviders from "./pages/RequestAvailableProviders";
 import RequestAcceptedProviders from "./pages/RequestAcceptedProviders";
+import RequestExporeProvider from "./pages/RequestExporeProvider";
+import { ChatProvider } from "./context/ChatContext";
+import { BookingProvider } from "./context/BookingContext";
 
 const App = () => {
   return (
@@ -56,20 +58,38 @@ const App = () => {
               <Route element={<RequireAuth />}>
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="about-provider" element={<Aboutprovider />} />
-                <Route path="bookings" element={<Bookings />} />
-                <Route path="chat" element={<Chat />} />
-                <Route path="Search-provider" element={<Searchprovider />} />
+                <Route
+                  path="bookings"
+                  element={
+                    <BookingProvider>
+                      <Bookings />
+                    </BookingProvider>
+                  }
+                />
+                <Route
+                  path="chat"
+                  element={
+                    <ChatProvider>
+                      <Chat />
+                    </ChatProvider>
+                  }
+                />
+                {/*    <Route path="/chat/:contactId" element={<Chat />} /> */}
                 <Route path="address" element={<Address />} />
                 <Route path="profile" element={<Profile />} />
                 <Route
-                  path="view-requested-providers"
-                  element={<ViewRequestAcceptedProviders />}
-                />
-                <Route
-                  path="requested-providers"
+                  path="accepted-providers"
                   element={<RequestAcceptedProviders />}
                 />
+                <Route
+                  path="available-providers"
+                  element={<RequestAvailableProviders />}
+                />
               </Route>
+              <Route
+                path="explore-providers"
+                element={<RequestExporeProvider />}
+              />
             </Routes>
           </div>
         </OpenModalProvider>

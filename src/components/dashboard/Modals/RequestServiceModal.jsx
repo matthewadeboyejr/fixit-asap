@@ -58,7 +58,7 @@ const RequestServiceModal = () => {
                   </p>
                 </div>
                 <div className="py-5">
-                  <UserAddress />
+                  <UserAddress color={"text-secondary"} />
                 </div>
                 <RequestServiceForm />
               </motion.div>
