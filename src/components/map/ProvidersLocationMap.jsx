@@ -16,8 +16,6 @@ const ProvidersLocationMap = () => {
   const { currentCoordinate } = useAddressContext();
   const { availableService } = useArtisanContext();
 
-  console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
-
   return (
     <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <div className="absolute inset-0">
