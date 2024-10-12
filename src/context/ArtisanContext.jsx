@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
 import axiosInstance from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const ArtisanContext = createContext({});
 
@@ -12,10 +13,9 @@ export const ArtisanProvider = ({ children }) => {
   const [availableService, setAvailableService] = useState({});
   const [acceptedProvider, setAcceptedProvider] = useState(null);
   const [loadingAcceptedProvider, setLoadingAcceptedProvider] = useState(false);
-  const [startedConv, setStartedConv] = useState({});
   const [contactList, setContactList] = useState({});
-
   const [requestInput, setRequestInput] = useState({});
+  const [providerDetail, setProviderDetail] = useState({});
 
   useEffect(() => {
     handleDashData();
@@ -24,6 +24,19 @@ export const ArtisanProvider = ({ children }) => {
   useEffect(() => {
     handleContactList();
   }, []);
+
+  const navigate = useNavigate();
+
+  const getProviderDetail = async (serviceID) => {
+    const url = `/service-user/api/v1/service-details/?service_id=${serviceID}`;
+    try {
+      const response = await axiosInstance.get(url);
+      if (response) {
+        setProviderDetail(response?.data?.data);
+      }
+      navigate("/service-detail");
+    } catch (error) {}
+  };
 
   const handleContactList = async () => {
     const url = "/service-user/api/v1/service-conversation/";
@@ -62,12 +75,13 @@ export const ArtisanProvider = ({ children }) => {
         setLoadingAcceptedProvider,
         acceptedProvider,
         setAcceptedProvider,
-        startedConv,
-        setStartedConv,
         contactList,
         setContactList,
         requestInput,
         setRequestInput,
+        providerDetail,
+        setProviderDetail,
+        getProviderDetail,
       }}
     >
       {children}

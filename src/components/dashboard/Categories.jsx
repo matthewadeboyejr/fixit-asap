@@ -4,6 +4,7 @@ import useArtisanContext from "../../hooks/useArtisanContext";
 
 const Categories = () => {
   const { category } = useArtisanContext();
+  console.log(category, "cate");
 
   return (
     <section className="space-y-5 overflow-hidden">

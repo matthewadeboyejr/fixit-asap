@@ -3,8 +3,8 @@ import { RiArrowLeftLine } from "react-icons/ri";
 import { FaCircle } from "react-icons/fa";
 import { TbHandClick } from "react-icons/tb";
 import { IoAddOutline, IoSendSharp } from "react-icons/io5";
-import { useCallback, useEffect, useRef, useState } from "react";
-import useWebSocket from "../../hooks/useWebSocket";
+import { useEffect, useRef, useState } from "react";
+//import useWebSocket from "../../hooks/useWebSocket";
 import UseFormatTime from "../../hooks/UseFormatTime";
 import useChatContext from "../../hooks/useChatContext";
 
@@ -12,9 +12,10 @@ const ChatWindow = () => {
   const { contactDetail, handleBackToContacts } = useChatContext();
 
   const [inputMessage, setInputMessage] = useState("");
-  const { isConnected, /* messages, */ sendMessage } = useWebSocket(
-    contactDetail?.id
-  );
+  //const { isConnected, /* messages, */ sendMessage } = useWebSocket(
+  // contactDetail?.id
+  // );
+
   const messagesEndRef = useRef(null);
 
   const serviceImage = contactDetail?.receiver?.services[0]?.image;
@@ -25,7 +26,7 @@ const ChatWindow = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  const handleSubmit = useCallback(
+  /* const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
       if (inputMessage && isConnected) {
@@ -37,7 +38,7 @@ const ChatWindow = () => {
       }
     },
     [inputMessage, isConnected, sendMessage]
-  );
+  ); */
 
   const messageSet = contactDetail?.message_set;
   const userID = localStorage.getItem("userId");
@@ -88,14 +89,14 @@ const ChatWindow = () => {
             </div>
           </section>
 
-          <section className="flex-grow bg-white md:bg-white/50 rounded-3xl p-4  overflow-y-auto ">
+          <section className="flex-grow  overflow-y-auto bg-secondary/20 rounded-3xl p-4  ">
             {/*    {messages.map((message, index) => (
               <div key={index} className="mb-2">
                 <p className="text-sm">{message.content}</p>
               </div>
             ))} */}
 
-            <ul className="flex flex-col-reverse  gap-10 bg-secondary/20 p-5 rounded-2xl">
+            <ul className="flex flex-col-reverse  gap-10  p-5 rounded-2xl ">
               {messageSet.map((message) => {
                 const myMessages = Number(message?.sender) === Number(userID);
                 const timestamp = message?.timestamp;
@@ -129,7 +130,7 @@ const ChatWindow = () => {
             <div ref={messagesEndRef} />
           </section>
           <form
-            onSubmit={handleSubmit}
+            //onSubmit={handleSubmit}
             className=" bg-secondary/20 flex rounded-full m-2"
           >
             <button className="bg-secondary/50 p-2 flex items-center justify-center text-2xl m-2 rounded-full">

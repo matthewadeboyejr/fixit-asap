@@ -74,22 +74,22 @@ const AcceptedProvider = () => {
                 alt=""
               />
               <div className="space-y-1">
-                <div>
-                  <p className="text-xs w-fit border border-secondary rounded-md p-1 text-center">
-                    {service.service_category.category}
-                  </p>
-                </div>
                 <p className="flex items-center gap-2 font-normal text-xs">
                   <span>{service.business_name}</span>
+
+                  <span className=" w-fit border border-secondary rounded-md p-1 text-center text-[10px]">
+                    {service.service_category.category}
+                  </span>
+
                   <span className="text-green-700">
                     <RiStarFill />
                   </span>
                 </p>
                 <div className="flex items-center gap-2">
-                  <p className="text-teriary text-lg">
+                  <p className="text-primary text-lg">
                     <RiMapPinUserFill />
                   </p>
-                  <p className="text-[10px] opacity-50">{receiver?.address}</p>
+                  <p className="text-[10px] opacity-70">{receiver?.address}</p>
                 </div>
               </div>
             </div>

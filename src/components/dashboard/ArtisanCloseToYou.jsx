@@ -4,7 +4,7 @@ import useArtisanContext from "../../hooks/useArtisanContext";
 import { GoPerson } from "react-icons/go";
 
 const ArtisanCloseToYou = () => {
-  const { closestArtisan, isLoading } = useArtisanContext();
+  const { closestArtisan, isLoading, getProviderDetail } = useArtisanContext();
 
   const placeHolderImg =
     "https://savvyplumbing.co.za/wp-content/uploads/2021/06/professional-plumber.jpg";
@@ -27,7 +27,10 @@ const ArtisanCloseToYou = () => {
           {isLoading && <CardSkeleton cards={3} />}
           {closestArtisan.map((item) => (
             <div
-              key={item.id}
+              key={item?.id}
+              onClick={() => {
+                getProviderDetail(item?.id);
+              }}
               className="bg-white rounded-lg shadow-md min-w-[350px] max-w-[350px]  flex-shrink-0"
             >
               <div className="relative">

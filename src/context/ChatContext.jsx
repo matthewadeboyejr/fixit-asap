@@ -35,13 +35,6 @@ export const ChatProvider = ({ children }) => {
     [selectedContactId, contactDetail]
   );
 
-  const handleBackToContacts = useCallback(() => {
-    setSelectedContactId(null);
-    setContactDetail(null);
-
-    navigate("/chat", { replace: true, state: {} });
-  }, []);
-
   const handleinitiateChat = useCallback(
     async (providerID) => {
       const url = "/service-user/api/v1/service-conversation/";
@@ -62,6 +55,12 @@ export const ChatProvider = ({ children }) => {
     },
     [availableService, navigate]
   );
+
+  const handleBackToContacts = useCallback(() => {
+    setSelectedContactId(null);
+    setContactDetail(null);
+    navigate("/chat", { replace: true, state: {} });
+  }, [navigate]);
 
   const contextValue = {
     contactDetail,

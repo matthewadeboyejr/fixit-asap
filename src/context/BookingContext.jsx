@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import axiosInstance from "../api/axios";
 import useOpenModalContext from "../hooks/useOpenModalContext";
 
@@ -19,8 +19,9 @@ export const BookingProvider = ({ children }) => {
     const url = "/service-user/api/v1/service-booking/";
     try {
       const response = await axiosInstance.get(url);
+
       if (response) {
-        setBookings(response?.data?.data);
+        setBookings(response?.data?.results);
       }
       setLoading(false);
     } catch (error) {
@@ -36,9 +37,11 @@ export const BookingProvider = ({ children }) => {
     const url = `/service-user/api/v1/service-booking/${bookingID}`;
     try {
       const response = await axiosInstance.get(url);
+
       if (response) {
         setBookingDetail(response?.data?.data);
       }
+
       setLoadingDetail(false);
     } catch (error) {
       console.error(error);

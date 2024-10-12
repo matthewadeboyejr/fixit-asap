@@ -6,6 +6,8 @@ import useArtisanContext from "../../hooks/useArtisanContext";
 const FixOfTheMonth = () => {
   const { fixOFTheMonth, isLoading } = useArtisanContext();
 
+  console.log(fixOFTheMonth, "fix of the month");
+
   const placeHolderImg =
     "https://savvyplumbing.co.za/wp-content/uploads/2021/06/professional-plumber.jpg";
 
@@ -24,6 +26,9 @@ const FixOfTheMonth = () => {
           <div
             className="bg-white rounded-lg shadow-md min-w-[250px] max-w-[250px] flex-shrink-0"
             key={item.id}
+            //onClick={() => {
+            // getProviderDetail(item?.receiver?.id);
+            // }}
           >
             {item.receiver?.services.map((service) => (
               <div key={service.id}>
