@@ -10,18 +10,25 @@ import useOpenModalContext from "../hooks/useOpenModalContext";
 import SelectAddress from "../components/Modal/SelectAddress";
 import RequestServiceModal from "../components/dashboard/Modals/RequestServiceModal";
 import UserAddress from "../components/general/UserAddress";
+import useArtisanContext from "../hooks/useArtisanContext";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const { setOpenRequest } = useOpenModalContext();
+  const { handleDashData } = useArtisanContext();
+
+  useEffect(() => {
+    handleDashData();
+  }, []);
 
   return (
     <div className="">
       <main className="  md:pb-5 pb-20">
-        <section className=" bg-secondary md:p-10 p-5 space-y-10 rounded-b-3xl sticky top-0  z-10">
+        <section className="md:mx-10 bg-secondary md:p-10 p-5 space-y-5 rounded-b-3xl sticky top-0  z-10">
           <Header />
           {/*  <div className="text-5xl font-medium">How can we Help you?</div> */}
           <div className="flex items-center gap-1 ">
-            <div className="w-full bg-white flex items-center rounded-md px-4 p-5">
+            <div className="w-full bg-white flex items-center rounded-md  p-3">
               <RiSearch2Line />
               <input
                 className=" bg-transparent  w-full rounded-md placeholder:text-sm pl-3 outline-none placeholder:text-primary/50"
@@ -29,13 +36,13 @@ const Dashboard = () => {
                 type="text"
               />
             </div>
-            <div className="p-5 bg-white rounded-md">
+            <div className="p-3 bg-white rounded-md">
               <IoFilterOutline className="text-xl" />
             </div>
           </div>
           <UserAddress color="text-white" />
         </section>
-        <section className="mx-5 my-10 space-y-10 ">
+        <section className="mx-5 my-10 md:mx-40 space-y-5 ">
           <Categories />
           <FixOfTheMonth />
           <ArtisanCloseToYou />
@@ -49,7 +56,7 @@ const Dashboard = () => {
         }}
         className=" hover:scale-50 max-w-lg fixed z-10 md:bottom-16 bottom-24 right-4 cursor-pointer drop-shadow-lg "
       >
-        <p className="bg-secondary p-3  text-2xl w-fit rounded-full hover:bg-opacity-90  transition-opacity ">
+        <p className="bg-secondary p-2 text-xl font-normal w-fit rounded-full hover:bg-opacity-90  transition-opacity ">
           <IoAdd />
         </p>
       </motion.div>

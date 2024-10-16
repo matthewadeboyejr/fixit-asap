@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   RiStarSFill,
   RiStarFill,
@@ -14,6 +14,7 @@ import useArtisanContext from "../hooks/useArtisanContext";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../api/axios";
 
 const ServiceDetail = () => {
   const { providerDetail } = useArtisanContext();
@@ -65,33 +66,33 @@ const ServiceDetail = () => {
 
   return (
     <>
-      <div className=" flex justify-center bg-white/50">
-        <main className="space-y-10 m-5 md:w-1/3 w-full ">
+      <div className=" flex h-screen justify-center bg-secondary/10">
+        <main className="space-y-5  md:w-1/3 w-full bg-white md:rounded-2xl  md:m-10 md:p-10 p-5 ">
           <SubHeader title={"Service provider"} />
           <section className="relative rounded-lg overflow-hidden  w-full ">
             <div className="flex items-center justify-between px-5  sticky bottom-20 z-50 bg-white py-5">
               <div className="flex gap-5 items-center">
                 <img
-                  className="object-cover w-14 h-14  rounded-full "
+                  className="object-cover w-10 h-10  rounded-full "
                   src={image}
                   alt=""
                 />
                 <div className="space-y-1">
-                  <p className="flex items-center gap-2 font-semibold ">
-                    <span>{businesName}</span>
+                  <p className="flex items-center gap-2  ">
+                    <span className="text-sm text-nowrap">{businesName}</span>
                     <span className=" w-fit border border-secondary rounded-md p-1 text-center text-xs">
                       {category}
                     </span>
-                    <span className="text-green-700">
+                    <span className="text-green-700 text-xs">
                       <RiStarFill />
                     </span>
                   </p>
 
-                  <div className="flex items-center gap-2">
-                    <p className="text-primary text-lg">
+                  <div className="flex items-center gap-2 bg-secondary/5 w-fit p-1">
+                    <p className="text-primary text-sm">
                       <RiMapPinUserFill />
                     </p>
-                    <p className="text-sm opacity-50">{address}</p>
+                    <p className="text-xs opacity-70">{address.slice(0, 30)}</p>
                   </div>
                 </div>
               </div>
@@ -100,36 +101,36 @@ const ServiceDetail = () => {
 
           <section className="flex justify-between ">
             <div className="flex flex-col items-center ">
-              <p className=" bg-secondary/20 text-secondary p-3 rounded-full w-fit mb-2 ">
+              <p className=" bg-secondary/10 text-secondary p-3 rounded-full w-fit mb-2 ">
                 <RiGroupFill />
               </p>
-              <p className="font-semibold text-xs">{customer}</p>
-              <p className="text-xs opacity-50">Customers</p>
+              <p className="font-medium text-xs">{customer}</p>
+              <p className="text-xs opacity-70">Customers</p>
             </div>
             <div className="flex flex-col items-center ">
-              <p className=" bg-secondary/20 text-secondary p-3 rounded-full w-fit mb-2 ">
+              <p className=" bg-secondary/10 text-secondary p-3 rounded-full w-fit mb-2 ">
                 <RiPoliceBadgeFill />
               </p>
-              <p className="font-semibold text-xs">Trusted</p>
-              <p className="text-xs opacity-50">Badge</p>
+              <p className="font-medium text-xs">Trusted</p>
+              <p className="text-xs opacity-70">Badge</p>
             </div>
             <div className="flex flex-col items-center ">
-              <p className=" bg-secondary/20 text-secondary p-3 rounded-full w-fit mb-2 ">
+              <p className=" bg-secondary/10 text-secondary p-3 rounded-full w-fit mb-2 ">
                 <RiStarSFill />
               </p>
-              <p className="font-semibold text-xs">{rating}</p>
-              <p className="text-xs opacity-50">Rating</p>
+              <p className="font-medium text-xs">{rating}</p>
+              <p className="text-xs opacity-70">Rating</p>
             </div>
             <div className="flex flex-col items-center ">
-              <p className=" bg-secondary/20 text-secondary p-3 rounded-full w-fit mb-2 ">
+              <p className=" bg-secondary/10 text-secondary p-3 rounded-full w-fit mb-2 ">
                 <RiChat4Fill />
               </p>
-              <p className="font-semibold text-xs">{review}</p>
-              <p className="text-xs opacity-50">Review</p>
+              <p className="font-medium  text-xs">{review}</p>
+              <p className="text-xs opacity-70">Review</p>
             </div>
           </section>
 
-          <section className="bg-white space-y-10 pb-7  ">
+          <section className="bg-white  pb-7  ">
             <ul className=" flex justify-evenly text-sm border-b rounded-lg sticky top-0 p-5 bg-white z-50 ">
               <li
                 className="border-b-4 border-secondary cursor-pointer"
@@ -144,7 +145,7 @@ const ServiceDetail = () => {
                 {title[2]}
               </li>
             </ul>
-            <div className="px-5 overflow-auto"> {content[displayContent]}</div>
+            <div className="overflow-auto"> {content[displayContent]}</div>
           </section>
         </main>
 
@@ -181,8 +182,25 @@ const About = () => {
 
 const Review = () => {
   const { providerDetail } = useArtisanContext();
+
+  const [reviews, setReviews] = useState([]);
   const rating = providerDetail?.overall_ratings || 0;
   const review = providerDetail?.total_reviews || 0;
+
+  useEffect(() => {
+    getReview();
+  }, [providerDetail]);
+
+  const getReview = async () => {
+    const url = `/service-user/api/v1/review-service-list/?serviceId=${providerDetail?.id}`;
+    try {
+      const response = await axiosInstance.get(url);
+      if (response) {
+        console.log(response, "getReviews");
+        setReviews(response?.data?.data);
+      }
+    } catch (error) {}
+  };
 
   const renderStars = () => {
     const stars = [];
@@ -203,43 +221,47 @@ const Review = () => {
 
   return (
     <div className="space-y-5 ">
-      <section>
-        <h4 className=" font-medium opacity-50 text-center">Overall rating</h4>
-        <div className="flex flex-col gap-2 items-center border-b py-5">
+      <section className="space-y-2 pt-5">
+        <h4 className=" text-xs opacity-50 text-center">Overall rating</h4>
+        <div className="flex flex-col gap-1 items-center border-b  space-y-1">
           <p className="text-4xl font-semibold">{rating}</p>
-          <p className="flex items-center  text-orange-400 text-2xl gap-1 ">
+          <p className="flex items-center  text-orange-400 text-sm gap-1 ">
             {renderStars()}
           </p>
-          <p className=" text-sm opacity-50">{`based on ${review} reviews`}</p>
+          <p className=" text-xs opacity-50 pb-5">{`based on ${review} reviews`}</p>
         </div>
       </section>
 
       <section className="space-y-4 ">
-        <div className="flex gap-5 py-3 ">
-          <img
-            className="object-cover w-14 h-14  rounded-full "
-            src="https://images.pexels.com/photos/4099471/pexels-photo-4099471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            alt=""
-          />
+        <ul>
+          {reviews.map((review) => (
+            <li className="flex gap-5 py-3 ">
+              <img
+                className="object-cover w-10 h-10  rounded-full "
+                src="https://images.pexels.com/photos/4099471/pexels-photo-4099471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt=""
+              />
 
-          <div className="space-y-3">
-            <h4 className=" font-medium opacity-50 ">John Doe</h4>
-            <p className="flex items-center text-orange-400 text-sm gap-1 ">
-              <RiStarFill />
-              <RiStarFill />
-              <RiStarFill />
-              <RiStarFill />
-              <RiStarFill />
-            </p>
-            <p>
-              Excellent service and also keep to time, i will recommed them to
-              anyone
-            </p>
-            <p className="text-xs opacity-50">
-              <span>London</span>/<span>1/2/23</span>
-            </p>
-          </div>
-        </div>
+              <div className="space-y-3">
+                <h4 className=" font-medium opacity-50 ">John Doe</h4>
+                <p className="flex items-center text-orange-400 text-sm gap-1 ">
+                  <RiStarFill />
+                  <RiStarFill />
+                  <RiStarFill />
+                  <RiStarFill />
+                  <RiStarFill />
+                </p>
+                <p>
+                  Excellent service and also keep to time, i will recommed them
+                  to anyone
+                </p>
+                <p className="text-xs opacity-50">
+                  <span>London</span>/<span>1/2/23</span>
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );

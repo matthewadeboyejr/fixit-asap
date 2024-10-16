@@ -22,7 +22,7 @@ const RequestServiceModal = () => {
         {openRequest && (
           <div className="flex md:items-center items-end justify-center inset-0 fixed z-50 ">
             <motion.div
-              className="bg-white p-5 md:rounded-md rounded-t-md   md:w-fit w-full  "
+              className="bg-white p-5 md:rounded-md rounded-t-md  md:w-[450px]  w-full  "
               initial={{
                 y: 100,
                 opacity: 0,

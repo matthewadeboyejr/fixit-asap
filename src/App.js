@@ -22,6 +22,7 @@ import RequestExporeProvider from "./pages/RequestExporeProvider";
 import { ChatProvider } from "./context/ChatContext";
 import { BookingProvider } from "./context/BookingContext";
 import ServiceDetail from "./pages/ServiceDetail";
+import SelectedCategory from "./pages/SelectedCategory";
 
 const App = () => {
   return (
@@ -90,6 +91,10 @@ const App = () => {
                 <Route
                   path="explore-providers"
                   element={<RequestExporeProvider />}
+                />
+                <Route
+                  path="selected-category"
+                  element={<SelectedCategory />}
                 />
               </Routes>
             </div>

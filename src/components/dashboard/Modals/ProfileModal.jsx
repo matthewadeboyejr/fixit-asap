@@ -35,7 +35,7 @@ const ProfileModal = () => {
               }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-white p-5 md:rounded-md rounded-t-md md:w-fit w-full"
+              className="bg-white p-5 md:rounded-md rounded-t-md md:w-96 w-full"
             >
               <div className="flex items-center justify-between border-b pb-7 gap-10">
                 <div className="flex items-center space-x-5">
@@ -70,13 +70,13 @@ const ProfileModal = () => {
                 className="flex flex-col gap-7 pt-5  "
               >
                 <Link to={"/profile"} className="flex items-center gap-3  ">
-                  <span className="text-teriary text-xl">
+                  <span className="text-primary text-xl">
                     <RiAccountCircleLine />
                   </span>
                   <span className="text-sm ">Edit Profile</span>
                 </Link>
                 <Link className="flex items-center gap-3  ">
-                  <span className="text-teriary text-xl">
+                  <span className="text-primary text-xl">
                     <RiLockPasswordLine />
                   </span>
                   <span className="text-sm">Change Password</span>

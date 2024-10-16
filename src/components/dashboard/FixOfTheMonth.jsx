@@ -6,16 +6,16 @@ import useArtisanContext from "../../hooks/useArtisanContext";
 const FixOfTheMonth = () => {
   const { fixOFTheMonth, isLoading } = useArtisanContext();
 
-  console.log(fixOFTheMonth, "fix of the month");
-
   const placeHolderImg =
     "https://savvyplumbing.co.za/wp-content/uploads/2021/06/professional-plumber.jpg";
 
   return (
     <section className="space-y-5">
       <div className="flex items-center justify-between px-3">
-        <h2 className="text-3xl font-semibold">Fix of the Month</h2>
-        <Link className="text-secondary hover:underline text-2xl md:text-lg font-medium">
+        <h2 className="text-sm  border-b-2 border-primary font-semibold">
+          Fix of the Month
+        </h2>
+        <Link className="text-secondary/50 hover:underline text-sm font-medium">
           view all
         </Link>
       </div>
@@ -24,7 +24,7 @@ const FixOfTheMonth = () => {
         {isLoading && <CardSkeleton cards={3} />}
         {fixOFTheMonth.map((item) => (
           <div
-            className="bg-white rounded-lg shadow-md min-w-[250px] max-w-[250px] flex-shrink-0"
+            className="bg-white rounded-lg hover:shadow-md min-w-[200px] max-w-[200px] flex-shrink-0"
             key={item.id}
             //onClick={() => {
             // getProviderDetail(item?.receiver?.id);
@@ -34,19 +34,19 @@ const FixOfTheMonth = () => {
               <div key={service.id}>
                 <div className="relative">
                   <img
-                    className="w-full h-48 object-cover rounded-t-lg"
+                    className="w-full h-28 object-cover rounded-2xl"
                     src={
                       service.image === null ? placeHolderImg : service.image
                     }
                     alt={service.service_name}
                   />
-                  <div className="absolute top-0 left-0 m-3 p-2 flex items-center gap-2 bg-white rounded-sm">
-                    <RiStarSFill className="text-teriary text-sm" />
+                  <div className="absolute top-0 left-0 m-3 p-1 flex items-center gap-1 bg-white rounded-sm">
+                    <RiStarSFill className="text-orange-400 text-sm" />
                     <p className="text-xs">4.5</p>
                   </div>
                 </div>
 
-                <div className="p-4 space-y-3">
+                <div className="p-4 space-y-1">
                   <div className="flex items-center justify-between">
                     <h5 className="text-sm font-medium">
                       {service.service_category?.category}
@@ -55,7 +55,7 @@ const FixOfTheMonth = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <GoPerson className="text-secondary" />
-                    <p className="opacity-50 text-xs">
+                    <p className="opacity-80 text-xs">
                       {service.business_name}
                     </p>
                   </div>

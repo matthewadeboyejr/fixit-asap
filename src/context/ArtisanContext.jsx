@@ -16,16 +16,28 @@ export const ArtisanProvider = ({ children }) => {
   const [contactList, setContactList] = useState({});
   const [requestInput, setRequestInput] = useState({});
   const [providerDetail, setProviderDetail] = useState({});
-
-  useEffect(() => {
-    handleDashData();
-  }, []);
+  const [selectedCategory, setSelectedCategory] = useState([]);
 
   useEffect(() => {
     handleContactList();
   }, []);
 
   const navigate = useNavigate();
+
+  const getByCategory = async (categoryId) => {
+    const url = `/service-user/api/v1/get-services-by-category/?category_id=${categoryId}`;
+    try {
+      const response = await axiosInstance.get(url);
+      if (response) {
+        setSelectedCategory(response?.data?.results);
+        console.log(response?.data?.results, "responsesssss getcategory");
+      }
+    } catch (error) {}
+    /* 
+    if (selectedCategory) {
+      navigate("/selected-category");
+    } */
+  };
 
   const getProviderDetail = async (serviceID) => {
     const url = `/service-user/api/v1/service-details/?service_id=${serviceID}`;
@@ -82,6 +94,10 @@ export const ArtisanProvider = ({ children }) => {
         providerDetail,
         setProviderDetail,
         getProviderDetail,
+        handleDashData,
+        selectedCategory,
+        setSelectedCategory,
+        getByCategory,
       }}
     >
       {children}

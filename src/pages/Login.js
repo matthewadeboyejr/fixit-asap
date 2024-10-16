@@ -12,8 +12,8 @@ const Login = () => {
   return (
     <div className="w-screen h-screen bg-light">
       <PreHeader />
-      <section className=" flex  justify-center md:items-center  ">
-        <div className="flex flex-col items-left md:w-1/3 w-full space-y-5 py-20 px-5 md:px-14">
+      <section className=" flex justify-center    ">
+        <div className="flex  flex-col w-full md:w-1/3 space-y-5 px-5 ">
           <div className="flex items-center gap-3 px-3">
             <IoIosArrowRoundBack
               onClick={() => navigate(-1)}

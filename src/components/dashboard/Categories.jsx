@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import useArtisanContext from "../../hooks/useArtisanContext";
 
 const Categories = () => {
-  const { category } = useArtisanContext();
+  const { category, getByCategory } = useArtisanContext();
   console.log(category, "cate");
 
   return (
     <section className="space-y-5 overflow-hidden">
       <div className="flex items-center justify-between px-3">
-        <h3 className=" text-2xl font-medium">Feature Categories</h3>
-        <Link className="text-secondary hover:underline text-2xl md:text-lg font-medium">
+        <h3 className=" text-sm font-medium">Feature Categories</h3>
+        <Link className="text-secondary/60 hover:underline text-sm font-medium">
           view all
         </Link>
       </div>
@@ -18,7 +18,10 @@ const Categories = () => {
         {category.map((item) => (
           <li
             key={item.id}
-            className="p-3 text-nowrap bg-teriary  rounded-3xl  text-center  "
+            onClick={() => {
+              getByCategory(item.id);
+            }}
+            className="px-3 py-2 border rounded-2xl w-fit text-center"
           >
             {item.category}
           </li>

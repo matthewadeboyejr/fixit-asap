@@ -5,8 +5,8 @@ import { LoginProvider } from "../context/LoginContext";
 const Profile = () => {
   return (
     <LoginProvider>
-      <div className="flex justify-center items-center h-screen  ">
-        <main className=" space-y-10 p-5 md:min-w-96 h-full min-w-full  bg-white/50 ">
+      <div className="flex justify-center  bg-secondary/10 h-screen  ">
+        <main className="space-y-5  md:w-1/3 w-full bg-white md:rounded-2xl  md:m-10 md:p-10 p-5 ">
           <SubHeader title={"Profile"} />
           <ProfileDetails />
         </main>

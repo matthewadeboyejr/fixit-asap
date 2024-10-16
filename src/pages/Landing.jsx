@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import GooglePlay from "../Images/GooglePlay";
 import AppStore from "../Images/AppStore";
 import { motion } from "framer-motion";
-/* import { IoFilterOutline, IoAdd } from "react-icons/io5";
-import { RiSearch2Line } from "react-icons/ri"; */
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -21,7 +19,7 @@ const Landing = () => {
         <div className="  font-medium  space-y-5 flex flex-col justify-center  md:p-20 p-10">
           <h1 className="flex flex-col md:text-left text-center  ">
             <span className="md:text-3xl text-xl">Reliable Tradesmen,</span>
-            <span className="italic md:text-7xl text-5xl text-teriary ">
+            <span className="italic md:text-7xl text-5xl text-secondary ">
               Anytime You Need
             </span>
           </h1>

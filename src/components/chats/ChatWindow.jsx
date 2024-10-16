@@ -89,7 +89,7 @@ const ChatWindow = () => {
             </div>
           </section>
 
-          <section className="flex-grow  overflow-y-auto bg-secondary/20 rounded-3xl p-4  ">
+          <section className="flex-grow  overflow-y-auto bg-secondary/10 rounded-3xl p-4  ">
             {/*    {messages.map((message, index) => (
               <div key={index} className="mb-2">
                 <p className="text-sm">{message.content}</p>
@@ -109,16 +109,20 @@ const ChatWindow = () => {
                     }`}
                   >
                     <p
-                      className={`flex flex-col min-w-24 p-2 gap-2 rounded-t-lg  ${
+                      className={`flex flex-col min-w-24 p-2 gap-1 rounded-t-lg  ${
                         myMessages
-                          ? "bg-secondary rounded-l-lg"
-                          : "bg-secondary/50  rounded-r-lg"
+                          ? "bg-secondary text-white rounded-l-lg"
+                          : "bg-white  rounded-r-lg"
                       }`}
                     >
                       <span className="md:text-xs text-sm">
                         {message?.text}
                       </span>
-                      <span className="text-right text-xs opacity-60 ">
+                      <span
+                        className={`text-right text-primary opacity-65 text-xs ${
+                          myMessages ? "text-white" : "text"
+                        }`}
+                      >
                         {formattedTime}
                       </span>
                     </p>
@@ -131,7 +135,7 @@ const ChatWindow = () => {
           </section>
           <form
             //onSubmit={handleSubmit}
-            className=" bg-secondary/20 flex rounded-full m-2"
+            className=" bg-white border flex rounded-full m-2"
           >
             <button className="bg-secondary/50 p-2 flex items-center justify-center text-2xl m-2 rounded-full">
               <IoAddOutline />

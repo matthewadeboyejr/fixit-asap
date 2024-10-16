@@ -142,9 +142,9 @@ export const MobileNav = () => {
         <NavLink
           key={navLink.id}
           to={navLink.path}
-          className="flex flex-col items-center gap-1  "
+          className="flex flex-col items-center   "
         >
-          <span className="text-secondary text-xl hover:text-teriary ">
+          <span className="text-secondary text-lg hover:text-teriary ">
             {navLink.icon}
           </span>
           <span className="text-white text-xs hover:underline ">
@@ -156,12 +156,12 @@ export const MobileNav = () => {
         onClick={() => {
           setOpenProfile(!openProfile);
         }}
-        className="flex md:flex-row flex-col items-center gap-1  "
+        className="flex md:flex-row flex-col items-center   "
       >
-        <p className="text-secondary text-xl hover:text-teriary ">
+        <p className="text-secondary text-lg hover:text-teriary ">
           <GoPerson />
         </p>
-        <p className="text-white text-sm hover:underline  ">Profile</p>
+        <p className="text-white text-xs hover:underline  ">Profile</p>
       </div>
     </nav>
   );
@@ -170,14 +170,14 @@ export const MobileNav = () => {
 export const SubHeader = (props) => {
   const navigate = useNavigate();
   return (
-    <section className="flex items-center gap-5 md:pt-0 pt-5">
+    <section className="flex items-center gap-2 md:pt-0 ">
       <p
         onClick={() => navigate(-1)}
-        className="bg-secondary hover:cursor-pointer text-primary p-2 rounded-sm"
+        className=" hover:cursor-pointer text-primary p-2 rounded-sm"
       >
         <RiArrowLeftLine />
       </p>
-      <h4 className="text-lg font-semibold">{props.title}</h4>
+      <h4 className="text-sm font-medium">{props.title}</h4>
     </section>
   );
 };

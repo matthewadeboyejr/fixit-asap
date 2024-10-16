@@ -6,14 +6,13 @@ import { GoPerson } from "react-icons/go";
 const ArtisanCloseToYou = () => {
   const { closestArtisan, isLoading, getProviderDetail } = useArtisanContext();
 
-  const placeHolderImg =
-    "https://savvyplumbing.co.za/wp-content/uploads/2021/06/professional-plumber.jpg";
-
   return (
     <section className="space-y-5">
       <div className="flex  items-center justify-between px-3">
-        <h2 className="text-2xl font-medium">Artisan close to you</h2>
-        <Link className="text-secondary hover:underline text-2xl md:text-lg font-medium">
+        <h2 className="text-sm  border-b-2 border-primary font-semibold">
+          Artisan close to you
+        </h2>
+        <Link className="text-secondary/60 hover:underline text-sm font-medium">
           view all
         </Link>
       </div>
@@ -31,21 +30,21 @@ const ArtisanCloseToYou = () => {
               onClick={() => {
                 getProviderDetail(item?.id);
               }}
-              className="bg-white rounded-lg shadow-md min-w-[350px] max-w-[350px]  flex-shrink-0"
+              className="bg-white rounded-lg hover:shadow-md min-w-[300px] max-w-[300px]  flex-shrink-0"
             >
               <div className="relative">
                 <img
-                  className="w-full h-48 rounded-t-lg object-cover"
-                  src={item.image === null ? placeHolderImg : item.image}
+                  className="w-full h-48 rounded-2xl object-cover"
+                  src={item.image}
                   alt=""
                 />
-                <div className="absolute top-0 left-0 m-3 p-2 flex items-center gap-2 bg-white rounded-sm">
-                  <RiStarSFill className="text-teriary text-sm" />
+                <div className="absolute top-0 left-0 m-3 p-1 flex items-center gap-1 bg-white rounded-sm">
+                  <RiStarSFill className="text-orange-400 text-sm" />
                   <p className="text-xs">4.5</p>
                 </div>
               </div>
 
-              <div className="p-4 space-y-3">
+              <div className="p-4 space-y-1">
                 <div className="flex items-center justify-between">
                   <h5 className="text-sm font-medium">
                     {item.service_category.category}
@@ -54,7 +53,7 @@ const ArtisanCloseToYou = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <GoPerson className="text-secondary" />
-                  <p className="opacity-50 text-xs">
+                  <p className="opacity-80 text-xs">
                     {item.artisan.business_name}
                   </p>
                 </div>
