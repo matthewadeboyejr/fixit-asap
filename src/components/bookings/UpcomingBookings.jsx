@@ -1,6 +1,6 @@
 import { RiStarFill } from "react-icons/ri";
 import useBookingContext from "../../hooks/useBookingContext";
-import { ProviderSkeleton } from "../general/ProviderSkeleton";
+import { ProviderSkeleton } from "../skeleton/ProviderSkeleton";
 import { useEffect } from "react";
 
 const UpcomingBookings = () => {

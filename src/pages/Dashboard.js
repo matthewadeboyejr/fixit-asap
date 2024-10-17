@@ -22,13 +22,13 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="">
-      <main className="  md:pb-5 pb-20">
-        <section className="md:mx-10 bg-secondary md:p-10 p-5 space-y-5 rounded-b-3xl sticky top-0  z-10">
+    <div className="md:px-52  ">
+      <main className="border-4 border-primary m-4 rounded-3xl  md:pb-5 pb-20">
+        <section className=" p-5 space-y-10 rounded-b-3xl ">
           <Header />
-          {/*  <div className="text-5xl font-medium">How can we Help you?</div> */}
-          <div className="flex items-center gap-1 ">
-            <div className="w-full bg-white flex items-center rounded-md  p-3">
+          <div className="text-5xl font-medium">How can we Help you?</div>
+          <div className="flex flex-col  gap-1 ">
+            <div className="w-full border bg-white flex items-center rounded-md  p-2">
               <RiSearch2Line />
               <input
                 className=" bg-transparent  w-full rounded-md placeholder:text-sm pl-3 outline-none placeholder:text-primary/50"
@@ -36,13 +36,13 @@ const Dashboard = () => {
                 type="text"
               />
             </div>
-            <div className="p-3 bg-white rounded-md">
+            {/*  <div className="p-3 bg-white rounded-md">
               <IoFilterOutline className="text-xl" />
-            </div>
+            </div> */}
+            <UserAddress color="text-primary" bg="bg-primary/10" />
           </div>
-          <UserAddress color="text-white" />
         </section>
-        <section className="mx-5 my-10 md:mx-40 space-y-5 ">
+        <section className="mx-5 my-5  space-y-5 rounded-t-2xl  ">
           <Categories />
           <FixOfTheMonth />
           <ArtisanCloseToYou />
@@ -60,7 +60,7 @@ const Dashboard = () => {
           <IoAdd />
         </p>
       </motion.div>
-      <footer className="fixed md:hidden z-10  w-full max-w-lg  h-16 bottom-4 ">
+      <footer className="fixed md:hidden z-10  w-full max-w-lg  h-16 bottom-6 ">
         <MobileNav />
       </footer>
 

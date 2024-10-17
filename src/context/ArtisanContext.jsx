@@ -66,9 +66,9 @@ export const ArtisanProvider = ({ children }) => {
     const url = "/service-user/api/v1/user-dashboard/";
     try {
       const response = await axiosInstance.get(url);
-      setClosestArtisan(response.data.data.closest_artisan);
-      setFixOFTheMonth(response.data.data.fix_of_month);
-      setCategory(response.data.data.feature_category);
+      setClosestArtisan(response?.data?.data?.closest_artisan);
+      setFixOFTheMonth(response?.data?.data?.fix_of_month);
+      setCategory(response?.data?.data?.feature_category);
     } catch (error) {
       console.error("Error fetching dashboard data", error);
     }

@@ -2,7 +2,7 @@ import { RiMapPinUserFill } from "react-icons/ri";
 import { RiChat3Line, RiStarFill, RiInfoI } from "react-icons/ri";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import useAddressContext from "../../hooks/useAddressContext";
-import { ProviderSkeleton } from "./ProviderSkeleton";
+import { ProviderSkeleton } from "../skeleton/ProviderSkeleton";
 import useGetProviders from "../../hooks/useGetProviders";
 
 const ExploreProvider = () => {

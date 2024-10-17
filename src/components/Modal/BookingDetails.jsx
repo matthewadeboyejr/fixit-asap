@@ -1,11 +1,8 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
-import { IoInformationCircleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { RiCloseFill, RiStarFill } from "react-icons/ri";
-import GoogleMap from "../map/GoogleMap";
+import { RiCloseFill } from "react-icons/ri";
 import useBookingContext from "../../hooks/useBookingContext";
-import { ProviderSkeleton } from "../general/ProviderSkeleton";
 
 const BookingDetails = () => {
   const { openBookingDetail, setOpenBookingDetail } = useOpenModalContext();

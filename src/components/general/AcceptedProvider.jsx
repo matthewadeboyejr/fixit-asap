@@ -8,7 +8,7 @@ import {
 import useArtisanContext from "../../hooks/useArtisanContext";
 import axiosInstance from "../../api/axios";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
-import { ProviderSkeleton } from "./ProviderSkeleton";
+import { ProviderSkeleton } from "../skeleton/ProviderSkeleton";
 import useChatContext from "../../hooks/useChatContext";
 
 const AcceptedProvider = () => {

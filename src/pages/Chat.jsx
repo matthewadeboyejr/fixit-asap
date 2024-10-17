@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ContactsList from "../components/chats/ContactsList";
 import ChatWindow from "../components/chats/ChatWindow";
 import useChatContext from "../hooks/useChatContext";
-import ChatSkeleton from "../components/general/ChatSkeleton";
+import ChatSkeleton from "../components/skeleton/ChatSkeleton";
 import { useLocation } from "react-router-dom";
 
 const Chat = () => {

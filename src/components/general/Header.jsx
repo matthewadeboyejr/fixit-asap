@@ -28,8 +28,8 @@ const Header = () => {
         onClick={() => {
           navigate("/");
         }}
-        src={Logo}
-        className="w-28 h-auto "
+        src={LogoMain}
+        className="w-20 h-auto "
         alt="logo"
       />
       <nav className="hidden md:flex bg-primary p-4 rounded-full gap-7">
@@ -61,7 +61,7 @@ const Header = () => {
         </div>
       </nav>
       <div className="flex items-center gap-4 text-primary ">
-        <p className="text-white bg-white/25 p-2 rounded-md">
+        <p className="text-primary bg-primary/10 p-2 md:p-1 text-xs rounded-md ">
           <IoNotificationsSharp className="hover:opacity-70 transition-opacity" />
         </p>
       </div>
@@ -137,7 +137,7 @@ export const PreHeader = () => {
 export const MobileNav = () => {
   const { setOpenProfile, openProfile } = useOpenModalContext();
   return (
-    <nav className=" flex justify-evenly bg-primary  py-3  rounded-full mx-5  shadow-2xl  drop-shadow-lg">
+    <nav className=" flex justify-evenly bg-primary  py-3  rounded-full mx-10  shadow-2xl  drop-shadow-lg">
       {nav.map((navLink) => (
         <NavLink
           key={navLink.id}

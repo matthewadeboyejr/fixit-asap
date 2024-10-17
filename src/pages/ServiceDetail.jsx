@@ -15,6 +15,7 @@ import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axios";
+import { CiLocationOn } from "react-icons/ci";
 
 const ServiceDetail = () => {
   const { providerDetail } = useArtisanContext();
@@ -68,7 +69,7 @@ const ServiceDetail = () => {
     <>
       <div className=" flex h-screen justify-center bg-secondary/10">
         <main className="space-y-5  md:w-1/3 w-full bg-white md:rounded-2xl  md:m-10 md:p-10 p-5 ">
-          <SubHeader title={"Service provider"} />
+          <SubHeader title={"Service Details"} />
           <section className="relative rounded-lg overflow-hidden  w-full ">
             <div className="flex items-center justify-between px-5  sticky bottom-20 z-50 bg-white py-5">
               <div className="flex gap-5 items-center">
@@ -90,7 +91,7 @@ const ServiceDetail = () => {
 
                   <div className="flex items-center gap-2 bg-secondary/5 w-fit p-1">
                     <p className="text-primary text-sm">
-                      <RiMapPinUserFill />
+                      <CiLocationOn />
                     </p>
                     <p className="text-xs opacity-70">{address.slice(0, 30)}</p>
                   </div>
@@ -196,7 +197,6 @@ const Review = () => {
     try {
       const response = await axiosInstance.get(url);
       if (response) {
-        console.log(response, "getReviews");
         setReviews(response?.data?.data);
       }
     } catch (error) {}
@@ -234,33 +234,50 @@ const Review = () => {
 
       <section className="space-y-4 ">
         <ul>
-          {reviews.map((review) => (
-            <li className="flex gap-5 py-3 ">
-              <img
-                className="object-cover w-10 h-10  rounded-full "
-                src="https://images.pexels.com/photos/4099471/pexels-photo-4099471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                alt=""
-              />
+          {reviews.map((review) => {
+            const firstName = review?.service_user?.first_name;
+            const lastName = review?.service_user?.last_name;
+            const rating = review?.ratings;
+            const fullName = `${firstName} ${lastName}`;
 
-              <div className="space-y-3">
-                <h4 className=" font-medium opacity-50 ">John Doe</h4>
-                <p className="flex items-center text-orange-400 text-sm gap-1 ">
-                  <RiStarFill />
-                  <RiStarFill />
-                  <RiStarFill />
-                  <RiStarFill />
-                  <RiStarFill />
-                </p>
-                <p>
-                  Excellent service and also keep to time, i will recommed them
-                  to anyone
-                </p>
-                <p className="text-xs opacity-50">
-                  <span>London</span>/<span>1/2/23</span>
-                </p>
-              </div>
-            </li>
-          ))}
+            const renderStars = () => {
+              const stars = [];
+              const maxStars = 5;
+
+              for (let i = 1; i <= maxStars; i++) {
+                stars.push(
+                  i <= rating ? (
+                    <RiStarFill key={i} className="text-orange-400" />
+                  ) : (
+                    <RiStarLine key={i} className="text-orange-400" />
+                  )
+                );
+              }
+
+              return stars;
+            };
+
+            return (
+              <li className="flex gap-5 py-3 ">
+                {/* <img
+                  className="object-cover w-10 h-10  rounded-full "
+                  src="https://images.pexels.com/photos/4099471/pexels-photo-4099471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  alt=""
+                /> */}
+
+                <div className="space-y-1">
+                  <h4 className="  font-medium text-sm ">
+                    {review?.service_user === null ? "Service user" : fullName}
+                  </h4>
+                  <p className="flex items-center text-xs  ">{renderStars()}</p>
+                  <p className="text-xs opacity-70">{review?.comment}</p>
+                  {/* <p className="text-xs opacity-50">
+                    <span>London</span>/<span>1/2/23</span>
+                  </p> */}
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </section>
     </div>
