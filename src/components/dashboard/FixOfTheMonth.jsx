@@ -5,7 +5,7 @@ import useArtisanContext from "../../hooks/useArtisanContext";
 import ServiceCardSkeleton from "../skeleton/ServiceCardSkeleton";
 
 const FixOfTheMonth = () => {
-  const { fixOFTheMonth, isLoading } = useArtisanContext();
+  const { fixOFTheMonth, isLoading, getProviderDetail } = useArtisanContext();
 
   console.log(fixOFTheMonth, "fix fix");
 
@@ -26,9 +26,9 @@ const FixOfTheMonth = () => {
           <div
             className="bg-white rounded-lg  md:shadow-none shadow-md hover:shadow-md min-w-[200px] max-w-[200px] flex-shrink-0"
             key={service.id}
-            //onClick={() => {
-            // getProviderDetail(item?.receiver?.id);
-            // }}
+            onClick={() => {
+              getProviderDetail(service?.id);
+            }}
           >
             <div>
               <div className="relative">

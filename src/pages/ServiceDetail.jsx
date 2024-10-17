@@ -1,30 +1,22 @@
-import React, { useEffect, useState } from "react";
-import {
-  RiStarSFill,
-  RiStarFill,
-  RiGroupFill,
-  RiPoliceBadgeFill,
-  RiChat4Fill,
-  RiMapPinUserFill,
-  RiStarLine,
-} from "react-icons/ri";
+import React, { useState } from "react";
+import { RiStarFill } from "react-icons/ri";
 
 import { SubHeader } from "../components/general/Header";
 import useArtisanContext from "../hooks/useArtisanContext";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../api/axios";
 import { CiLocationOn } from "react-icons/ci";
+import Service from "../components/serviceDetail/Service";
+import About from "../components/serviceDetail/About";
+import Review from "../components/serviceDetail/Review";
+import Summary from "../components/serviceDetail/Summary";
 
 const ServiceDetail = () => {
   const { providerDetail } = useArtisanContext();
 
   console.log(providerDetail, "from serdetails");
 
-  const customer = providerDetail?.total_customers;
-  const rating = providerDetail?.overall_ratings;
-  const review = providerDetail?.total_reviews;
   const businesName = providerDetail?.artisan?.business_name;
   const category = providerDetail?.service_category?.category;
   const address = providerDetail?.artisan?.address;
@@ -67,18 +59,18 @@ const ServiceDetail = () => {
 
   return (
     <>
-      <div className=" flex h-screen justify-center bg-secondary/10">
-        <main className="space-y-5  md:w-1/3 w-full bg-white md:rounded-2xl  md:m-10 md:p-10 p-5 ">
+      <div className=" flex  min-h-screen justify-center bg-secondary/10">
+        <main className="space-y-2  md:w-1/3 w-full bg-white md:rounded-2xl  md:m-10 md:p-10 p-5 ">
           <SubHeader title={"Service Details"} />
           <section className="relative rounded-lg overflow-hidden  w-full ">
-            <div className="flex items-center justify-between px-5  sticky bottom-20 z-50 bg-white py-5">
-              <div className="flex gap-5 items-center">
+            <div className="flex items-center justify-center px-5  sticky bottom-20 z-50 bg-white py-5">
+              <div className="flex w-full flex-col gap-5 justify-center items-center">
                 <img
-                  className="object-cover w-10 h-10  rounded-full "
+                  className="object-cover w-full h-52  rounded-lg "
                   src={image}
                   alt=""
                 />
-                <div className="space-y-1">
+                <div className="space-y-1 flex flex-col items-center justify-center">
                   <p className="flex items-center gap-2  ">
                     <span className="text-sm text-nowrap">{businesName}</span>
                     <span className=" w-fit border border-secondary rounded-md p-1 text-center text-xs">
@@ -100,36 +92,7 @@ const ServiceDetail = () => {
             </div>
           </section>
 
-          <section className="flex justify-between ">
-            <div className="flex flex-col items-center ">
-              <p className=" bg-secondary/10 text-secondary p-3 rounded-full w-fit mb-2 ">
-                <RiGroupFill />
-              </p>
-              <p className="font-medium text-xs">{customer}</p>
-              <p className="text-xs opacity-70">Customers</p>
-            </div>
-            <div className="flex flex-col items-center ">
-              <p className=" bg-secondary/10 text-secondary p-3 rounded-full w-fit mb-2 ">
-                <RiPoliceBadgeFill />
-              </p>
-              <p className="font-medium text-xs">Trusted</p>
-              <p className="text-xs opacity-70">Badge</p>
-            </div>
-            <div className="flex flex-col items-center ">
-              <p className=" bg-secondary/10 text-secondary p-3 rounded-full w-fit mb-2 ">
-                <RiStarSFill />
-              </p>
-              <p className="font-medium text-xs">{rating}</p>
-              <p className="text-xs opacity-70">Rating</p>
-            </div>
-            <div className="flex flex-col items-center ">
-              <p className=" bg-secondary/10 text-secondary p-3 rounded-full w-fit mb-2 ">
-                <RiChat4Fill />
-              </p>
-              <p className="font-medium  text-xs">{review}</p>
-              <p className="text-xs opacity-70">Review</p>
-            </div>
-          </section>
+          <Summary />
 
           <section className="bg-white  pb-7  ">
             <ul className=" flex justify-evenly text-sm border-b rounded-lg sticky top-0 p-5 bg-white z-50 ">
@@ -165,121 +128,3 @@ const ServiceDetail = () => {
 };
 
 export default ServiceDetail;
-
-const Service = () => {
-  return <div className="space-y-3 "></div>;
-};
-const About = () => {
-  const { providerDetail } = useArtisanContext();
-
-  const about = providerDetail?.artisan?.business_detail;
-
-  return (
-    <div className="space-y-3">
-      <div className="p-5 bg-secondary/10 ">{about}</div>
-    </div>
-  );
-};
-
-const Review = () => {
-  const { providerDetail } = useArtisanContext();
-
-  const [reviews, setReviews] = useState([]);
-  const rating = providerDetail?.overall_ratings || 0;
-  const review = providerDetail?.total_reviews || 0;
-
-  useEffect(() => {
-    getReview();
-  }, [providerDetail]);
-
-  const getReview = async () => {
-    const url = `/service-user/api/v1/review-service-list/?serviceId=${providerDetail?.id}`;
-    try {
-      const response = await axiosInstance.get(url);
-      if (response) {
-        setReviews(response?.data?.data);
-      }
-    } catch (error) {}
-  };
-
-  const renderStars = () => {
-    const stars = [];
-    const maxStars = 5;
-
-    for (let i = 1; i <= maxStars; i++) {
-      stars.push(
-        i <= rating ? (
-          <RiStarFill key={i} className="text-orange-400" />
-        ) : (
-          <RiStarLine key={i} className="text-orange-400" />
-        )
-      );
-    }
-
-    return stars;
-  };
-
-  return (
-    <div className="space-y-5 ">
-      <section className="space-y-2 pt-5">
-        <h4 className=" text-xs opacity-50 text-center">Overall rating</h4>
-        <div className="flex flex-col gap-1 items-center border-b  space-y-1">
-          <p className="text-4xl font-semibold">{rating}</p>
-          <p className="flex items-center  text-orange-400 text-sm gap-1 ">
-            {renderStars()}
-          </p>
-          <p className=" text-xs opacity-50 pb-5">{`based on ${review} reviews`}</p>
-        </div>
-      </section>
-
-      <section className="space-y-4 ">
-        <ul>
-          {reviews.map((review) => {
-            const firstName = review?.service_user?.first_name;
-            const lastName = review?.service_user?.last_name;
-            const rating = review?.ratings;
-            const fullName = `${firstName} ${lastName}`;
-
-            const renderStars = () => {
-              const stars = [];
-              const maxStars = 5;
-
-              for (let i = 1; i <= maxStars; i++) {
-                stars.push(
-                  i <= rating ? (
-                    <RiStarFill key={i} className="text-orange-400" />
-                  ) : (
-                    <RiStarLine key={i} className="text-orange-400" />
-                  )
-                );
-              }
-
-              return stars;
-            };
-
-            return (
-              <li className="flex gap-5 py-3 ">
-                {/* <img
-                  className="object-cover w-10 h-10  rounded-full "
-                  src="https://images.pexels.com/photos/4099471/pexels-photo-4099471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                  alt=""
-                /> */}
-
-                <div className="space-y-1">
-                  <h4 className="  font-medium text-sm ">
-                    {review?.service_user === null ? "Service user" : fullName}
-                  </h4>
-                  <p className="flex items-center text-xs  ">{renderStars()}</p>
-                  <p className="text-xs opacity-70">{review?.comment}</p>
-                  {/* <p className="text-xs opacity-50">
-                    <span>London</span>/<span>1/2/23</span>
-                  </p> */}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-    </div>
-  );
-};

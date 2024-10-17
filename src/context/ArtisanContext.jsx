@@ -29,8 +29,8 @@ export const ArtisanProvider = ({ children }) => {
     try {
       const response = await axiosInstance.get(url);
       if (response) {
+        navigate("/selected-category");
         setSelectedCategory(response?.data?.results);
-        console.log(response?.data?.results, "responsesssss getcategory");
       }
     } catch (error) {}
     /* 
@@ -44,9 +44,9 @@ export const ArtisanProvider = ({ children }) => {
     try {
       const response = await axiosInstance.get(url);
       if (response) {
+        navigate("/service-detail");
         setProviderDetail(response?.data?.data);
       }
-      navigate("/service-detail");
     } catch (error) {}
   };
 

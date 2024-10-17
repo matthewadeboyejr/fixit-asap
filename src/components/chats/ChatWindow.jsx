@@ -1,4 +1,4 @@
-import { RiArrowLeftLine } from "react-icons/ri";
+import { RiArrowLeftLine, RiAttachment2 } from "react-icons/ri";
 
 import { FaCircle } from "react-icons/fa";
 import { TbHandClick } from "react-icons/tb";
@@ -137,15 +137,15 @@ const ChatWindow = () => {
             //onSubmit={handleSubmit}
             className=" bg-white border flex rounded-full m-2"
           >
-            <button className="bg-secondary/50 p-2 flex items-center justify-center text-2xl m-2 rounded-full">
-              <IoAddOutline />
+            <button className=" px-5  text-xl  rounded-full">
+              <RiAttachment2 />
             </button>
             <input
               onChange={(e) => setInputMessage(e.target.value)}
               value={inputMessage}
               type="text"
-              className="w-full py-3 px-2 outline-none text-xs  bg-transparent"
-              placeholder="Type your message..."
+              className="w-full py-3  outline-none text-xs  bg-transparent"
+              placeholder="Type your message"
             />
             <span>
               <button

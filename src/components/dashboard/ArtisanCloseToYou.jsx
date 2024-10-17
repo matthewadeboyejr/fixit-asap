@@ -16,7 +16,7 @@ const ArtisanCloseToYou = () => {
         </Link>
       </div>
 
-      {closestArtisan.length === 0 ? (
+      {closestArtisan.length === 0 && !isLoading ? (
         <div className="text-center opacity-40 py-3">
           No artisan is closed to you
         </div>
