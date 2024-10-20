@@ -10,6 +10,7 @@ import LogoMain from "../../Images/Logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GoPerson } from "react-icons/go";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
+import UserAddress from "./UserAddress";
 
 const nav = [
   { id: 1, icon: <RiHomeLine />, name: "Home", path: "/dashboard" },
@@ -24,14 +25,18 @@ const Header = () => {
 
   return (
     <header className="flex items-center justify-between">
-      <img
+      {/*  <img
         onClick={() => {
           navigate("/");
         }}
         src={LogoMain}
         className="w-20 h-auto "
         alt="logo"
-      />
+      /> */}
+      <div id="address">
+        <UserAddress color="text-white" bg="" />
+      </div>
+
       <nav className="hidden md:flex bg-primary p-4 rounded-full gap-7">
         {nav.map((navLink) => (
           <NavLink
@@ -60,8 +65,8 @@ const Header = () => {
           <p className="text-white text-sm hover:underline  ">Profile</p>
         </div>
       </nav>
-      <div className="flex items-center gap-4 text-primary ">
-        <p className="text-primary bg-primary/10 p-2 md:p-1 text-xs rounded-md ">
+      <div id="notification" className="flex items-center gap-4 text-primary ">
+        <p className="text-white bg-white/10 p-2 md:p-1 text-xs rounded-md ">
           <IoNotificationsSharp className="hover:opacity-70 transition-opacity" />
         </p>
       </div>
@@ -137,7 +142,10 @@ export const PreHeader = () => {
 export const MobileNav = () => {
   const { setOpenProfile, openProfile } = useOpenModalContext();
   return (
-    <nav className=" flex justify-evenly bg-primary  py-3  rounded-full mx-10  shadow-2xl  drop-shadow-lg">
+    <nav
+      id="nav"
+      className=" flex justify-evenly bg-primary  py-3  rounded-full mx-10  shadow-2xl  drop-shadow-lg"
+    >
       {nav.map((navLink) => (
         <NavLink
           key={navLink.id}
@@ -177,7 +185,7 @@ export const SubHeader = (props) => {
       >
         <RiArrowLeftLine />
       </p>
-      <h4 className="text-sm font-medium">{props.title}</h4>
+      <h4 className="text-lg font-medium">{props.title}</h4>
     </section>
   );
 };

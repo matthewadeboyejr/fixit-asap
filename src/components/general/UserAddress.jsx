@@ -3,6 +3,7 @@ import { RiMapPinUserFill } from "react-icons/ri";
 import useAddressContext from "../../hooks/useAddressContext";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
 import { CiLocationOn } from "react-icons/ci";
+import { FaLocationPin } from "react-icons/fa6";
 
 const UserAddress = ({ color, bg }) => {
   const { address, isLoading } = useAddressContext();
@@ -12,22 +13,27 @@ const UserAddress = ({ color, bg }) => {
 
   return (
     <div className={`flex items-center gap-3 text-sm  ${bg} p-1 rounded-md`}>
-      <p className="text-primary  text-sm font-bold">
-        <CiLocationOn />
+      <p className="text-teriary  text-sm font-bold">
+        <FaLocationPin />
       </p>
 
       {isLoading ? (
         <div className="rounded-full h-3 w-60 bg-gray-300/70 animate-pulse "></div>
       ) : (
-        <p className={` ${color} text-xs `}>{sliceAddress}</p>
+        <p
+          onClick={() => setOpenAddress(true)}
+          className={` ${color} text-sm font-bold `}
+        >
+          {sliceAddress}
+        </p>
       )}
 
-      <button
+      {/* <button
         onClick={() => setOpenAddress(true)}
         className="text-xs text-primary underline"
       >
         Change
-      </button>
+      </button> */}
     </div>
   );
 };

@@ -22,7 +22,7 @@ const ContactsList = () => {
   return (
     <div className="p-3 bg-secondary/5 h-full ">
       <div className=" pb-5">
-        <SubHeader title={"Chat"} />
+        <SubHeader title={"Messages"} />
       </div>
 
       <form className="mb-5 px-2 py-1 bg-white  flex rounded-lg items-center mx-2   ">

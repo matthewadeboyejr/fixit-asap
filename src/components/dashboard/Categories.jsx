@@ -1,29 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import useArtisanContext from "../../hooks/useArtisanContext";
+import CategoriesSkeleton from "../skeleton/CategoriesSkeleton";
 
 const Categories = () => {
-  const { category, getByCategory } = useArtisanContext();
-  console.log(category, "cate");
+  const { category, getByCategory, isLoading } = useArtisanContext();
 
   return (
-    <section className="space-y-5 overflow-hidden">
+    <section className="space-y-5 ">
       <div className="flex items-center justify-between px-3">
-        <h3 className=" text-sm font-medium">Feature Categories</h3>
-        <Link className="text-secondary/60 hover:underline text-sm font-medium">
+        <h3 className=" text-lg font-semibold ">Categories</h3>
+        {/* <Link className="text-secondary/60 hover:underline text-sm font-medium">
           view all
-        </Link>
+        </Link> */}
       </div>
-      <ul className="grid items-center grid-cols-3 md:grid-cols-8  gap-3 text-sm ">
+      <ul id="category" className=" flex gap-4 overflow-x-auto no-scrollbar  ">
+        {isLoading && <CategoriesSkeleton cards={4} />}
         {category.map((item) => (
           <li
             key={item.id}
             onClick={() => {
               getByCategory(item.id);
             }}
-            className="px-3 py-2 border rounded-2xl w-fit text-center"
+            className="flex flex-col gap-3 items-center  "
           >
-            {item.category}
+            <img
+              className="border w-20 h-20 rounded-full"
+              src={item?.image}
+              alt={item.category}
+            />
+            <span>{item?.category}</span>
           </li>
         ))}
       </ul>
@@ -32,3 +37,15 @@ const Categories = () => {
 };
 
 export default Categories;
+
+{
+  /* <li
+   key={item.id}
+   onClick={() => {
+     getByCategory(item.id);
+   }}
+   className="px-3 py-2 border rounded-2xl w-fit text-center"
+ >
+   <span>{item.category}</span>
+ </li>; */
+}

@@ -10,10 +10,10 @@ const ArtisanCloseToYou = () => {
   return (
     <section className="space-y-10">
       <div className="flex  items-center justify-between px-3">
-        <h2 className="text-sm   border-primary font-medium">Recommended</h2>
-        <Link className="text-secondary/60 hover:underline text-sm font-medium">
+        <h2 className="text-lg  font-semibold  border-primary">Recommended</h2>
+        {/* <Link className="text-secondary/60 hover:underline text-sm font-medium">
           view all
-        </Link>
+        </Link> */}
       </div>
 
       {closestArtisan.length === 0 && !isLoading ? (
@@ -21,7 +21,10 @@ const ArtisanCloseToYou = () => {
           No artisan is closed to you
         </div>
       ) : (
-        <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4">
+        <div
+          id="recommended"
+          className="flex gap-4 overflow-x-auto no-scrollbar pb-4"
+        >
           {isLoading && <ServiceCardSkeleton cards={7} />}
           {closestArtisan.map((item) => (
             <div
