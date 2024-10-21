@@ -16,6 +16,7 @@ export const ArtisanProvider = ({ children }) => {
   const [contactList, setContactList] = useState({});
   const [requestInput, setRequestInput] = useState({});
   const [providerDetail, setProviderDetail] = useState({});
+  const [loadingProviderDetails, setLoadingProviderDetails] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState([]);
 
   useEffect(() => {
@@ -40,6 +41,7 @@ export const ArtisanProvider = ({ children }) => {
   };
 
   const getProviderDetail = async (serviceID) => {
+    setLoadingProviderDetails(true);
     const url = `/service-user/api/v1/service-details/?service_id=${serviceID}`;
     try {
       const response = await axiosInstance.get(url);
@@ -47,7 +49,11 @@ export const ArtisanProvider = ({ children }) => {
         navigate("/service-detail");
         setProviderDetail(response?.data?.data);
       }
-    } catch (error) {}
+      setLoadingProviderDetails(false);
+    } catch (error) {
+    } finally {
+      setLoadingProviderDetails(false);
+    }
   };
 
   const handleContactList = async () => {
@@ -79,10 +85,10 @@ export const ArtisanProvider = ({ children }) => {
       value={{
         closestArtisan,
         fixOFTheMonth,
+        category,
         isLoading,
         availableService,
         setAvailableService,
-        category,
         loadingAcceptedProvider,
         setLoadingAcceptedProvider,
         acceptedProvider,
@@ -98,6 +104,8 @@ export const ArtisanProvider = ({ children }) => {
         selectedCategory,
         setSelectedCategory,
         getByCategory,
+        loadingProviderDetails,
+        setLoadingProviderDetails,
       }}
     >
       {children}

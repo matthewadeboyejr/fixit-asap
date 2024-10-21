@@ -129,7 +129,6 @@ const UpcomingBookings = () => {
               </p>
             </div>
           </section>
-
           <section className="flex gap-1 text-xs  ">
             <button className=" w-full md:w-24 bg-secondary/15 px-4 py-3 rounded-md ">
               Reject

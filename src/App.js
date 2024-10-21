@@ -23,85 +23,88 @@ import { ChatProvider } from "./context/ChatContext";
 import { BookingProvider } from "./context/BookingContext";
 import ServiceDetail from "./pages/ServiceDetail";
 import SelectedCategory from "./pages/SelectedCategory";
+import ProfileContext, { ProfileProvider } from "./context/ProfileContext";
 
 const App = () => {
   return (
-    <ArtisanProvider>
-      <AddressProvider>
-        <OpenModalProvider>
-          <ChatProvider>
-            <div>
-              <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="*" element={<NotFound />} />
+    <ProfileProvider>
+      <ArtisanProvider>
+        <AddressProvider>
+          <OpenModalProvider>
+            <ChatProvider>
+              <div>
+                <Routes>
+                  <Route path="/" element={<Landing />} />
+                  <Route path="*" element={<NotFound />} />
 
-                {/*    {Public routes} */}
-                <Route
-                  path="login"
-                  element={
-                    <LoginProvider>
-                      <Login />
-                    </LoginProvider>
-                  }
-                />
-                <Route
-                  path="signup"
-                  element={
-                    <SignupProvider>
-                      <Signup />
-                    </SignupProvider>
-                  }
-                />
-
-                <Route path="reset-password" element={<Resetpass />} />
-
-                {/*    {Needs to be protected} */}
-
-                <Route element={<RequireAuth />}>
-                  <Route path="dashboard" element={<Dashboard />} />
-                  <Route path="service-detail" element={<ServiceDetail />} />
+                  {/*    {Public routes} */}
                   <Route
-                    path="bookings"
+                    path="login"
                     element={
-                      <BookingProvider>
-                        <Bookings />
-                      </BookingProvider>
+                      <LoginProvider>
+                        <Login />
+                      </LoginProvider>
                     }
                   />
                   <Route
-                    path="chat"
+                    path="signup"
                     element={
-                      <ChatProvider>
-                        <Chat />
-                      </ChatProvider>
+                      <SignupProvider>
+                        <Signup />
+                      </SignupProvider>
                     }
                   />
-                  {/*    <Route path="/chat/:contactId" element={<Chat />} /> */}
-                  <Route path="address" element={<Address />} />
-                  <Route path="profile" element={<Profile />} />
+
+                  <Route path="reset-password" element={<Resetpass />} />
+
+                  {/*    {Needs to be protected} */}
+
+                  <Route element={<RequireAuth />}>
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="service-detail" element={<ServiceDetail />} />
+                    <Route
+                      path="bookings"
+                      element={
+                        <BookingProvider>
+                          <Bookings />
+                        </BookingProvider>
+                      }
+                    />
+                    <Route
+                      path="chat"
+                      element={
+                        <ChatProvider>
+                          <Chat />
+                        </ChatProvider>
+                      }
+                    />
+                    {/*    <Route path="/chat/:contactId" element={<Chat />} /> */}
+                    <Route path="address" element={<Address />} />
+                    <Route path="profile" element={<Profile />} />
+                    <Route
+                      path="accepted-providers"
+                      element={<RequestAcceptedProviders />}
+                    />
+                    <Route
+                      path="available-providers"
+                      element={<RequestAvailableProviders />}
+                    />
+                  </Route>
                   <Route
-                    path="accepted-providers"
-                    element={<RequestAcceptedProviders />}
+                    path="explore-providers"
+                    element={<RequestExporeProvider />}
                   />
                   <Route
-                    path="available-providers"
-                    element={<RequestAvailableProviders />}
+                    path="selected-category"
+                    element={<SelectedCategory />}
                   />
-                </Route>
-                <Route
-                  path="explore-providers"
-                  element={<RequestExporeProvider />}
-                />
-                <Route
-                  path="selected-category"
-                  element={<SelectedCategory />}
-                />
-              </Routes>
-            </div>
-          </ChatProvider>
-        </OpenModalProvider>
-      </AddressProvider>
-    </ArtisanProvider>
+                </Routes>
+              </div>
+            </ChatProvider>
+          </OpenModalProvider>
+        </AddressProvider>
+      </ArtisanProvider>
+    </ProfileProvider>
   );
 };
 

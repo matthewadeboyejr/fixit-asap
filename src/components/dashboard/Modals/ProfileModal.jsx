@@ -7,9 +7,15 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import SignoutButton from "../../Buttons/SignoutButton";
 import useOpenModalContext from "../../../hooks/useOpenModalContext";
+import { IoPerson } from "react-icons/io5";
+import useProfileContext from "../../../hooks/useProfileContext";
 
 const ProfileModal = () => {
   const { setOpenProfile, openProfile } = useOpenModalContext();
+  const { handleProfileData, profileData } = useProfileContext();
+
+  const fName = profileData?.user?.first_name;
+  const lName = profileData?.user?.last_name;
 
   return (
     <>
@@ -38,17 +44,20 @@ const ProfileModal = () => {
               className="bg-white p-5 md:rounded-md rounded-t-md md:w-96 w-full"
             >
               <div className="flex items-center justify-between border-b pb-7 gap-10">
-                <div className="flex items-center space-x-5">
-                  {/*  <img
-                  className="object-cover w-10 h-10  rounded-full "
-                  src="https://images.pexels.com/photos/4099471/pexels-photo-4099471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                  alt=""
-                /> */}
-                  <div>
-                    <h4 className="text-sm font-medium">My Account</h4>
-                    <p className="text-xs  opacity-50">Active service user</p>
+                <section className="flex items-center justify-between">
+                  <div className="flex items-center gap-5">
+                    <p className="flex items-center justify-center w-14 h-14 bg-primary/5 text-2xl rounded-full">
+                      <IoPerson />
+                    </p>
+
+                    <p className="flex flex-col ">
+                      <span className="text-sm font-semibold">
+                        {fName + " " + lName}
+                      </span>
+                      <span>Service user</span>
+                    </p>
                   </div>
-                </div>
+                </section>
                 <p
                   onClick={() => setOpenProfile(!openProfile)}
                   className="bg-primary/20 p-1 rounded-md text-2xl cursor-pointer hover:bg-primary/30 transition-opacity "

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { RiStarFill } from "react-icons/ri";
-
 import { SubHeader } from "../components/general/Header";
 import useArtisanContext from "../hooks/useArtisanContext";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
@@ -14,9 +13,6 @@ import Summary from "../components/serviceDetail/Summary";
 
 const ServiceDetail = () => {
   const { providerDetail } = useArtisanContext();
-
-  console.log(providerDetail, "from serdetails");
-
   const businesName = providerDetail?.artisan?.business_name;
   const category = providerDetail?.service_category?.category;
   const address = providerDetail?.artisan?.address;

@@ -66,7 +66,7 @@ const Review = () => {
         </div>
       </section> */}
 
-      <section className="space-y-4  ">
+      <section className="space-y-4 overflow-y-auto h-80   ">
         <ul>
           {isLoading && <ReviewSkeleton card={5} />}
           {reviews === 0 ? (

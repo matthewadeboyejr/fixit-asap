@@ -3,20 +3,19 @@ import { RiArrowLeftLine, RiAttachment2 } from "react-icons/ri";
 import { FaCircle } from "react-icons/fa";
 import { TbHandClick } from "react-icons/tb";
 import { IoAddOutline, IoSendSharp } from "react-icons/io5";
-import { useEffect, useRef, useState } from "react";
-//import useWebSocket from "../../hooks/useWebSocket";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useWebSocket from "../../hooks/useWebSocket";
 import UseFormatTime from "../../hooks/UseFormatTime";
 import useChatContext from "../../hooks/useChatContext";
 
 const ChatWindow = () => {
+  const messagesEndRef = useRef(null);
   const { contactDetail, handleBackToContacts } = useChatContext();
 
   const [inputMessage, setInputMessage] = useState("");
-  //const { isConnected, /* messages, */ sendMessage } = useWebSocket(
-  // contactDetail?.id
-  // );
-
-  const messagesEndRef = useRef(null);
+  const { isConnected, messages, sendMessage } = useWebSocket(
+    contactDetail?.id
+  );
 
   const serviceImage = contactDetail?.receiver?.services[0]?.image;
   const businessName = contactDetail?.receiver?.business_name;
@@ -26,19 +25,19 @@ const ChatWindow = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  /* const handleSubmit = useCallback(
+  const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
       if (inputMessage && isConnected) {
         console.log("Sending message:", inputMessage);
-        sendMessage({ type: "chat", content: inputMessage });
+        sendMessage({ message: inputMessage });
         setInputMessage("");
       } else if (!isConnected) {
         console.error("WebSocket is not connected. Cannot send message.");
       }
     },
     [inputMessage, isConnected, sendMessage]
-  ); */
+  );
 
   const messageSet = contactDetail?.message_set;
   const userID = localStorage.getItem("userId");
@@ -90,14 +89,43 @@ const ChatWindow = () => {
           </section>
 
           <section className="flex-grow  overflow-y-auto bg-secondary/10 rounded-3xl p-4  ">
-            {/*    {messages.map((message, index) => (
-              <div key={index} className="mb-2">
-                <p className="text-sm">{message.content}</p>
-              </div>
-            ))} */}
-
             <ul className="flex flex-col-reverse  gap-10  p-5 rounded-2xl ">
               {messageSet.map((message) => {
+                const myMessages = Number(message?.sender) === Number(userID);
+                const timestamp = message?.timestamp;
+                const formattedTime = UseFormatTime(timestamp);
+                return (
+                  <li
+                    key={message.id}
+                    className={`flex ${
+                      myMessages ? "justify-end" : "justify-start"
+                    }`}
+                  >
+                    <p
+                      className={`flex flex-col min-w-24 p-2 gap-1 rounded-t-lg  ${
+                        myMessages
+                          ? "bg-secondary text-white rounded-l-lg"
+                          : "bg-white  rounded-r-lg"
+                      }`}
+                    >
+                      <span className="md:text-xs text-sm">
+                        {message?.text}
+                      </span>
+                      <span
+                        className={`text-right text-primary opacity-65 text-xs ${
+                          myMessages ? "text-white" : "text"
+                        }`}
+                      >
+                        {formattedTime}
+                      </span>
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <ul className="flex flex-col  gap-10  p-5 rounded-2xl ">
+              {messages.map((message, index) => {
                 const myMessages = Number(message?.sender) === Number(userID);
                 const timestamp = message?.timestamp;
                 const formattedTime = UseFormatTime(timestamp);
@@ -134,7 +162,7 @@ const ChatWindow = () => {
             <div ref={messagesEndRef} />
           </section>
           <form
-            //onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             className=" bg-white border flex rounded-full m-2"
           >
             <button className=" px-5  text-xl  rounded-full">

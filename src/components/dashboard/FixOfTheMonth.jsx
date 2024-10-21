@@ -7,8 +7,6 @@ import ServiceCardSkeleton from "../skeleton/ServiceCardSkeleton";
 const FixOfTheMonth = () => {
   const { fixOFTheMonth, isLoading, getProviderDetail } = useArtisanContext();
 
-  console.log(fixOFTheMonth, "fix fix");
-
   return (
     <section className="space-y-10">
       <div className="flex items-center justify-between px-3">

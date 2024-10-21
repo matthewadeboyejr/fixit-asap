@@ -10,35 +10,14 @@ export default LoginContext;
 export const LoginProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const { login } = useAuthenticateContext();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
-  const [profileIsLoading, setProfileIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
-  const [profileData, setProfileData] = useState(null);
-  const [errorProfileMsg, setErrorProfileMsg] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData((values) => ({ ...values, [name]: value }));
-  };
-
-  const handleProfileData = async () => {
-    setProfileIsLoading(true);
-    const url = "/account/api/v1/service-user/profile/";
-
-    try {
-      const response = await axiosInstance.get(url);
-      setProfileData(response?.data);
-
-      setErrorProfileMsg(null);
-    } catch (error) {
-      console.error("Error fetching profile data:", error);
-      setErrorProfileMsg(error.message || "an error occurred");
-    } finally {
-      setProfileIsLoading(false);
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -62,7 +41,6 @@ export const LoginProvider = ({ children }) => {
       login();
       const from = location.state?.from?.pathname || "/dashboard";
       navigate(from, { replace: true });
-      handleProfileData();
       setIsLoading(false);
       setLoginData({ email: "", password: "" });
     } catch (error) {
@@ -84,10 +62,6 @@ export const LoginProvider = ({ children }) => {
         handleChange,
         isLoading,
         handleSubmit,
-        handleProfileData,
-        profileData,
-        errorProfileMsg,
-        profileIsLoading,
       }}
     >
       {children}

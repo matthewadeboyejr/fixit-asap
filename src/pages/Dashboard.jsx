@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { IoAdd } from "react-icons/io5";
 import { RiSearch2Line } from "react-icons/ri";
 import Header, { MobileNav } from "../components/general/Header";
@@ -13,14 +13,41 @@ import RequestServiceModal from "../components/dashboard/Modals/RequestServiceMo
 import useArtisanContext from "../hooks/useArtisanContext";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+import useProfileContext from "../hooks/useProfileContext";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const Dashboard = () => {
   const { setOpenRequest } = useOpenModalContext();
-  const { handleDashData, isLoading } = useArtisanContext();
+  const {
+    handleDashData,
+    isLoading,
+    closestArtisan,
+    fixOFTheMonth,
+    category,
+    loadingProviderDetails,
+  } = useArtisanContext();
+  const { handleProfileData, profileData } = useProfileContext();
 
   useEffect(() => {
-    handleDashData();
-  }, []);
+    if (!closestArtisan && !fixOFTheMonth && !category) {
+      handleDashData();
+    } else if (
+      Array.isArray(closestArtisan) &&
+      closestArtisan.length === 0 &&
+      Array.isArray(fixOFTheMonth) &&
+      fixOFTheMonth.length === 0 &&
+      Array.isArray(category) &&
+      category.length === 0
+    ) {
+      handleDashData();
+    }
+  }, [closestArtisan, fixOFTheMonth, category]);
+
+  useEffect(() => {
+    if (!profileData) {
+      handleProfileData();
+    }
+  }, [profileData]);
 
   const driverObj = driver({
     showProgress: true,
@@ -132,6 +159,14 @@ const Dashboard = () => {
           <FixOfTheMonth />
           <ArtisanCloseToYou />
         </section>
+
+        <div
+          className={`${
+            loadingProviderDetails ? "fixed" : "hidden"
+          } flex items-center justify-center  z-20 inset-0 bg-black/50 h-screen`}
+        >
+          <CgSpinnerTwo className="text-secondary animate-spin text-4xl" />
+        </div>
       </main>
 
       <motion.div
