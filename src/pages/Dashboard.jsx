@@ -135,7 +135,7 @@ const Dashboard = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
       <main className="pb-20 sm:pb-5">
-        <section className="space-y-5 rounded-b-3xl sticky top-0 bg-secondary p-5">
+        <section className="space-y-5 rounded-b-3xl sticky top-0 z-50 bg-secondary p-5">
           <Header />
           {/* <h1 className="text-2xl font-medium text-teriary">
             How can we help you?
