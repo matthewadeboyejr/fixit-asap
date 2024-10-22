@@ -1,22 +1,23 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { RiArrowLeftLine, RiAttachment2 } from "react-icons/ri";
-
 import { FaCircle } from "react-icons/fa";
 import { TbHandClick } from "react-icons/tb";
-import { IoAddOutline, IoSendSharp } from "react-icons/io5";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { IoSendSharp } from "react-icons/io5";
 import useWebSocket from "../../hooks/useWebSocket";
 import UseFormatTime from "../../hooks/UseFormatTime";
 import useChatContext from "../../hooks/useChatContext";
+import ImagePreview from "../Modal/ImagePreview";
+import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 const ChatWindow = () => {
   const messagesEndRef = useRef(null);
   const { contactDetail, handleBackToContacts } = useChatContext();
-
+  const { setOpenPreviewFile } = useOpenModalContext();
   const [inputMessage, setInputMessage] = useState("");
+  const [file, setFile] = useState("");
   const { isConnected, messages, sendMessage } = useWebSocket(
     contactDetail?.id
   );
-
   const serviceImage = contactDetail?.receiver?.services[0]?.image;
   const businessName = contactDetail?.receiver?.business_name;
   const isOnline = contactDetail?.receiver?.user?.online_status?.is_online;
@@ -25,12 +26,12 @@ const ChatWindow = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  const handleSubmit = useCallback(
+  const handleSendMessage = useCallback(
     (e) => {
       e.preventDefault();
       if (inputMessage && isConnected) {
-        console.log("Sending message:", inputMessage);
         sendMessage({ message: inputMessage });
+        setOpenPreviewFile(false);
         setInputMessage("");
       } else if (!isConnected) {
         console.error("WebSocket is not connected. Cannot send message.");
@@ -38,9 +39,38 @@ const ChatWindow = () => {
     },
     [inputMessage, isConnected, sendMessage]
   );
+  const handleSendFile = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (file && isConnected) {
+        sendMessage({ message: "", attachment: file });
+        setFile("");
+        setOpenPreviewFile(false);
+      } else if (!isConnected) {
+        console.error("WebSocket is not connected. Cannot send message.");
+      }
+    },
+    [file, isConnected, sendMessage, setOpenPreviewFile]
+  );
 
   const messageSet = contactDetail?.message_set;
   const userID = localStorage.getItem("userId");
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setFile(reader.result);
+      setOpenPreviewFile(true);
+    };
+
+    if (selectedFile) {
+      reader.readAsDataURL(selectedFile);
+    }
+  };
+
+  //console.log(file);
 
   return (
     <>
@@ -108,6 +138,13 @@ const ChatWindow = () => {
                           : "bg-white  rounded-r-lg"
                       }`}
                     >
+                      <img
+                        src={message?.attachment}
+                        alt="attachment"
+                        className={`rounded-md max-w-56  ${
+                          message?.attachment === null ? "hidden" : "block"
+                        }`}
+                      />
                       <span className="md:text-xs text-sm">
                         {message?.text}
                       </span>
@@ -129,6 +166,8 @@ const ChatWindow = () => {
                 const myMessages = Number(message?.sender) === Number(userID);
                 const timestamp = message?.timestamp;
                 const formattedTime = UseFormatTime(timestamp);
+
+                console.log(message, "websock messages");
                 return (
                   <li
                     key={message.id}
@@ -143,6 +182,13 @@ const ChatWindow = () => {
                           : "bg-white  rounded-r-lg"
                       }`}
                     >
+                      <img
+                        src={message?.attachment}
+                        alt="attachment"
+                        className={`rounded-md max-w-56  ${
+                          message?.attachment === null ? "hidden" : "block"
+                        }`}
+                      />
                       <span className="md:text-xs text-sm">
                         {message?.text}
                       </span>
@@ -161,13 +207,23 @@ const ChatWindow = () => {
 
             <div ref={messagesEndRef} />
           </section>
+
           <form
-            onSubmit={handleSubmit}
-            className=" bg-white border flex rounded-full m-2"
+            onSubmit={handleSendMessage}
+            className=" bg-white border flex gap-2 rounded-full m-2"
           >
-            <button className=" px-5  text-xl  rounded-full">
+            <label
+              for="drop-file"
+              className=" flex items-center justify-center px-3 cursor-pointer hover:opacity-80 text-xl"
+            >
+              <input
+                id="drop-file"
+                type="file"
+                onChange={handleFileChange}
+                className=" hidden"
+              />
               <RiAttachment2 />
-            </button>
+            </label>
             <input
               onChange={(e) => setInputMessage(e.target.value)}
               value={inputMessage}
@@ -186,6 +242,8 @@ const ChatWindow = () => {
           </form>
         </div>
       )}
+
+      <ImagePreview file={file} sendFile={handleSendFile} />
     </>
   );
 };

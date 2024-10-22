@@ -29,7 +29,9 @@ const OtpForm = () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.post(url, data);
-      console.log(response);
+      if (response) {
+        console.log(response);
+      }
     } catch (error) {
       setErrMsg(error.response.data.message);
     }

@@ -8,6 +8,7 @@ export const OpenModalProvider = ({ children }) => {
   const [openAddress, setOpenAddress] = useState(false);
   const [openExpore, setOpenExplore] = useState(false);
   const [openBookingDetail, setOpenBookingDetail] = useState(false);
+  const [openPreviewFile, setOpenPreviewFile] = useState(false);
 
   return (
     <OpenModalContext.Provider
@@ -22,6 +23,8 @@ export const OpenModalProvider = ({ children }) => {
         setOpenExplore,
         openBookingDetail,
         setOpenBookingDetail,
+        openPreviewFile,
+        setOpenPreviewFile,
       }}
     >
       {children}
