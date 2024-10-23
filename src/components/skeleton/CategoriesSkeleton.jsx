@@ -3,7 +3,7 @@ import React from "react";
 const CategoriesSkeleton = ({ cards }) => {
   return Array(cards)
     .fill(0)
-    .map((index) => (
+    .map((_, index) => (
       <div key={index} className="flex flex-col gap-3 items-center ">
         <div className="relative h-20 w-20 rounded-full flex justify-center items-center bg-gray-300 animate-pulse ">
           <svg

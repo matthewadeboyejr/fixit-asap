@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { RiStarSFill } from "react-icons/ri";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import { GoPerson } from "react-icons/go";
 import ServiceCardSkeleton from "../skeleton/ServiceCardSkeleton";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ArtisanCloseToYou = () => {
   const { closestArtisan, isLoading, getProviderDetail } = useArtisanContext();
@@ -35,15 +35,12 @@ const ArtisanCloseToYou = () => {
               className="bg-white rounded-lg  md:shadow-none shadow-md hover:shadow-md min-w-[300px] max-w-[300px]  flex-shrink-0"
             >
               <div className="relative">
-                <img
+                <LazyLoadImage
                   className="w-full h-48 rounded-2xl object-cover"
-                  src={
-                    item.image === null
-                      ? item?.service_category.image
-                      : item.image
-                  }
-                  alt=""
+                  src={item?.image || item?.service_category?.image}
+                  alt="Service Image"
                 />
+
                 <div className="absolute top-0 left-0 m-3 p-1 flex items-center gap-1 bg-white rounded-sm">
                   <RiStarSFill className="text-orange-400 text-sm" />
                   <p className="text-xs">{item?.overall_ratings}</p>

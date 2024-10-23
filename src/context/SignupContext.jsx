@@ -41,7 +41,7 @@ export const SignupProvider = ({ children }) => {
 
     const url = "/account/api/v1/register/?user_type=user";
     const data = {
-      email: registerData.email,
+      email: registerData.email.toLowerCase(),
       first_name: registerData.first_name,
       last_name: registerData.last_name,
       password: password,

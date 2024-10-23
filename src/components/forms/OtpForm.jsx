@@ -7,7 +7,7 @@ import axiosInstance from "../../api/axios";
 import useSignupContext from "../../hooks/useSignupContext";
 
 const OtpForm = () => {
-  const { userRegData, handleSubmit } = useSignupContext();
+  const { userRegData } = useSignupContext();
   const otpRef = useRef();
   const [otp, setOtp] = useState();
   const [errMsg, setErrMsg] = useState("");

@@ -3,13 +3,18 @@ import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 
 const AddressContext = createContext({});
-
 export const AddressProvider = ({ children }) => {
   const [currentCoordinate, setCurrentCoordinate] = useState({
     lat: 0,
     lng: 0,
   });
   const [address, setAddress] = useState("");
+  const [suggestAddress, setSuggestAddress] = useState("");
+  const [suggestPostalCode, setSuggestPostalCode] = useState("");
+  const [suggestCordinate, setSuggestCordinate] = useState({
+    lat: 0,
+    lng: 0,
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [postalCode, setPostalCode] = useState("");
 
@@ -57,6 +62,12 @@ export const AddressProvider = ({ children }) => {
         setAddress,
         postalCode,
         setPostalCode,
+        suggestAddress,
+        setSuggestAddress,
+        suggestPostalCode,
+        setSuggestPostalCode,
+        suggestCordinate,
+        setSuggestCordinate,
       }}
     >
       {children}

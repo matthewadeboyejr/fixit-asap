@@ -1,6 +1,5 @@
 import { useState, createContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import axiosInstance from "../api/axios";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuthenticateContext from "../hooks/useAuthenticateContext";
 
@@ -9,7 +8,7 @@ export default LoginContext;
 
 export const LoginProvider = ({ children }) => {
   const navigate = useNavigate();
-  const location = useLocation();
+  //const location = useLocation();
   const { login } = useAuthenticateContext();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +24,10 @@ export const LoginProvider = ({ children }) => {
 
     const url =
       "https://artisanapi-48408c1be722.herokuapp.com/account/api/v1/login/?login_type=user";
-    const data = { username: loginData.email, password: loginData.password };
+    const data = {
+      username: loginData.email.toLowerCase(),
+      password: loginData.password,
+    };
 
     try {
       setIsLoading(true);

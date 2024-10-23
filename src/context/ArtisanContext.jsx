@@ -1,5 +1,5 @@
-import { createContext } from "react";
-import { useState, useEffect } from "react";
+import { createContext, useCallback } from "react";
+import { useState } from "react";
 import axiosInstance from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
@@ -19,10 +19,6 @@ export const ArtisanProvider = ({ children }) => {
   const [providerDetail, setProviderDetail] = useState({});
   const [loadingProviderDetails, setLoadingProviderDetails] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState([]);
-
-  useEffect(() => {
-    handleContactList();
-  }, []);
 
   const navigate = useNavigate();
 
@@ -57,7 +53,7 @@ export const ArtisanProvider = ({ children }) => {
     }
   };
 
-  const handleContactList = async () => {
+  const handleContactList = useCallback(async () => {
     setLoadingContactList(true);
     const url = "/service-user/api/v1/service-conversation/";
 
@@ -66,13 +62,12 @@ export const ArtisanProvider = ({ children }) => {
       if (response) {
         setContactList(response?.data?.data);
       }
-      setLoadingContactList(false);
     } catch (error) {
+      console.error("Failed to fetch contact list:", error);
     } finally {
       setLoadingContactList(false);
     }
-  };
-
+  }, []);
   const handleDashData = async () => {
     setIsLoading(true);
     const url = "/service-user/api/v1/user-dashboard/";
@@ -83,6 +78,13 @@ export const ArtisanProvider = ({ children }) => {
       setCategory(response?.data?.data?.feature_category);
     } catch (error) {
       console.error("Error fetching dashboard data", error);
+      if (error) {
+        if (error?.code === "ERR_NETWORK") {
+          navigate("/error");
+        } else if (error?.code === "ECONNABORTED") {
+          navigate("/error");
+        }
+      }
     }
     setIsLoading(false);
   };

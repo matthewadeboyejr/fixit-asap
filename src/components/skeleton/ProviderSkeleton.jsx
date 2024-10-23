@@ -1,7 +1,7 @@
 export const ProviderSkeleton = (cards) => {
   return Array(cards)
     .fill(0)
-    .map((index) => (
+    .map((_, index) => (
       <div className="flex items-center rounded-lg  gap-5 w-full " key={index}>
         <div className="relative h-10 w-10 rounded-full flex justify-center items-center bg-gray-300 animate-pulse ">
           <svg

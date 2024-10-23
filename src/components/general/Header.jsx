@@ -5,7 +5,7 @@ import {
   RiChat3Line,
   RiArrowLeftLine,
 } from "react-icons/ri";
-import Logo from "../../Images/Logo-yellow.png";
+//import Logo from "../../Images/Logo-yellow.png";
 import LogoMain from "../../Images/Logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GoPerson } from "react-icons/go";
@@ -21,7 +21,7 @@ const nav = [
 const Header = () => {
   const { setOpenProfile, openProfile } = useOpenModalContext();
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   return (
     <header className="flex items-center justify-between">
@@ -34,7 +34,7 @@ const Header = () => {
         alt="logo"
       /> */}
       <div id="address">
-        <UserAddress color="text-white" bg="" />
+        <UserAddress color={"text-white"} iconColor={"text-teriary"} />
       </div>
 
       <nav className="hidden md:flex bg-primary p-4 rounded-full gap-7">

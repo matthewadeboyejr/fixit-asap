@@ -3,7 +3,7 @@ import { RiStarFill, RiStarLine } from "react-icons/ri";
 export const ReviewSkeleton = (cards) => {
   return Array(cards)
     .fill(0)
-    .map((index) => (
+    .map((_, index) => (
       <div className="flex  rounded-lg  gap-3 w-full " key={index}>
         <div className="relative h-10 w-10 rounded-full flex justify-center items-center bg-gray-300/30 animate-pulse ">
           <svg

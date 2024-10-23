@@ -3,17 +3,41 @@ import { motion, AnimatePresence } from "framer-motion";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
 import GoogleMap from "../map/GoogleMap";
 import useAddressContext from "../../hooks/useAddressContext";
+import AnimationConfig from "../animation/AnimationConfig";
 
 const SelectAddress = () => {
   const { openAddress, setOpenAddress } = useOpenModalContext();
-  const { address } = useAddressContext();
+  const {
+    setCurrentCoordinate,
+    setPostalCode,
+    setAddress,
+    address,
+    suggestAddress,
+    suggestCordinate,
+    suggestPostalCode,
+    setSuggestAddress,
+    setSuggestCordinate,
+    setSuggestPostalCode,
+  } = useAddressContext();
+
+  const handleSelectLocation = () => {
+    setCurrentCoordinate(suggestCordinate);
+    setAddress(suggestAddress);
+    setPostalCode(suggestPostalCode);
+    setOpenAddress(!openAddress);
+  };
+
+  const handleCloseModal = () => {
+    setSuggestAddress("");
+    setSuggestCordinate("");
+    setSuggestPostalCode("");
+    setOpenAddress(!openAddress);
+  };
 
   return (
     <>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.5 } }}
-        exit={{ opacity: 0 }}
+        {...AnimationConfig}
         className={`${
           openAddress ? `flex` : `hidden`
         }  bg-black/70 fixed inset-0 h-screen justify-center md:items-center items-end z-30`}
@@ -24,34 +48,13 @@ const SelectAddress = () => {
           <div className=" flex md:items-center items-end justify-center inset-0 fixed z-50 ">
             <motion.div
               className="bg-white p-5 md:rounded-md rounded-t-md md:w-1/4 w-full  "
-              initial={{
-                y: 100,
-                opacity: 0,
-              }}
-              animate={{
-                y: 0,
-                opacity: 1,
-              }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              {...AnimationConfig}
             >
-              <motion.div
-                className=""
-                initial={{
-                  y: 50,
-                  opacity: 0,
-                }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                }}
-                exit={{ y: 50, opacity: 0 }}
-                transition={{ delay: 0.3 }}
-              >
+              <motion.div className="" {...AnimationConfig}>
                 <div className="flex items-center justify-between ">
                   <h4 className="text-lg font-semibold">Select Address</h4>
                   <p
-                    onClick={() => setOpenAddress(!openAddress)}
+                    onClick={handleCloseModal}
                     className="bg-primary/20 p-2 rounded-md text-2xl cursor-pointer hover:bg-primary/30 transition-opacity"
                   >
                     <RiCloseFill />
@@ -61,10 +64,15 @@ const SelectAddress = () => {
                 <GoogleMap />
                 <div className="space-y-2 shadow-md p-4 rounded-t-md bg-white  w-full">
                   <h5 className="text-lg font-semibold">Current Location</h5>
-                  <p className=" text-sm opacity-50">{address}</p>
-                  {/* <button className={`btn-primary`}>
+                  <p className=" text-sm opacity-50">
+                    {suggestAddress || address}
+                  </p>
+                  <button
+                    onClick={handleSelectLocation}
+                    className={`btn-primary`}
+                  >
                     Select This Location
-                  </button> */}
+                  </button>
                 </div>
               </motion.div>
             </motion.div>

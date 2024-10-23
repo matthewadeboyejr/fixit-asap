@@ -1,7 +1,7 @@
 const UpcomingServiceSkeleton = ({ cards }) => {
   return Array(cards)
     .fill(0)
-    .map((index) => (
+    .map((_, index) => (
       <div
         key={index}
         className="border  rounded-lg flex flex-col border-r-4 border-r-gray-300 animate-pulse  justify-between px-5  bg-white space-y-6 py-6"

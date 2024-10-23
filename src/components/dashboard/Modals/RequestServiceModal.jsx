@@ -3,6 +3,7 @@ import RequestServiceForm from "../../forms/RequestServiceForm";
 import { motion, AnimatePresence } from "framer-motion";
 import useOpenModalContext from "../../../hooks/useOpenModalContext";
 import UserAddress from "../../general/UserAddress";
+import AnimationConfig from "../../animation/AnimationConfig";
 
 const RequestServiceModal = () => {
   const { setOpenRequest, openRequest } = useOpenModalContext();
@@ -10,9 +11,7 @@ const RequestServiceModal = () => {
   return (
     <>
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { duration: 0.5 } }}
-        exit={{ opacity: 0 }}
+        {...AnimationConfig}
         className={`${
           openRequest ? `flex` : `hidden`
         }  bg-black/70 fixed inset-0 h-screen justify-center md:items-center items-end z-30`}
@@ -23,29 +22,9 @@ const RequestServiceModal = () => {
           <div className="flex md:items-center items-end justify-center inset-0 fixed z-50 ">
             <motion.div
               className="bg-white p-5 md:rounded-md rounded-t-md  md:w-[450px]  w-full  "
-              initial={{
-                y: 100,
-                opacity: 0,
-              }}
-              animate={{
-                y: 0,
-                opacity: 1,
-              }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              {...AnimationConfig}
             >
-              <motion.div
-                initial={{
-                  y: 50,
-                  opacity: 0,
-                }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                }}
-                exit={{ y: 50, opacity: 0 }}
-                transition={{ delay: 0.3 }}
-              >
+              <motion.div {...AnimationConfig}>
                 <div className="flex items-center justify-between ">
                   <h4 className="text-lg font-semibold">Request service</h4>
                   <p
@@ -58,7 +37,10 @@ const RequestServiceModal = () => {
                   </p>
                 </div>
                 <div className="py-5">
-                  <UserAddress color={"text-secondary"} />
+                  <UserAddress
+                    color={"text-secondary"}
+                    iconColor={"text-primary"}
+                  />
                 </div>
                 <RequestServiceForm />
               </motion.div>

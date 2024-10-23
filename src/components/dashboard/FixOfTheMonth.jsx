@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { RiStarSFill } from "react-icons/ri";
 import { GoPerson } from "react-icons/go";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import ServiceCardSkeleton from "../skeleton/ServiceCardSkeleton";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const FixOfTheMonth = () => {
   const { fixOFTheMonth, isLoading, getProviderDetail } = useArtisanContext();
@@ -30,13 +30,9 @@ const FixOfTheMonth = () => {
           >
             <div>
               <div className="relative">
-                <img
+                <LazyLoadImage
                   className="w-full h-44 object-cover rounded-2xl"
-                  src={
-                    service.image === null
-                      ? service?.service_category.image
-                      : service.image
-                  }
+                  src={service.image || service?.service_category?.image}
                   alt={service.business_name}
                 />
                 <div className="absolute top-0 left-0 m-3 p-1 flex items-center gap-1 bg-white rounded-sm">

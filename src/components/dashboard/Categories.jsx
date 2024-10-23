@@ -37,15 +37,3 @@ const Categories = () => {
 };
 
 export default Categories;
-
-{
-  /* <li
-   key={item.id}
-   onClick={() => {
-     getByCategory(item.id);
-   }}
-   className="px-3 py-2 border rounded-2xl w-fit text-center"
- >
-   <span>{item.category}</span>
- </li>; */
-}

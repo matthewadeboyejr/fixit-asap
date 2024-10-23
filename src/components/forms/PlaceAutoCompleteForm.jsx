@@ -8,7 +8,7 @@ import useAddressContext from "../../hooks/useAddressContext";
 
 const PlaceAutocompleteForm = () => {
   const places = useMapsLibrary("places");
-  const { setAddress, setCurrentCoordinate, setPostalCode } =
+  const { setSuggestAddress, setSuggestCordinate, setSuggestPostalCode } =
     useAddressContext();
 
   const {
@@ -27,9 +27,9 @@ const PlaceAutocompleteForm = () => {
       const results = await getGeocode({ address: description });
       const { lat, lng } = await getLatLng(results[0]);
 
-      setCurrentCoordinate({ lat: lat, lng: lng });
-      setAddress(results[0].formatted_address);
-      setPostalCode(results[0].address_components[5].long_name);
+      setSuggestCordinate({ lat: lat, lng: lng });
+      setSuggestAddress(results[0].formatted_address);
+      setSuggestPostalCode(results[0].address_components[5].long_name);
     } catch (error) {
       console.error("Error: ", error);
     }
