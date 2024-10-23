@@ -1,37 +1,26 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { RiArrowLeftLine, RiAttachment2 } from "react-icons/ri";
-import { FaCircle } from "react-icons/fa";
-import { TbHandClick } from "react-icons/tb";
-import { IoSendSharp } from "react-icons/io5";
+import { useCallback, useState } from "react";
 import useWebSocket from "../../hooks/useWebSocket";
-import UseFormatTime from "../../hooks/UseFormatTime";
 import useChatContext from "../../hooks/useChatContext";
 import ImagePreview from "../Modal/ImagePreview";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
+import ChatHeader from "./ChatHeader";
+import MessageList from "./MessageList";
+import ChatInput from "./ChatInput";
+import EmptyChat from "./EmptyChat";
 
 const ChatWindow = () => {
-  const messagesEndRef = useRef(null);
-  const { contactDetail, handleBackToContacts } = useChatContext();
+  const { contactDetail } = useChatContext();
   const { setOpenPreviewFile } = useOpenModalContext();
   const [inputMessage, setInputMessage] = useState("");
   const [file, setFile] = useState("");
-  const { isConnected, messages, sendMessage } = useWebSocket(
-    contactDetail?.id
-  );
-  const serviceImage = contactDetail?.receiver?.services[0]?.image;
-  const businessName = contactDetail?.receiver?.business_name;
-  const isOnline = contactDetail?.receiver?.user?.online_status?.is_online;
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, []);
+  const { isConnected, sendMessage } = useWebSocket(contactDetail?.id);
 
   const handleSendMessage = useCallback(
     (e) => {
       e.preventDefault();
       if (inputMessage && isConnected) {
         sendMessage({ message: inputMessage });
-        setOpenPreviewFile(false);
+        console.log("sending message:", inputMessage);
         setInputMessage("");
       } else if (!isConnected) {
         console.error("WebSocket is not connected. Cannot send message.");
@@ -53,9 +42,6 @@ const ChatWindow = () => {
     [file, isConnected, sendMessage, setOpenPreviewFile]
   );
 
-  const messageSet = contactDetail?.message_set;
-  const userID = localStorage.getItem("userId");
-
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     const reader = new FileReader();
@@ -74,172 +60,17 @@ const ChatWindow = () => {
 
   return (
     <>
-      {!contactDetail && (
-        <div className="md:flex h-full items-center justify-center hidden ">
-          <p className="flex flex-col items-center gap-4 animate-pulse">
-            <span className="bg-teriary/50 p-3 text-2xl rounded-full">
-              <TbHandClick />
-            </span>
-            <span className="text-xs">
-              Click a contact to show message history
-            </span>
-          </p>
-        </div>
-      )}
-
+      {!contactDetail && <EmptyChat />}
       {contactDetail && (
-        <div className="flex flex-col h-screen ">
-          <section className="flex items-center gap-5 my-4 px-5">
-            <button
-              className="bg-white text-primary p-2 rounded-sm md:hidden"
-              onClick={handleBackToContacts}
-            >
-              <RiArrowLeftLine />
-            </button>
-            <div className="flex items-center gap-5">
-              <img
-                className="w-10 h-10 rounded-full"
-                src={serviceImage}
-                alt={businessName}
-              />
-              <div className="flex flex-col">
-                <p className="text-sm font-normal">{businessName}</p>
-                <p className="flex items-center gap-2">
-                  <span className=" text-xs">
-                    {isOnline ? "Online" : "Offline"}
-                  </span>
-                  <FaCircle
-                    className={`text-[10px] ${
-                      isOnline ? "text-green-600" : "text-gray-400"
-                    }`}
-                  />
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="flex-grow  overflow-y-auto bg-secondary/10 rounded-3xl p-4  ">
-            <ul className="flex flex-col-reverse  gap-10  p-5 rounded-2xl ">
-              {messageSet.map((message) => {
-                const myMessages = Number(message?.sender) === Number(userID);
-                const timestamp = message?.timestamp;
-                const formattedTime = UseFormatTime(timestamp);
-                return (
-                  <li
-                    key={message.id}
-                    className={`flex ${
-                      myMessages ? "justify-end" : "justify-start"
-                    }`}
-                  >
-                    <p
-                      className={`flex flex-col min-w-24 p-2 gap-1 rounded-t-lg  ${
-                        myMessages
-                          ? "bg-secondary text-white rounded-l-lg"
-                          : "bg-white  rounded-r-lg"
-                      }`}
-                    >
-                      <img
-                        src={message?.attachment}
-                        alt="attachment"
-                        className={`rounded-md max-w-56  ${
-                          message?.attachment === null ? "hidden" : "block"
-                        }`}
-                      />
-                      <span className="md:text-xs text-sm">
-                        {message?.text}
-                      </span>
-                      <span
-                        className={`text-right text-primary opacity-65 text-xs ${
-                          myMessages ? "text-white" : "text"
-                        }`}
-                      >
-                        {formattedTime}
-                      </span>
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <ul className="flex flex-col  gap-10  p-5 rounded-2xl ">
-              {messages.map((message, index) => {
-                const myMessages = Number(message?.sender) === Number(userID);
-                const timestamp = message?.timestamp;
-                const formattedTime = UseFormatTime(timestamp);
-
-                console.log(message, "websock messages");
-                return (
-                  <li
-                    key={message.id}
-                    className={`flex ${
-                      myMessages ? "justify-end" : "justify-start"
-                    }`}
-                  >
-                    <p
-                      className={`flex flex-col min-w-24 p-2 gap-1 rounded-t-lg  ${
-                        myMessages
-                          ? "bg-secondary text-white rounded-l-lg"
-                          : "bg-white  rounded-r-lg"
-                      }`}
-                    >
-                      <img
-                        src={message?.attachment}
-                        alt="attachment"
-                        className={`rounded-md max-w-56  ${
-                          message?.attachment === null ? "hidden" : "block"
-                        }`}
-                      />
-                      <span className="md:text-xs text-sm">
-                        {message?.text}
-                      </span>
-                      <span
-                        className={`text-right text-primary opacity-65 text-xs ${
-                          myMessages ? "text-white" : "text"
-                        }`}
-                      >
-                        {formattedTime}
-                      </span>
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <div ref={messagesEndRef} />
-          </section>
-
-          <form
-            onSubmit={handleSendMessage}
-            className=" bg-white border flex gap-2 rounded-full m-2"
-          >
-            <label
-              for="drop-file"
-              className=" flex items-center justify-center px-3 cursor-pointer hover:opacity-80 text-xl"
-            >
-              <input
-                id="drop-file"
-                type="file"
-                onChange={handleFileChange}
-                className=" hidden"
-              />
-              <RiAttachment2 />
-            </label>
-            <input
-              onChange={(e) => setInputMessage(e.target.value)}
-              value={inputMessage}
-              type="text"
-              className="w-full py-3  outline-none text-xs  bg-transparent"
-              placeholder="Type your message"
-            />
-            <span>
-              <button
-                type="submit"
-                className="bg-secondary h-10 w-10 flex items-center justify-center text-sm m-2 rounded-full"
-              >
-                <IoSendSharp />
-              </button>
-            </span>
-          </form>
+        <div className="flex flex-col max-h-screen ">
+          <ChatHeader />
+          <MessageList />
+          <ChatInput
+            handleFileChange={handleFileChange}
+            handleSendMessage={handleSendMessage}
+            inputMessage={inputMessage}
+            setInputMessage={setInputMessage}
+          />
         </div>
       )}
 

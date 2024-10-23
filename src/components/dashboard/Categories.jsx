@@ -24,11 +24,11 @@ const Categories = () => {
             className="flex flex-col gap-3 items-center  "
           >
             <img
-              className="border w-20 h-20 rounded-full"
+              className="border w-16 h-16 rounded-full"
               src={item?.image}
               alt={item.category}
             />
-            <span>{item?.category}</span>
+            <span className="text-xs">{item?.category}</span>
           </li>
         ))}
       </ul>

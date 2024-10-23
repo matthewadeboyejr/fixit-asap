@@ -13,7 +13,8 @@ export const ArtisanProvider = ({ children }) => {
   const [availableService, setAvailableService] = useState({});
   const [acceptedProvider, setAcceptedProvider] = useState(null);
   const [loadingAcceptedProvider, setLoadingAcceptedProvider] = useState(false);
-  const [contactList, setContactList] = useState({});
+  const [contactList, setContactList] = useState([]);
+  const [loadingContactList, setLoadingContactList] = useState(false);
   const [requestInput, setRequestInput] = useState({});
   const [providerDetail, setProviderDetail] = useState({});
   const [loadingProviderDetails, setLoadingProviderDetails] = useState(false);
@@ -57,6 +58,7 @@ export const ArtisanProvider = ({ children }) => {
   };
 
   const handleContactList = async () => {
+    setLoadingContactList(true);
     const url = "/service-user/api/v1/service-conversation/";
 
     try {
@@ -64,7 +66,11 @@ export const ArtisanProvider = ({ children }) => {
       if (response) {
         setContactList(response?.data?.data);
       }
-    } catch (error) {}
+      setLoadingContactList(false);
+    } catch (error) {
+    } finally {
+      setLoadingContactList(false);
+    }
   };
 
   const handleDashData = async () => {
@@ -106,6 +112,8 @@ export const ArtisanProvider = ({ children }) => {
         getByCategory,
         loadingProviderDetails,
         setLoadingProviderDetails,
+        handleContactList,
+        loadingContactList,
       }}
     >
       {children}

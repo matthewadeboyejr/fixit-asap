@@ -2,7 +2,7 @@ import React from "react";
 
 const ChatSkeleton = () => {
   return (
-    <div className="w-full bg-secondary/20 h-screen ">
+    <div className="w-full bg-white h-screen ">
       <section className="flex items-center gap-5  p-5">
         <div className="relative h-10 w-10 rounded-full flex justify-center items-center bg-gray-300 animate-pulse ">
           <svg

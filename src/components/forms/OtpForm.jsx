@@ -1,36 +1,35 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axios";
 
 import useSignupContext from "../../hooks/useSignupContext";
 
 const OtpForm = () => {
-  const { userRegData } = useSignupContext();
-
+  const { userRegData, handleSubmit } = useSignupContext();
   const otpRef = useRef();
-
   const [otp, setOtp] = useState();
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => otpRef.current.focus());
 
-  const handleSubmit = async (e) => {
+  const navigate = useNavigate();
+
+  const handleOtpSubmit = async (e) => {
     e.preventDefault();
 
     const url = "/account/api/v1/verify-email/";
     const email = userRegData.data.email;
     const data = { otp, email };
 
-    console.log(data);
-
     try {
       setIsLoading(true);
       const response = await axiosInstance.post(url, data);
-      if (response) {
-        console.log(response);
+      if (response && response.statusText === "OK") {
+        await alert("Otp Successfull");
+        navigate("/login");
       }
     } catch (error) {
       setErrMsg(error.response.data.message);
@@ -39,7 +38,7 @@ const OtpForm = () => {
   };
 
   return (
-    <form className="w-full space-y-5" onSubmit={handleSubmit}>
+    <form className="w-full space-y-5" onSubmit={handleOtpSubmit}>
       <p
         className={
           errMsg

@@ -57,9 +57,11 @@ export const SignupProvider = ({ children }) => {
       //navigate("/otp");
 
       //clear form
-      setRegisterData({ email: "", first_name: "", last_name: "" });
-      setPassword("");
-      setPassword2("");
+      if (!response && !response === "OK") {
+        setRegisterData({ email: "", first_name: "", last_name: "" });
+        setPassword("");
+        setPassword2("");
+      }
     } catch (error) {
       setErrMsg(error.response.data.message);
     }

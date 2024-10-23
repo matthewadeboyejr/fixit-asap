@@ -2,9 +2,10 @@ import useArtisanContext from "../../hooks/useArtisanContext";
 import useChatContext from "../../hooks/useChatContext";
 import { SubHeader } from "../general/Header";
 import { IoIosSearch } from "react-icons/io";
+import ChatListSkeleton from "../skeleton/ChatListSkeleton";
 
 const ContactsList = () => {
-  const { contactList } = useArtisanContext();
+  const { contactList, loadingContactList } = useArtisanContext();
   const { handleSelectContact } = useChatContext();
 
   const formatLastSeen = (lastSeen) => {
@@ -37,7 +38,8 @@ const ContactsList = () => {
       </form>
 
       <ul className="space-y-3 m-2">
-        {contactList.map((contact) => {
+        {loadingContactList && <ChatListSkeleton />}
+        {contactList?.map((contact) => {
           const receiver = contact?.receiver;
           const lastMessage = contact?.last_message?.text;
           const service = contact?.receiver?.services[0];

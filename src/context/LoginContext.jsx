@@ -39,15 +39,15 @@ export const LoginProvider = ({ children }) => {
         localStorage.setItem("userId", userID);
       }
       login();
-      const from = location.state?.from?.pathname || "/dashboard";
+      const from = /* location.state?.from?.pathname || */ "/dashboard";
       navigate(from, { replace: true });
       setIsLoading(false);
       setLoginData({ email: "", password: "" });
     } catch (error) {
       if (error.response?.data?.non_field_errors) {
         setErrMsg(error.response?.data?.non_field_errors);
-      } else if (error.message) {
-        setErrMsg(error.message);
+      } else {
+        setErrMsg(error?.response?.data?.message);
       }
     } finally {
       setIsLoading(false);

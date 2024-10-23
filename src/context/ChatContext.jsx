@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback } from "react";
+import React, { createContext, useState, useCallback, useRef } from "react";
 import axiosInstance from "../api/axios";
 import useArtisanContext from "../hooks/useArtisanContext";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,8 @@ export const ChatProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const { availableService } = useArtisanContext();
   const navigate = useNavigate();
+
+  const listRef = useRef(null);
 
   const handleSelectContact = useCallback(
     async (contactId) => {
@@ -71,6 +73,7 @@ export const ChatProvider = ({ children }) => {
     handleBackToContacts,
     loading,
     handleinitiateChat,
+    listRef,
   };
 
   return (

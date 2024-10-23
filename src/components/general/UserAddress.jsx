@@ -22,7 +22,7 @@ const UserAddress = ({ color, bg }) => {
       ) : (
         <p
           onClick={() => setOpenAddress(true)}
-          className={` ${color} text-sm font-bold `}
+          className={` ${color} text-sm font-medium `}
         >
           {sliceAddress}
         </p>
