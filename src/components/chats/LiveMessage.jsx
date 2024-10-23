@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import useWebSocket from "../../hooks/useWebSocket";
 import useChatContext from "../../hooks/useChatContext";
 import UseFormatTime from "../../hooks/UseFormatTime";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const LiveMessage = memo(() => {
   const { contactDetail, listRef } = useChatContext();
@@ -27,13 +28,19 @@ const LiveMessage = memo(() => {
                   : "bg-white  rounded-r-lg"
               }`}
             >
-              <img
-                src={message?.attachment}
-                alt="attachment"
-                className={`rounded-md max-w-56  ${
-                  message?.attachment === null ? "hidden" : "block"
-                }`}
-              />
+              {message?.attachment && (
+                <LazyLoadImage
+                  src={message.attachment}
+                  alt="attachment"
+                  placeholder={
+                    <div className="bg-gray-200 w-full h-32 rounded-md flex items-center justify-center">
+                      Loading...
+                    </div>
+                  }
+                  effect="blur"
+                  className="rounded-md max-w-56 w-full"
+                />
+              )}
               <span className="md:text-xs text-sm">{message?.text}</span>
               <span
                 className={`text-right text-primary opacity-65 text-xs ${
