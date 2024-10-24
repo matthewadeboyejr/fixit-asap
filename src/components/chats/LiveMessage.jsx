@@ -5,12 +5,12 @@ import UseFormatTime from "../../hooks/UseFormatTime";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const LiveMessage = memo(() => {
-  const { contactDetail, listRef } = useChatContext();
+  const { contactDetail } = useChatContext();
   const { messages } = useWebSocket(contactDetail?.id);
 
   const userID = localStorage.getItem("userId");
   return (
-    <ul ref={listRef} className="flex flex-col  gap-10  p-5 rounded-2xl ">
+    <ul className="flex flex-col  gap-10  p-5 rounded-2xl ">
       {messages.map((message, index) => {
         const myMessages = Number(message?.sender) === Number(userID);
         const timestamp = message?.timestamp;
