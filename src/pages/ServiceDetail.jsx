@@ -106,7 +106,7 @@ const ServiceDetail = () => {
         <motion.div
           onClick={() => navigate("/chat", { state: { contactId } })}
           whileHover={{ scale: 1.1, rotate: 10 }}
-          className="lg:hidden fixed z-10 bottom-20 right-4 cursor-pointer drop-shadow-lg"
+          className="lg:hidden fixed z-50 bottom-20 right-4 cursor-pointer drop-shadow-lg"
         >
           <p className="bg-secondary p-3 text-2xl w-fit rounded-full hover:bg-opacity-90 transition-opacity">
             <IoChatbubbleEllipsesSharp />

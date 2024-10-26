@@ -9,9 +9,16 @@ import SignoutButton from "../../Buttons/SignoutButton";
 import useOpenModalContext from "../../../hooks/useOpenModalContext";
 import { IoPerson } from "react-icons/io5";
 import useProfileContext from "../../../hooks/useProfileContext";
+import ChangePassword from "../../Modal/ChangePassword";
+import AnimationConfig from "../../animation/AnimationConfig";
 
 const ProfileModal = () => {
-  const { setOpenProfile, openProfile } = useOpenModalContext();
+  const {
+    setOpenProfile,
+    openProfile,
+    setOpenChangePassword,
+    openChangePassword,
+  } = useOpenModalContext();
   const { handleProfileData, profileData } = useProfileContext();
 
   const fName = profileData?.user?.first_name;
@@ -31,16 +38,7 @@ const ProfileModal = () => {
         {openProfile && (
           <div className="flex md:items-center items-end justify-center inset-0 fixed z-50 ">
             <motion.div
-              initial={{
-                y: 100,
-                opacity: 0,
-              }}
-              animate={{
-                y: 0,
-                opacity: 1,
-              }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              {...AnimationConfig}
               className="bg-white p-5 md:rounded-md rounded-t-md md:w-96 w-full"
             >
               <div className="flex items-center justify-between border-b pb-7 gap-10">
@@ -65,38 +63,37 @@ const ProfileModal = () => {
                   <RiCloseFill />
                 </p>
               </div>
-              <motion.div
-                initial={{
-                  y: 50,
-                  opacity: 0,
-                }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                }}
-                exit={{ y: 50, opacity: 0 }}
-                transition={{ delay: 0.3 }}
+              <motion.ul
+                {...AnimationConfig}
                 className="flex flex-col gap-7 pt-5  "
               >
-                <Link to={"/profile"} className="flex items-center gap-3  ">
-                  <span className="text-primary text-xl">
-                    <RiAccountCircleLine />
-                  </span>
-                  <span className="text-sm ">Edit Profile</span>
-                </Link>
-                <Link className="flex items-center gap-3  ">
+                <li>
+                  <Link to={"/profile"} className="flex items-center gap-3  ">
+                    <span className="text-primary text-xl">
+                      <RiAccountCircleLine />
+                    </span>
+                    <span className="text-sm ">Edit Profile</span>
+                  </Link>
+                </li>
+                <li
+                  onClick={() => {
+                    setOpenChangePassword(true);
+                  }}
+                  className="flex items-center gap-3  "
+                >
                   <span className="text-primary text-xl">
                     <RiLockPasswordLine />
                   </span>
                   <span className="text-sm">Change Password</span>
-                </Link>
+                </li>
 
                 <SignoutButton />
-              </motion.div>
+              </motion.ul>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
+      <ChangePassword />
     </>
   );
 };

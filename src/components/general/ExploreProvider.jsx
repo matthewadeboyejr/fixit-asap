@@ -75,9 +75,6 @@ const ExploreProvider = () => {
           </div>
 
           <div className="flex gap-1 h-fit">
-            <button className=" bg-secondary/20 p-2 rounded-sm">
-              <RiInfoI />
-            </button>
             <button className="bg-secondary p-2 rounded-sm ">
               <RiChat3Line />
             </button>

@@ -5,17 +5,17 @@ import Header, { MobileNav } from "../components/general/Header";
 import Categories from "../components/dashboard/Categories";
 import { motion } from "framer-motion";
 import ArtisanCloseToYou from "../components/dashboard/ArtisanCloseToYou";
-import ProfileModal from "../components/dashboard/Modals/ProfileModal";
 import FixOfTheMonth from "../components/dashboard/FixOfTheMonth";
 import useOpenModalContext from "../hooks/useOpenModalContext";
 import SelectAddress from "../components/Modal/SelectAddress";
-import RequestServiceModal from "../components/dashboard/Modals/RequestServiceModal";
 import useArtisanContext from "../hooks/useArtisanContext";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import useProfileContext from "../hooks/useProfileContext";
 import { CgSpinnerTwo } from "react-icons/cg";
 import DriverSteps from "../components/general/DriverObj";
+import ProfileModal from "../components/dashboard/Modal/ProfileModal";
+import RequestServiceModal from "../components/dashboard/Modal/RequestServiceModal";
 
 const Dashboard = () => {
   const { setOpenRequest } = useOpenModalContext();

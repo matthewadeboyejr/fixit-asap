@@ -4,6 +4,7 @@ import useOpenModalContext from "../../hooks/useOpenModalContext";
 import GoogleMap from "../map/GoogleMap";
 import useAddressContext from "../../hooks/useAddressContext";
 import AnimationConfig from "../animation/AnimationConfig";
+import useProfileContext from "../../hooks/useProfileContext";
 
 const SelectAddress = () => {
   const { openAddress, setOpenAddress } = useOpenModalContext();
@@ -11,7 +12,6 @@ const SelectAddress = () => {
     setCurrentCoordinate,
     setPostalCode,
     setAddress,
-    address,
     suggestAddress,
     suggestCordinate,
     suggestPostalCode,
@@ -19,6 +19,8 @@ const SelectAddress = () => {
     setSuggestCordinate,
     setSuggestPostalCode,
   } = useAddressContext();
+
+  const { profileAddress } = useProfileContext();
 
   const handleSelectLocation = () => {
     setCurrentCoordinate(suggestCordinate);
@@ -65,7 +67,8 @@ const SelectAddress = () => {
                 <div className="space-y-2 shadow-md p-4 rounded-t-md bg-white  w-full">
                   <h5 className="text-lg font-semibold">Current Location</h5>
                   <p className=" text-sm opacity-50">
-                    {suggestAddress || address}
+                    {/*  {suggestAddress || address} */}
+                    {suggestAddress || profileAddress}
                   </p>
                   <button
                     onClick={handleSelectLocation}

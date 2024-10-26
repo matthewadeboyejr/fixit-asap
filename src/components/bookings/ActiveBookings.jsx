@@ -73,57 +73,46 @@ const ActiveBookings = () => {
               </span>
             </button>
           </section>
-          <section
-            className={`space-y-7 border-t pt-5 ${
-              openDetail ? "block " : "hidden"
-            }`}
-          >
-            <div className=" space-y-3   ">
-              <h4 className="opacity-70 text-sm">Artisan</h4>
-              <div className="flex gap-3">
-                <img
-                  className="object-cover w-10 h-10  rounded-md "
-                  src={booking?.service_image}
-                  alt=""
-                />
-
-                <p className="text-sm flex flex-col">
-                  <span className=" font-semibold">
-                    {booking?.artisan_name}
-                  </span>
-                  <span className="opacity-70">
-                    {booking?.service_category?.category}
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className=" space-y-3  ">
-              <h4 className="opacity-70 text-sm">Customer Name</h4>
-              <div className="flex  items-center gap-3">
-                <div className="flex items-center justify-center w-8 h-8 bg-primary/5 text-xs rounded-full">
-                  <IoPerson />
+          {openDetail && (
+            <section className={`space-y-7 border-t  pt-10 `}>
+              <div className=" space-y-3   ">
+                <h4 className="opacity-70 text-sm">Category</h4>
+                <div className="flex gap-3">
+                  <p className="text-sm flex flex-col">
+                    <span className=" font-semibold">
+                      {booking?.service_category?.category}
+                    </span>
+                  </p>
                 </div>
+              </div>
+              <div className=" space-y-3  ">
+                <h4 className="opacity-70 text-sm">Customer Name</h4>
+                <div className="flex  items-center gap-3">
+                  <div className="flex items-center justify-center w-8 h-8 bg-primary/5 text-xs rounded-full">
+                    <IoPerson />
+                  </div>
+
+                  <p className="text-sm font-semibold">
+                    {booking?.customer_name}
+                  </p>
+                </div>
+              </div>
+              <div className=" space-y-3   ">
+                <h4 className="opacity-70 text-sm">Customer Address</h4>
 
                 <p className="text-sm font-semibold">
-                  {booking?.customer_name}
+                  {booking?.customer_address}
                 </p>
               </div>
-            </div>
-            <div className=" space-y-3   ">
-              <h4 className="opacity-70 text-sm">Customer Address</h4>
+              <div className=" space-y-2   ">
+                <h4 className="opacity-70 text-sm">Service Description</h4>
 
-              <p className="text-sm font-semibold">
-                {booking?.customer_address}
-              </p>
-            </div>
-            <div className=" space-y-2   ">
-              <h4 className="opacity-70 text-sm">Service Description</h4>
-
-              <p className="text-sm font-semibold">
-                {booking?.service_description}
-              </p>
-            </div>
-          </section>
+                <p className="text-sm font-semibold">
+                  {booking?.service_description}
+                </p>
+              </div>
+            </section>
+          )}
         </div>
       ))}
     </section>

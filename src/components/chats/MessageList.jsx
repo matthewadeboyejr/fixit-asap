@@ -149,7 +149,7 @@ const MessageList = memo(() => {
       <div
         ref={listRef}
         onScroll={handleScroll}
-        className="flex flex-col h-[calc(100vh-200px)] overflow-y-auto"
+        className="flex flex-col-reverse h-[calc(100vh-200px)] overflow-y-auto"
       >
         <ul className="flex flex-col-reverse gap-10 p-5 rounded-2xl">
           {liveMessages.map((message, index) => (

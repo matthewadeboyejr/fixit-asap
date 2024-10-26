@@ -20,7 +20,7 @@ const GoogleMap = () => {
     <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
       <PlaceAutocompleteForm />
       <Map
-        style={{ width: "100%", height: "400px" }}
+        style={{ width: "100%", height: "200px" }}
         center={currentCoordinate}
         zoom={10}
         mapId={process.env.REACT_APP_GOOGLE_MAPS_ID}

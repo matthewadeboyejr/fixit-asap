@@ -10,7 +10,8 @@ const ProfileDetails = () => {
 
   const fName = profileData?.user?.first_name;
   const lName = profileData?.user?.last_name;
-  const email = profileData?.user.email;
+  const email = profileData?.user?.email;
+  const phone = profileData?.phone;
   const postalCode = profileData?.post_code;
   const address = profileData?.address;
 
@@ -40,6 +41,10 @@ const ProfileDetails = () => {
         <div className=" space-y-2   ">
           <h4 className="opacity-70 text-sm">Last Name</h4>
           <p className="text-sm font-semibold">{lName}</p>
+        </div>
+        <div className=" space-y-2   ">
+          <h4 className="opacity-70 text-sm">Phone number</h4>
+          <p className="text-sm font-semibold">{phone}</p>
         </div>
         <div className=" space-y-2   ">
           <h4 className="opacity-70 text-sm">Email</h4>

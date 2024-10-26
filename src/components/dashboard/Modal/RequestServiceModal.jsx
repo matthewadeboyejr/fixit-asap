@@ -1,9 +1,9 @@
 import { RiCloseFill } from "react-icons/ri";
 import RequestServiceForm from "../../forms/RequestServiceForm";
 import { motion, AnimatePresence } from "framer-motion";
-import useOpenModalContext from "../../../hooks/useOpenModalContext";
 import UserAddress from "../../general/UserAddress";
 import AnimationConfig from "../../animation/AnimationConfig";
+import useOpenModalContext from "../../../hooks/useOpenModalContext";
 
 const RequestServiceModal = () => {
   const { setOpenRequest, openRequest } = useOpenModalContext();

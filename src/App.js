@@ -23,7 +23,7 @@ import { ChatProvider } from "./context/ChatContext";
 import { BookingProvider } from "./context/BookingContext";
 import ServiceDetail from "./pages/ServiceDetail";
 import SelectedCategory from "./pages/SelectedCategory";
-import ProfileContext, { ProfileProvider } from "./context/ProfileContext";
+import { ProfileProvider } from "./context/ProfileContext";
 import NetworkError from "./pages/NetworkError";
 
 const App = () => {

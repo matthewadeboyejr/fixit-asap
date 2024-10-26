@@ -41,8 +41,9 @@ export const LoginProvider = ({ children }) => {
         localStorage.setItem("userId", userID);
       }
       login();
-      const from = /* location.state?.from?.pathname || */ "/dashboard";
-      navigate(from, { replace: true });
+      /*  const from = location.state?.from?.pathname || "/dashboard";
+      navigate(from { replace: true }); */
+      navigate("/dashboard");
       setIsLoading(false);
       setLoginData({ email: "", password: "" });
     } catch (error) {

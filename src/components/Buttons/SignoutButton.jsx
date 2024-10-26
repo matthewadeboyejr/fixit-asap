@@ -15,8 +15,9 @@ const SignoutButton = () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.post(url);
-      console.log(response);
-      logout();
+      if (response) {
+        logout();
+      }
       setIsLoading(false);
     } catch (error) {
       console.log(error);
