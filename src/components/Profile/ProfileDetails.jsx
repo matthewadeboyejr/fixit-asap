@@ -33,7 +33,7 @@ const ProfileDetails = () => {
         </button>
       </section>
 
-      <section className=" bg-primary/5 p-2 space-y-5 rounded-lg">
+      <section className=" bg-primary/5 p-7 space-y-7 rounded-lg">
         <div className=" space-y-2   ">
           <h4 className="opacity-70 text-sm">First Name</h4>
           <p className="text-sm font-semibold">{fName}</p>
