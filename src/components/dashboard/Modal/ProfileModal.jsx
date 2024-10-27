@@ -72,7 +72,7 @@ const ProfileModal = () => {
                     <span className="text-primary text-xl">
                       <RiAccountCircleLine />
                     </span>
-                    <span className="text-sm ">Edit Profile</span>
+                    <span className="text-sm ">My Profile</span>
                   </Link>
                 </li>
                 <li

@@ -21,6 +21,8 @@ export const SignupProvider = ({ children }) => {
   const [validPassword2, setValidPassword2] = useState(false);
   const [password2Focus, setPassword2Focus] = useState(false);
 
+  const [checkBox, setCheckBox] = useState(false);
+
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccessful, SetIsSuccessfull] = useState(false);
@@ -94,6 +96,8 @@ export const SignupProvider = ({ children }) => {
         isLoading,
         isSuccessful,
         userRegData,
+        checkBox,
+        setCheckBox,
       }}
     >
       {children}

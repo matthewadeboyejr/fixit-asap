@@ -4,9 +4,12 @@ import SignoutButton from "../Buttons/SignoutButton";
 import useLoginContext from "../../hooks/useLoginContext";
 import { IoPerson } from "react-icons/io5";
 import useProfileContext from "../../hooks/useProfileContext";
+import useOpenModalContext from "../../hooks/useOpenModalContext";
+import EditProfile from "../Modal/EditProfile";
 
 const ProfileDetails = () => {
   const { handleProfileData, profileData } = useProfileContext();
+  const { openEditProfile, setOpenEditProfile } = useOpenModalContext();
 
   const fName = profileData?.user?.first_name;
   const lName = profileData?.user?.last_name;
@@ -16,50 +19,60 @@ const ProfileDetails = () => {
   const address = profileData?.address;
 
   return (
-    <div className="space-y-7">
-      <section className="flex items-center justify-between">
-        <div className="flex items-center gap-5">
-          <p className="flex items-center justify-center w-14 h-14 bg-primary/5 text-2xl rounded-full">
-            <IoPerson />
-          </p>
+    <>
+      <div className="space-y-7">
+        <section className="flex items-center justify-between">
+          <div className="flex items-center gap-5">
+            <p className="flex items-center justify-center w-14 h-14 bg-primary/5 text-2xl rounded-full">
+              <IoPerson />
+            </p>
 
-          <p className="flex flex-col ">
-            <span className="text-sm font-semibold">{fName + " " + lName}</span>
-            <span>Service user</span>
-          </p>
-        </div>
-        <button className="border px-3 py-2 cursor-pointer  font-semibold rounded-lg">
-          Edit Profile
-        </button>
-      </section>
+            <p className="flex flex-col ">
+              <span className="text-sm font-semibold">
+                {fName + " " + lName}
+              </span>
+              <span>Service user</span>
+            </p>
+          </div>
+          <button
+            onClick={() => {
+              setOpenEditProfile(true);
+            }}
+            className="border px-3 py-2 cursor-pointer  font-semibold rounded-lg"
+          >
+            Edit Profile
+          </button>
+        </section>
 
-      <section className=" bg-primary/5 p-7 space-y-7 rounded-lg">
-        <div className=" space-y-2   ">
-          <h4 className="opacity-70 text-sm">First Name</h4>
-          <p className="text-sm font-semibold">{fName}</p>
-        </div>
-        <div className=" space-y-2   ">
-          <h4 className="opacity-70 text-sm">Last Name</h4>
-          <p className="text-sm font-semibold">{lName}</p>
-        </div>
-        <div className=" space-y-2   ">
-          <h4 className="opacity-70 text-sm">Phone number</h4>
-          <p className="text-sm font-semibold">{phone}</p>
-        </div>
-        <div className=" space-y-2   ">
-          <h4 className="opacity-70 text-sm">Email</h4>
-          <p className="text-sm font-semibold">{email}</p>
-        </div>
-        <div className=" space-y-2   ">
-          <h4 className="opacity-70 text-sm">Postal Code</h4>
-          <p className="text-sm font-semibold">{postalCode}</p>
-        </div>
-        <div className=" space-y-2   ">
-          <h4 className="opacity-70 text-sm">Full Address</h4>
-          <p className="text-sm font-semibold">{address}</p>
-        </div>
-      </section>
-    </div>
+        <section className=" bg-primary/5 p-7 space-y-7 rounded-lg">
+          <div className=" space-y-2   ">
+            <h4 className="opacity-70 text-sm">First Name</h4>
+            <p className="text-sm font-semibold">{fName}</p>
+          </div>
+          <div className=" space-y-2   ">
+            <h4 className="opacity-70 text-sm">Last Name</h4>
+            <p className="text-sm font-semibold">{lName}</p>
+          </div>
+          <div className=" space-y-2   ">
+            <h4 className="opacity-70 text-sm">Phone number</h4>
+            <p className="text-sm font-semibold">{phone}</p>
+          </div>
+          <div className=" space-y-2   ">
+            <h4 className="opacity-70 text-sm">Email</h4>
+            <p className="text-sm font-semibold">{email}</p>
+          </div>
+          <div className=" space-y-2   ">
+            <h4 className="opacity-70 text-sm">Postal Code</h4>
+            <p className="text-sm font-semibold">{postalCode}</p>
+          </div>
+          <div className=" space-y-2   ">
+            <h4 className="opacity-70 text-sm">Full Address</h4>
+            <p className="text-sm font-semibold">{address}</p>
+          </div>
+        </section>
+      </div>
+      <EditProfile />
+    </>
   );
 };
 

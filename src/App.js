@@ -25,6 +25,8 @@ import ServiceDetail from "./pages/ServiceDetail";
 import SelectedCategory from "./pages/SelectedCategory";
 import { ProfileProvider } from "./context/ProfileContext";
 import NetworkError from "./pages/NetworkError";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 const App = () => {
   return (
@@ -38,6 +40,8 @@ const App = () => {
                   <Route path="/" element={<Landing />} />
                   <Route path="*" element={<NotFound />} />
                   <Route path="error" element={<NetworkError />} />
+                  <Route path="privacy" element={<PrivacyPolicy />} />
+                  <Route path="terms" element={<Terms />} />
 
                   {/*    {Public routes} */}
                   <Route

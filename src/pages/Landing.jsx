@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import GooglePlay from "../Images/GooglePlay";
 import AppStore from "../Images/AppStore";
 import { motion } from "framer-motion";
+import Footer from "../components/general/Footer";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ const Landing = () => {
           />
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

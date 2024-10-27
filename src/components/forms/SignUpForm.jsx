@@ -24,6 +24,8 @@ const SignUpForm = () => {
     validPassword2,
     isLoading,
     isSuccessful,
+    checkBox,
+    setCheckBox,
   } = useSignupContext();
   const errRef = useRef();
   const firstNameRef = useRef();
@@ -47,27 +49,30 @@ const SignUpForm = () => {
       >
         {errMsg}
       </p>
-      <input
-        className="bg-secondary/10 p-5 w-full rounded-md placeholder:text-sm pl-5 outline-none placeholder:text-primary"
-        placeholder="First name"
-        type="text"
-        name="first_name"
-        value={registerData.first_name}
-        onChange={handleChange}
-        ref={firstNameRef}
-        autoComplete="off"
-        required
-      />
-      <input
-        className="bg-secondary/10 p-5 w-full rounded-md placeholder:text-sm pl-5 outline-none placeholder:text-primary"
-        placeholder="Last name"
-        type="text"
-        name="last_name"
-        value={registerData.last_name}
-        onChange={handleChange}
-        autoComplete="off"
-        required
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <input
+          className="bg-secondary/10 p-5 w-full rounded-md placeholder:text-sm pl-5 outline-none placeholder:text-primary"
+          placeholder="First name"
+          type="text"
+          name="first_name"
+          value={registerData.first_name}
+          onChange={handleChange}
+          ref={firstNameRef}
+          autoComplete="off"
+          required
+        />
+        <input
+          className="bg-secondary/10 p-5 w-full rounded-md placeholder:text-sm pl-5 outline-none placeholder:text-primary"
+          placeholder="Last name"
+          type="text"
+          name="last_name"
+          value={registerData.last_name}
+          onChange={handleChange}
+          autoComplete="off"
+          required
+        />
+      </div>
+
       <input
         className="bg-secondary/10 p-5 w-full rounded-md placeholder:text-sm pl-5 outline-none placeholder:text-primary"
         placeholder="Email"
@@ -101,6 +106,7 @@ const SignUpForm = () => {
           {showPassword ? <FiEyeOff /> : <FiEye />}
         </div>
       </div>
+
       <p
         id="passwordNote"
         className={
@@ -139,9 +145,37 @@ const SignUpForm = () => {
       >
         Must match the first password input field.
       </p>
+
+      <div className="flex items-start">
+        <input
+          id="link-checkbox"
+          type="checkbox"
+          checked={checkBox}
+          onChange={(e) => setCheckBox(e.target.checked)}
+          className="w-4 h-4 text-secondary bg-gray-100 border-gray-300 rounded focus:ring-secondary focus:ring-2"
+          required
+        />
+        <label
+          htmlFor="link-checkbox"
+          className="ms-2 text-sm font-medium space-x-1 text-primary dark:text-gray-300"
+        >
+          <span>I agree with the</span>
+          <Link to="/privacy" className="text-secondary hover:underline">
+            Privacy Policy
+          </Link>
+          <span> and</span>
+          <Link to="/terms" className="text-secondary hover:underline">
+            terms and conditions
+          </Link>
+        </label>
+      </div>
       <button
-        disabled={!validPassword || !validPassword2 ? true : false}
-        className={`btn-primary`}
+        disabled={!validPassword || !validPassword2 || !checkBox}
+        className={`btn-primary ${
+          !validPassword || !validPassword2 || !checkBox
+            ? "opacity-50 cursor-not-allowed"
+            : ""
+        }`}
       >
         <div className="flex justify-center items-center">
           {isLoading ? (
