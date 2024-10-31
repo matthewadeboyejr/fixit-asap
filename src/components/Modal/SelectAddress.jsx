@@ -5,6 +5,7 @@ import GoogleMap from "../map/GoogleMap";
 import useAddressContext from "../../hooks/useAddressContext";
 import AnimationConfig from "../animation/AnimationConfig";
 import useProfileContext from "../../hooks/useProfileContext";
+import PlaceAutocompleteForm from "../forms/PlaceAutoCompleteForm";
 
 const SelectAddress = () => {
   const { openAddress, setOpenAddress } = useOpenModalContext();
@@ -12,6 +13,7 @@ const SelectAddress = () => {
     setCurrentCoordinate,
     setPostalCode,
     setAddress,
+    address,
     suggestAddress,
     suggestCordinate,
     suggestPostalCode,
@@ -62,13 +64,12 @@ const SelectAddress = () => {
                     <RiCloseFill />
                   </p>
                 </div>
-
+                <PlaceAutocompleteForm />
                 <GoogleMap />
                 <div className="space-y-2 shadow-md p-4 rounded-t-md bg-white  w-full">
                   <h5 className="text-lg font-semibold">Current Location</h5>
                   <p className=" text-sm opacity-50">
-                    {/*  {suggestAddress || address} */}
-                    {suggestAddress || profileAddress}
+                    {suggestAddress || address}
                   </p>
                   <button
                     onClick={handleSelectLocation}

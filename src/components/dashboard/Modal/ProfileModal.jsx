@@ -11,6 +11,7 @@ import { IoPerson } from "react-icons/io5";
 import useProfileContext from "../../../hooks/useProfileContext";
 import ChangePassword from "../../Modal/ChangePassword";
 import AnimationConfig from "../../animation/AnimationConfig";
+import { useEffect } from "react";
 
 const ProfileModal = () => {
   const {
@@ -19,10 +20,16 @@ const ProfileModal = () => {
     setOpenChangePassword,
     openChangePassword,
   } = useOpenModalContext();
-  const { handleProfileData, profileData } = useProfileContext();
+  const { profileData } = useProfileContext();
 
   const fName = profileData?.user?.first_name;
   const lName = profileData?.user?.last_name;
+
+  useEffect(() => {
+    if (openChangePassword) {
+      setOpenChangePassword(false);
+    }
+  }, []);
 
   return (
     <>

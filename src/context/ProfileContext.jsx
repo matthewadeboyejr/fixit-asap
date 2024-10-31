@@ -42,10 +42,6 @@ export const ProfileProvider = ({ children }) => {
     }
   };
 
-  console.log(profileAddress, " profileData");
-
-  console.log(profileAddress, "From context ");
-
   return (
     <ProfileContext.Provider
       value={{

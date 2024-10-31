@@ -41,13 +41,15 @@ export const SignupProvider = ({ children }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = "/account/api/v1/register/?user_type=user";
+    const url =
+      "https://artisanapi-48408c1be722.herokuapp.com/account/api/v1/register/?user_type=user";
     const data = {
       email: registerData.email.toLowerCase(),
       first_name: registerData.first_name,
       last_name: registerData.last_name,
       password: password,
       password2: password2,
+      device_token: "web",
     };
 
     try {

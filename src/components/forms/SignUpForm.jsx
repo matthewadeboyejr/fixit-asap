@@ -26,6 +26,7 @@ const SignUpForm = () => {
     isSuccessful,
     checkBox,
     setCheckBox,
+    deviceToken,
   } = useSignupContext();
   const errRef = useRef();
   const firstNameRef = useRef();

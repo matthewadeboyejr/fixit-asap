@@ -18,6 +18,12 @@ const ProfileDetails = () => {
   const postalCode = profileData?.post_code;
   const address = profileData?.address;
 
+  useEffect(() => {
+    if (openEditProfile) {
+      setOpenEditProfile(false);
+    }
+  }, []);
+
   return (
     <>
       <div className="space-y-7">
