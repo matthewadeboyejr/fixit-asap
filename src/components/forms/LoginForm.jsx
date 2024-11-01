@@ -4,6 +4,7 @@ import { FiEyeOff, FiEye } from "react-icons/fi";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import useLoginContext from "../../hooks/useLoginContext";
+import { Toaster } from "react-hot-toast";
 
 const LoginForm = () => {
   const { errMsg, loginData, handleChange, isLoading, handleSubmit } =
@@ -15,6 +16,9 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="w-full space-y-4">
+      <div>
+        <Toaster />
+      </div>
       <p
         ref={errRef}
         className={

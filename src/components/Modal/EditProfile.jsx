@@ -24,7 +24,7 @@ const EditProfile = () => {
 
       <AnimatePresence>
         {openEditProfile && (
-          <div className=" flex md:items-center items-end justify-center inset-0 fixed z-50 ">
+          <div className="flex md:items-center items-end justify-center inset-0 fixed z-50 ">
             <motion.div
               className="bg-white p-5 md:rounded-md rounded-t-md md:w-1/4 w-full"
               {...AnimationConfig}

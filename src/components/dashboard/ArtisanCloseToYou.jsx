@@ -11,9 +11,6 @@ const ArtisanCloseToYou = () => {
     <section className="space-y-10">
       <div className="flex  items-center justify-between px-3">
         <h2 className="text-lg  font-semibold  border-primary">Recommended</h2>
-        {/* <Link className="text-secondary/60 hover:underline text-sm font-medium">
-          view all
-        </Link> */}
       </div>
 
       {closestArtisan.length === 0 && !isLoading ? (

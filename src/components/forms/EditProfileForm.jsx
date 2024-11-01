@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import useProfileContext from "../../hooks/useProfileContext";
-
 import { useMapsLibrary } from "@vis.gl/react-google-maps";
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import axiosInstance from "../../api/axios";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const EditProfileForm = () => {
   const { profileData } = useProfileContext();
@@ -73,11 +73,41 @@ const EditProfileForm = () => {
 
       const response = await axiosInstance.post(url, data);
       if (response) {
-        await handleProfileData();
-        setOpenEditProfile(false);
+        // Show success toast with promise
+        await toast.promise(
+          // Promise that resolves after handleProfileData
+          new Promise((resolve) => {
+            handleProfileData();
+            setTimeout(resolve, 2000); // Wait for 2 seconds after profile data update
+          }),
+          {
+            loading: "Updating profile...",
+            success: "Profile updated successfully!",
+            error: "Error updating profile",
+          },
+          {
+            success: {
+              duration: 3000,
+              icon: "🎉",
+            },
+            error: {
+              duration: 3000,
+              icon: "❌",
+            },
+            style: {
+              background: "#FFE86E",
+              color: "#012332",
+            },
+          }
+        );
+
+        // Close modal after toast is shown
+        setTimeout(() => {
+          setOpenEditProfile(false);
+        }, 3000);
       }
-      setIsLoading(false);
     } catch (error) {
+      toast.error("Failed to update profile");
     } finally {
       setIsLoading(false);
     }
@@ -85,6 +115,9 @@ const EditProfileForm = () => {
 
   return (
     <form className="w-full space-y-5 relative" onSubmit={handleSubmit}>
+      <div>
+        <Toaster />
+      </div>
       <p
         ref={errRef}
         className={

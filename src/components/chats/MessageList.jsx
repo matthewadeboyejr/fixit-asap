@@ -151,7 +151,7 @@ const MessageList = memo(() => {
         onScroll={handleScroll}
         className="flex flex-col-reverse h-[calc(100vh-200px)] overflow-y-auto"
       >
-        <ul className="flex flex-col-reverse gap-10 p-5 rounded-2xl">
+        <ul className="flex flex-col gap-10 p-5 rounded-2xl">
           {liveMessages.map((message, index) => (
             <Message
               key={`live-${message.id}`}

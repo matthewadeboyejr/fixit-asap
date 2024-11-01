@@ -4,9 +4,11 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { CgSpinnerTwo } from "react-icons/cg";
 import axiosInstance from "../../api/axios";
 import useAuthenticateContext from "../../hooks/useAuthenticateContext";
+import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 const SignoutButton = () => {
   const { logout } = useAuthenticateContext();
+  const { setOpenProfile } = useOpenModalContext();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,6 +18,7 @@ const SignoutButton = () => {
       setIsLoading(true);
       const response = await axiosInstance.post(url);
       if (response) {
+        setOpenProfile(false);
         logout();
       }
       setIsLoading(false);

@@ -9,10 +9,10 @@ import { useEffect } from "react";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 const PlaceAutocompleteForm = () => {
-  const places = useMapsLibrary("places");
-
   const { setSuggestAddress, setSuggestCordinate, setSuggestPostalCode } =
     useAddressContext();
+
+  const places = useMapsLibrary("places");
 
   const {
     ready,
@@ -25,8 +25,6 @@ const PlaceAutocompleteForm = () => {
   const handleSelect = async (description) => {
     setValue(description, false);
     clearSuggestions();
-
-    console.log("Address to Geocode:", description);
 
     try {
       const results = await getGeocode({ address: description });
