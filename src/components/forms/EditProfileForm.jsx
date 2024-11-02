@@ -39,7 +39,12 @@ const EditProfileForm = () => {
     setValue,
     suggestions: { status, data },
     clearSuggestions,
-  } = usePlacesAutocomplete({ libraries: places ? [places] : [] });
+  } = usePlacesAutocomplete({
+    libraries: places ? [places] : [],
+    /* requestOptions: {
+      componentRestrictions: { country: "GB" },
+    }, */
+  });
 
   const handleSelect = async (description) => {
     setValue(description, false);

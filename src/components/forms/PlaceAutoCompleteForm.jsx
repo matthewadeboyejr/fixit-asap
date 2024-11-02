@@ -5,8 +5,6 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useAddressContext from "../../hooks/useAddressContext";
-import { useEffect } from "react";
-import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 const PlaceAutocompleteForm = () => {
   const { setSuggestAddress, setSuggestCordinate, setSuggestPostalCode } =
@@ -40,7 +38,7 @@ const PlaceAutocompleteForm = () => {
 
   return (
     <form className="space-y-5 py-5 w-full relative">
-      <div className="flex bg-primary/20 items-center p-4 rounded-md ">
+      <div className="flex bg-secondary/20 items-center p-4 rounded-md ">
         <RiSearch2Line />
         <input
           className="bg-transparent cursor-pointer  w-full placeholder:text-sm  placeholder:text-primary pl-5 outline-none"

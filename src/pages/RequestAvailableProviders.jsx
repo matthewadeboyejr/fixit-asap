@@ -8,8 +8,6 @@ const RequestAvailableProviders = () => {
   const navigate = useNavigate();
   const { availableService } = useArtisanContext();
 
-  console.log(availableService, "from availableprovider.jsx");
-
   return (
     <main className="w-screen h-screen flex  flex-col md:items-center   ">
       <div className="relative p-5 md:w-1/3 bg-white rounded-md shadow-md h-full ">

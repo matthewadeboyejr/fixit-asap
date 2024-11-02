@@ -1,10 +1,5 @@
 import React, { useEffect, useCallback } from "react";
-import {
-  RiMapPinUserFill,
-  RiChat3Line,
-  RiStarFill,
-  RiInfoI,
-} from "react-icons/ri";
+import { RiMapPinUserFill, RiChat3Line, RiStarFill } from "react-icons/ri";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import axiosInstance from "../../api/axios";
 import useOpenModalContext from "../../hooks/useOpenModalContext";

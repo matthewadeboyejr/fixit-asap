@@ -1,5 +1,4 @@
 import {
-  APIProvider,
   Map,
   AdvancedMarker,
   /* useAdvancedMarkerRef,
@@ -17,24 +16,22 @@ const GoogleMap = () => {
   const { currentCoordinate } = useAddressContext();
 
   return (
-    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-      <Map
-        style={{ width: "100%", height: "200px" }}
-        center={currentCoordinate}
-        zoom={10}
-        mapId={process.env.REACT_APP_GOOGLE_MAPS_ID}
-        fullscreenControl={false}
-        disableDefaultUI={true}
-      >
-        <AdvancedMarker position={currentCoordinate}>
-          <Pin
-            background={" #15abbc"}
-            borderColor={"#15abbc"}
-            glyphColor={"#233D4A"}
-          />
-        </AdvancedMarker>
-      </Map>
-    </APIProvider>
+    <Map
+      style={{ width: "100%", height: "200px" }}
+      center={currentCoordinate}
+      zoom={10}
+      mapId={process.env.REACT_APP_GOOGLE_MAPS_ID}
+      fullscreenControl={false}
+      disableDefaultUI={true}
+    >
+      <AdvancedMarker position={currentCoordinate}>
+        <Pin
+          background={" #15abbc"}
+          borderColor={"#15abbc"}
+          glyphColor={"#233D4A"}
+        />
+      </AdvancedMarker>
+    </Map>
   );
 };
 

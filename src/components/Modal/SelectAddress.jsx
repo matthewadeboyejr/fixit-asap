@@ -68,7 +68,7 @@ const SelectAddress = () => {
                 <GoogleMap />
                 <div className="space-y-2 shadow-md p-4 rounded-t-md bg-white  w-full">
                   <h5 className="text-lg font-semibold">Current Location</h5>
-                  <p className=" text-sm opacity-50">
+                  <p className=" text-sm  rounded-lg bg-teriary/20 p-3">
                     {suggestAddress || address}
                   </p>
                   <button

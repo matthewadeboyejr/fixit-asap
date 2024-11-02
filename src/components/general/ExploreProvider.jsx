@@ -22,24 +22,6 @@ const ExploreProvider = () => {
     description
   );
 
-  /* const handleinitiateChat = async (providerID) => {
-    const url = "/service-user/api/v1/service-conversation/";
-    const data = {
-      artisan_id: providerID,
-      job_id: jobID,
-    };
-    try {
-      const response = await axiosInstance.post(url, data);
-
-      if (response) {
-        setStartedConv(response.data?.data);
-      }
-      console.log(response.data?.data, "chat data");
-    } catch (error) {
-      console.error(error);
-    }
-  }; */
-
   return (
     <>
       {loading && ProviderSkeleton(4)}
