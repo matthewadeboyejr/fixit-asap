@@ -29,7 +29,7 @@ const ProfileModal = () => {
     if (openChangePassword) {
       setOpenChangePassword(false);
     }
-  }, []);
+  }, [openChangePassword, setOpenChangePassword]);
 
   return (
     <>
@@ -39,7 +39,7 @@ const ProfileModal = () => {
         exit={{ opacity: 0 }}
         className={`${
           openProfile ? `flex` : `hidden`
-        }  bg-black/70 flex fixed inset-0 h-screen  md:items-center items-end justify-center  z-50`}
+        }  bg-black/40 flex fixed inset-0 h-screen  md:items-center items-end justify-center  z-50`}
       />
       <AnimatePresence>
         {openProfile && (

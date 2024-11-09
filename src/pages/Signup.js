@@ -28,9 +28,9 @@ const Signup = () => {
             <p className=" font-medium text-sm">Social signup's </p>
             <p className=" font-medium">|</p>
             <div className="flex items-center gap-5 text-2xl">
-              <FcGoogle />
-              <IoLogoFacebook className="text-[#1877F2]" />
-              <IoLogoApple />
+              <FcGoogle className="cursor-pointer" />
+              <IoLogoFacebook className="text-[#1877F2] cursor-pointer" />
+              <IoLogoApple className="cursor-pointer" />
             </div>
           </div>
           <div className="border-b-2 w-20 border-b-secondary mx-3"></div>

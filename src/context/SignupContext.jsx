@@ -29,7 +29,7 @@ export const SignupProvider = ({ children }) => {
 
   useEffect(() => setErrMsg(""), [password, password2]);
   useEffect(() => {
-    setValidPassword(password.length >= 6);
+    setValidPassword(password.length >= 8);
     setValidPassword2(password2 === password);
   }, [password2, password]);
 

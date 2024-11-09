@@ -25,19 +25,11 @@ const Header = () => {
 
   return (
     <header className="flex items-center justify-between">
-      {/*  <img
-        onClick={() => {
-          navigate("/");
-        }}
-        src={LogoMain}
-        className="w-20 h-auto "
-        alt="logo"
-      /> */}
-      <div id="address">
+      <div id="address" className="">
         <UserAddress color={"text-white"} iconColor={"text-teriary"} />
       </div>
 
-      <nav className="hidden md:flex bg-primary p-4 rounded-full gap-7">
+      <nav className="hidden md:flex place-self-start bg-primary p-4 rounded-full gap-7">
         {nav.map((navLink) => (
           <NavLink
             key={navLink.id}

@@ -4,18 +4,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import UserAddress from "../../general/UserAddress";
 import AnimationConfig from "../../animation/AnimationConfig";
 import useOpenModalContext from "../../../hooks/useOpenModalContext";
+import SelectAddress from "../../Modal/SelectAddress";
 
 const RequestServiceModal = () => {
   const { setOpenRequest, openRequest } = useOpenModalContext();
 
   return (
     <>
-      <motion.div
-        {...AnimationConfig}
-        className={`${
-          openRequest ? `flex` : `hidden`
-        }  bg-black/70 fixed inset-0 h-screen justify-center md:items-center items-end z-30`}
-      />
+      {openRequest && (
+        <motion.div
+          className={`flex  bg-black/40 fixed inset-0 h-screen justify-center md:items-center items-end z-30`}
+        />
+      )}
 
       <AnimatePresence>
         {openRequest && (
@@ -48,6 +48,7 @@ const RequestServiceModal = () => {
           </div>
         )}
       </AnimatePresence>
+      <SelectAddress />
     </>
   );
 };

@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import ArtisanCloseToYou from "../components/dashboard/ArtisanCloseToYou";
 import FixOfTheMonth from "../components/dashboard/FixOfTheMonth";
 import useOpenModalContext from "../hooks/useOpenModalContext";
-import SelectAddress from "../components/Modal/SelectAddress";
 import useArtisanContext from "../hooks/useArtisanContext";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
@@ -123,7 +122,6 @@ const Dashboard = () => {
       {/* Modals */}
       <RequestServiceModal />
       <ProfileModal />
-      <SelectAddress />
     </div>
   );
 };

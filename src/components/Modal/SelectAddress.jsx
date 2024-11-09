@@ -4,7 +4,6 @@ import useOpenModalContext from "../../hooks/useOpenModalContext";
 import GoogleMap from "../map/GoogleMap";
 import useAddressContext from "../../hooks/useAddressContext";
 import AnimationConfig from "../animation/AnimationConfig";
-import useProfileContext from "../../hooks/useProfileContext";
 import PlaceAutocompleteForm from "../forms/PlaceAutoCompleteForm";
 
 const SelectAddress = () => {
@@ -22,8 +21,6 @@ const SelectAddress = () => {
     setSuggestPostalCode,
   } = useAddressContext();
 
-  const { profileAddress } = useProfileContext();
-
   const handleSelectLocation = () => {
     setCurrentCoordinate(suggestCordinate);
     setAddress(suggestAddress);
@@ -40,18 +37,17 @@ const SelectAddress = () => {
 
   return (
     <>
-      <motion.div
-        {...AnimationConfig}
-        className={`${
-          openAddress ? `flex` : `hidden`
-        }  bg-black/70 fixed inset-0 h-screen justify-center md:items-center items-end z-30`}
-      />
+      {openAddress && (
+        <motion.div
+          className={`flex bg-black/30 fixed inset-0 h-screen justify-center md:items-center items-end z-50`}
+        />
+      )}
 
       <AnimatePresence>
         {openAddress && (
           <div className=" flex md:items-center items-end justify-center inset-0 fixed z-50 ">
             <motion.div
-              className="bg-white p-5 md:rounded-md rounded-t-md md:w-1/4 w-full  "
+              className="bg-white p-5 md:rounded-md rounded-t-md md:w-1/3 w-full  "
               {...AnimationConfig}
             >
               <motion.div className="" {...AnimationConfig}>

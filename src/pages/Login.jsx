@@ -29,8 +29,8 @@ const Login = () => {
             <p className=" font-medium">|</p>
             <div className="flex items-center gap-5 text-2xl">
               <FcGoogle onClick={GoogleLogin()} className="cursor-pointer" />
-              <IoLogoFacebook className="text-[#1877F2]" />
-              <IoLogoApple />
+              <IoLogoFacebook className="text-[#1877F2] cursor-pointer" />
+              <IoLogoApple className="cursor-pointer" />
             </div>
           </div>
           <div className="border-b-2 w-20 border-b-secondary mx-3"></div>

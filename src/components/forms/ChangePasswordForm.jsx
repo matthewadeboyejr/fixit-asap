@@ -22,7 +22,7 @@ const ChangePasswordForm = () => {
 
   useEffect(() => setErrMsg(""), [password, password2]);
   useEffect(() => {
-    setValidPassword(password.length >= 6);
+    setValidPassword(password.length >= 8);
     setValidPassword2(password2 === password);
   }, [password2, password]);
 
@@ -121,7 +121,7 @@ const ChangePasswordForm = () => {
             : "absolute left-[-9999px]"
         }
       >
-        6 to 24 character
+        8 to 24 character
       </p>
 
       <div className=" bg-secondary/10 pr-5 rounded-md ">

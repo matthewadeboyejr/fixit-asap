@@ -56,8 +56,6 @@ const ChatWindow = () => {
     }
   };
 
-  //console.log(file);
-
   return (
     <>
       {!contactDetail && <EmptyChat />}

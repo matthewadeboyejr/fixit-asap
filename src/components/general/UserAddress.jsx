@@ -1,7 +1,7 @@
 import React from "react";
 import useAddressContext from "../../hooks/useAddressContext";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
-import { FaLocationPin } from "react-icons/fa6";
+import { MdLocationPin } from "react-icons/md";
 
 const UserAddress = ({ color, bg, iconColor }) => {
   const { address, isLoading } = useAddressContext();
@@ -12,7 +12,7 @@ const UserAddress = ({ color, bg, iconColor }) => {
   return (
     <div className={`flex items-center gap-3 text-sm  ${bg} p-1 rounded-md`}>
       <p className={`${iconColor}  text-sm font-bold`}>
-        <FaLocationPin />
+        <MdLocationPin />
       </p>
 
       {isLoading ? (
@@ -27,9 +27,9 @@ const UserAddress = ({ color, bg, iconColor }) => {
           </p>
           <button
             onClick={() => setOpenAddress(true)}
-            className="text-xs text-primary underline"
+            className="text-sm font-medium  text-primary underline"
           >
-            Change
+            Change Location
           </button>
         </div>
       )}

@@ -26,7 +26,6 @@ const SignUpForm = () => {
     isSuccessful,
     checkBox,
     setCheckBox,
-    deviceToken,
   } = useSignupContext();
   const errRef = useRef();
   const firstNameRef = useRef();
@@ -116,7 +115,7 @@ const SignUpForm = () => {
             : "absolute left-[-9999px]"
         }
       >
-        6 to 24 character
+        8 to 24 character
       </p>
 
       <div className=" bg-secondary/10 pr-5 rounded-md ">
@@ -174,7 +173,7 @@ const SignUpForm = () => {
         disabled={!validPassword || !validPassword2 || !checkBox}
         className={`btn-primary ${
           !validPassword || !validPassword2 || !checkBox
-            ? "opacity-50 cursor-not-allowed"
+            ? "opacity-50 cursor-not-allowed hover:opacity-50"
             : ""
         }`}
       >
