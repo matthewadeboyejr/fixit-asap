@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { FiEyeOff, FiEye } from "react-icons/fi";
@@ -55,7 +57,7 @@ const SignUpForm = () => {
           placeholder="First name"
           type="text"
           name="first_name"
-          value={registerData.first_name}
+          value={registerData?.first_name}
           onChange={handleChange}
           ref={firstNameRef}
           autoComplete="off"
@@ -66,7 +68,7 @@ const SignUpForm = () => {
           placeholder="Last name"
           type="text"
           name="last_name"
-          value={registerData.last_name}
+          value={registerData?.last_name}
           onChange={handleChange}
           autoComplete="off"
           required
@@ -78,7 +80,7 @@ const SignUpForm = () => {
         placeholder="Email"
         type="email"
         name="email"
-        value={registerData.email}
+        value={registerData?.email}
         onChange={handleChange}
         autoComplete="off"
         required
@@ -121,7 +123,7 @@ const SignUpForm = () => {
       <div className=" bg-secondary/10 pr-5 rounded-md ">
         <input
           className="bg-transparent p-5 w-full  placeholder:text-sm  placeholder:text-primary pl-5 outline-none"
-          placeholder="Comfirm Password"
+          placeholder="Confirm Password"
           type="password"
           name="password2"
           value={password2}

@@ -1,6 +1,6 @@
 import { RiTimeLine } from "react-icons/ri";
 import useBookingContext from "../../hooks/useBookingContext";
-import { ProviderSkeleton } from "../skeleton/ProviderSkeleton";
+
 import { useEffect, useState } from "react";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { IoCalendarClearOutline, IoPerson } from "react-icons/io5";

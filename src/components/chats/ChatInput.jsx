@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { memo } from "react";
 import { IoSendSharp } from "react-icons/io5";
 import { RiAttachment2 } from "react-icons/ri";
 

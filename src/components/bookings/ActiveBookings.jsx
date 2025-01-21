@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useBookingContext from "../../hooks/useBookingContext";
-import { useParams } from "react-router-dom";
 import { IoCalendarClearOutline, IoPerson } from "react-icons/io5";
 import { RiTimeLine } from "react-icons/ri";
 import { MdOutlineNavigateNext } from "react-icons/md";

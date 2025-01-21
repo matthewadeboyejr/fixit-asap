@@ -25,7 +25,7 @@ export const SignupProvider = ({ children }) => {
 
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccessful, SetIsSuccessfull] = useState(false);
+  const [isSuccessful, setIsSuccessfull] = useState(false);
 
   useEffect(() => setErrMsg(""), [password, password2]);
   useEffect(() => {
@@ -74,7 +74,7 @@ export const SignupProvider = ({ children }) => {
 
   useEffect(() => {
     if (userRegData) {
-      SetIsSuccessfull(true);
+      setIsSuccessfull(true);
     }
   }, [userRegData]);
 

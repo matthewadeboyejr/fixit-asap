@@ -1,6 +1,4 @@
 import { SubHeader } from "../components/general/Header";
-import UpcomingBookings from "../components/bookings/UpcomingBookings";
-import ActiveBookings from "../components/bookings/ActiveBookings";
 import BookingDetails from "../components/Modal/BookingDetails";
 import Category from "../components/general/Category";
 

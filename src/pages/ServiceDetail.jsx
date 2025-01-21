@@ -11,6 +11,11 @@ import About from "../components/serviceDetail/About";
 import Review from "../components/serviceDetail/Review";
 import Summary from "../components/serviceDetail/Summary";
 
+export const metadata = {
+  title: "Users",
+  description: "",
+};
+
 const ServiceDetail = () => {
   const { providerDetail } = useArtisanContext();
   const businesName = providerDetail?.artisan?.business_name;
@@ -21,7 +26,6 @@ const ServiceDetail = () => {
 
   const navigate = useNavigate();
 
-  // Memoized title and content to prevent unnecessary re-renders
   const titles = useMemo(() => ["Services", "About", "Reviews"], []);
   const contents = useMemo(() => [<Service />, <About />, <Review />], []);
 

@@ -1,7 +1,5 @@
 import { SubHeader } from "../components/general/Header";
-import EditProfile from "../components/Modal/EditProfile";
 import ProfileDetails from "../components/Profile/ProfileDetails";
-import useProfileContext from "../hooks/useProfileContext";
 
 const Profile = () => {
   return (

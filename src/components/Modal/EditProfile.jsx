@@ -1,8 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
 import AnimationConfig from "../animation/AnimationConfig";
-import ChangePasswordForm from "../forms/ChangePasswordForm";
-import { IoPerson } from "react-icons/io5";
 import { RiCloseFill } from "react-icons/ri";
 import EditProfileForm from "../forms/EditProfileForm";
 

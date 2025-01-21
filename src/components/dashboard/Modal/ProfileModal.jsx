@@ -29,7 +29,7 @@ const ProfileModal = () => {
     if (openChangePassword) {
       setOpenChangePassword(false);
     }
-  }, [openChangePassword, setOpenChangePassword]);
+  }, []);
 
   return (
     <>
@@ -86,7 +86,7 @@ const ProfileModal = () => {
                   onClick={() => {
                     setOpenChangePassword(true);
                   }}
-                  className="flex items-center gap-3  "
+                  className="flex items-center gap-3 cursor-pointer "
                 >
                   <span className="text-primary text-xl">
                     <RiLockPasswordLine />

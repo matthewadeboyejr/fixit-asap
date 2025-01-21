@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axiosInstance from "../../api/axios";
+import React, { useEffect } from "react";
 import SignoutButton from "../Buttons/SignoutButton";
-import useLoginContext from "../../hooks/useLoginContext";
 import { IoPerson } from "react-icons/io5";
 import useProfileContext from "../../hooks/useProfileContext";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
