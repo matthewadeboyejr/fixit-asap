@@ -6,7 +6,7 @@ import { PreHeader } from "../general/Header";
 import useSignupContext from "../../hooks/useSignupContext";
 
 const Otp = () => {
-  const { userRegData } = useSignupContext();
+  const { userRegData, setIsSuccessful } = useSignupContext();
 
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const Otp = () => {
         <div className="flex flex-col items-left md:w-1/3 w-full space-y-3 py-20 px-5 md:px-14">
           <div className="  ">
             <IoIosArrowRoundBack
-              onClick={() => navigate("/signup")}
+              onClick={() => setIsSuccessful(false)}
               className="text-4xl font-black text-secondary cursor-pointer hover:scale-125"
             />
             <h1 className="text-2xl tracking-wider font-semibold ">

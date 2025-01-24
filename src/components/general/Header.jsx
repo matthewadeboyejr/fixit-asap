@@ -77,7 +77,7 @@ export const LandingHeader = () => {
     <header className="flex items-center justify-between  px-10 ">
       <img
         onClick={() => {
-          navigate("/");
+          navigate("/login");
         }}
         src={LogoMain}
         className="w-28 h-auto "
@@ -122,7 +122,7 @@ export const PreHeader = () => {
   return (
     <header className="p-10">
       <img
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/login")}
         src={LogoMain}
         className="w-24 h-auto  hover:scale-110"
         alt="logo"

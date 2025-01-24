@@ -7,6 +7,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import Otp from "../Modal/Otp";
 import useSignupContext from "../../hooks/useSignupContext";
+import { Toaster } from "react-hot-toast";
 
 const SignUpForm = () => {
   const {
@@ -51,6 +52,7 @@ const SignUpForm = () => {
       >
         {errMsg}
       </p>
+      <Toaster />
       <div className="grid grid-cols-2 gap-4">
         <input
           className="bg-secondary/10 p-5 w-full rounded-md placeholder:text-sm pl-5 outline-none placeholder:text-primary"

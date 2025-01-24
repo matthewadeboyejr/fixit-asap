@@ -5,13 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axios";
 
 import useSignupContext from "../../hooks/useSignupContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const OtpForm = () => {
-  const { userRegData } = useSignupContext();
+  const { userRegData, handleSubmit, isLoading } = useSignupContext();
   const otpRef = useRef();
   const [otp, setOtp] = useState();
   const [errMsg, setErrMsg] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => otpRef.current.focus());
 
@@ -25,20 +26,22 @@ const OtpForm = () => {
     const data = { otp, email };
 
     try {
-      setIsLoading(true);
+      setLoading(true);
       const response = await axiosInstance.post(url, data);
-      if (response && response.statusText === "OK") {
-        await alert("Otp Successfull");
+      if (response?.statusText === "OK" && response?.status === 200) {
+        toast.success("Otp Successfull");
+        await new Promise((resolve) => setTimeout(resolve, 100));
         navigate("/login");
       }
     } catch (error) {
       setErrMsg(error.response.data.message);
     }
-    setIsLoading(false);
+    setLoading(false);
   };
 
   return (
     <form className="w-full space-y-5" onSubmit={handleOtpSubmit}>
+      <Toaster />
       <p
         className={
           errMsg
@@ -48,6 +51,7 @@ const OtpForm = () => {
       >
         {errMsg}
       </p>
+
       <input
         className="bg-secondary/10 p-5 w-full rounded-md placeholder:text-sm pl-5 outline-none placeholder:text-primary"
         placeholder="otp"
@@ -61,9 +65,9 @@ const OtpForm = () => {
         required
       />
 
-      <button className={`btn-primary`}>
+      <button type="submit" className={`btn-primary`}>
         <div className="flex justify-center items-center">
-          {isLoading ? (
+          {loading ? (
             <CgSpinnerTwo className="animate-spin text-2xl" />
           ) : (
             "Verify"
@@ -72,9 +76,17 @@ const OtpForm = () => {
       </button>
       <div className="font-medium text-center text-sm flex gap-2 justify-center">
         Didnt recieve the Verification OTP?
-        <Link to={"/login"} className="text-secondary hover:underline t">
-          Resend <span className="italic  ">Again</span>
-        </Link>
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="text-secondary hover:underline t"
+        >
+          {isLoading ? (
+            <CgSpinnerTwo className="animate-spin text-2xl" />
+          ) : (
+            "Resend Otp"
+          )}
+        </button>
       </div>
     </form>
   );

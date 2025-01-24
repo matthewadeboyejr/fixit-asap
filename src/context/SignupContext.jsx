@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createContext } from "react";
 import axios from "../api/axios";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 export const SignupContext = createContext();
 
@@ -25,7 +26,7 @@ export const SignupProvider = ({ children }) => {
 
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccessful, setIsSuccessfull] = useState(false);
+  const [isSuccessful, setIsSuccessful] = useState(false);
 
   useEffect(() => setErrMsg(""), [password, password2]);
   useEffect(() => {
@@ -56,9 +57,17 @@ export const SignupProvider = ({ children }) => {
       setIsLoading(true);
       const response = await axios.post(url, data);
       const regData = response?.data;
-      setUserRegData(regData);
 
-      //navigate("/otp");
+      if (response?.statusText === "OK" && response?.status === 200) {
+        setUserRegData(regData);
+        toast.success(response?.data?.message || "Otp sent successfully");
+
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      } else {
+        const errorMessage = response?.data?.message || "Unexpected response.";
+        setErrMsg(errorMessage);
+        throw new Error(errorMessage);
+      }
 
       //clear form
       if (!response && !response === "OK") {
@@ -67,14 +76,18 @@ export const SignupProvider = ({ children }) => {
         setPassword2("");
       }
     } catch (error) {
-      setErrMsg(error.response.data.message);
+      const errorMessage =
+        error.response?.data?.message || error.message || "Request failed";
+      toast.error(errorMessage);
+      setErrMsg(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
     if (userRegData) {
-      setIsSuccessfull(true);
+      setIsSuccessful(true);
     }
   }, [userRegData]);
 
@@ -100,6 +113,7 @@ export const SignupProvider = ({ children }) => {
         userRegData,
         checkBox,
         setCheckBox,
+        setIsSuccessful,
       }}
     >
       {children}

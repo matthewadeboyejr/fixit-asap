@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuthenticateContext from "../hooks/useAuthenticateContext";
 import toast from "react-hot-toast";
+import axiosInstance from "../api/axios";
 
 const LoginContext = createContext({});
 export default LoginContext;
@@ -12,6 +13,20 @@ export const LoginProvider = ({ children }) => {
   //const location = useLocation();
   const { login } = useAuthenticateContext();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [resetPassData, setResetPassData] = useState({
+    email: "",
+    otp: "",
+    new_password: "",
+  });
+  const [resetState, setResetState] = useState({
+    data: "",
+    errMsg: "",
+    confirmErrMsg: "",
+    sendingOtp: false,
+    confirmingOtp: false,
+    otpSent: false,
+    passChange: false,
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
@@ -20,42 +35,21 @@ export const LoginProvider = ({ children }) => {
     setLoginData((values) => ({ ...values, [name]: value }));
   };
 
-  /*  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleResetChange = (e) => {
+    const { name, value } = e.target;
+    setResetPassData((values) => ({ ...values, [name]: value }));
+  };
 
-    const url =
-      "https://artisanapi-48408c1be722.herokuapp.com/account/api/v1/login/?login_type=user";
-    const data = {
-      username: loginData.email.toLowerCase(),
-      password: loginData.password,
-    };
+  console.log("resetPassData", resetPassData);
+  console.log("resetState", resetState);
 
-    try {
-      setIsLoading(true);
-      const response = await axios.post(url, data);
-      const token = response?.data?.data?.token;
-      const userID = response?.data?.data?.user_id;
-      if (token) {
-        localStorage.setItem("accessToken", token);
-      }
-      if (userID) {
-        localStorage.setItem("userId", userID);
-      }
-      login();
+  const updateResetState = (value) => {
+    setResetState((prev) => ({ ...prev, ...value }));
+  };
 
-      navigate("/dashboard");
-      setIsLoading(false);
-      setLoginData({ email: "", password: "" });
-    } catch (error) {
-      if (error.response?.data?.non_field_errors) {
-        setErrMsg(error.response?.data?.non_field_errors);
-      } else {
-        setErrMsg(error?.response?.data?.message);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }; */
+  const updateResetData = (value) => {
+    setResetPassData((prev) => ({ ...prev, ...value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -125,6 +119,76 @@ export const LoginProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+
+  const handleConfirmResetOtp = async (e) => {
+    e.preventDefault();
+
+    const url = "/account/password-reset-confirm-otp/";
+    const email = resetPassData?.email;
+    const otp = resetPassData?.otp;
+    const new_password = resetPassData?.new_password;
+    const data = { email, otp, new_password };
+
+    try {
+      updateResetState({ confirmingOtp: true });
+      const response = await axiosInstance.post(url, data);
+
+      if (response?.statusText === "OK" && response?.status === 200) {
+        toast.success(
+          response?.data?.message || "password changed successfully"
+        );
+
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        updateResetState({ otpSent: false });
+        updateResetData({ email: "", otp: "", new_password: "" });
+        navigate("/login");
+      } else {
+        const errorMessage = response?.data?.message || "Unexpected response.";
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.error || error.message || "Request failed";
+      updateResetState({ confirmErrMsg: errorMessage });
+      toast.error(errorMessage);
+    } finally {
+      updateResetState({ confirmingOtp: false });
+    }
+  };
+
+  const handleRestOtp = async (e) => {
+    e.preventDefault();
+
+    const url = "/account/password-reset-otp/";
+    const email = resetPassData?.email;
+    const data = { email };
+
+    try {
+      updateResetState({ sendingOtp: true });
+      const response = await axiosInstance.post(url, data);
+
+      if (response?.statusText === "OK" && response?.status === 200) {
+        toast.success(response?.data?.message || "Otp sent successfully");
+
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        updateResetState({ data: response.data });
+        updateResetState({ otpSent: true });
+      } else {
+        const errorMessage = response?.data?.message || "Unexpected response.";
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.error || error.message || "Request failed";
+      updateResetState({ errMsg: errorMessage });
+      toast.error(errorMessage);
+    } finally {
+      updateResetState({ sendingOtp: false });
+    }
+  };
+
   return (
     <LoginContext.Provider
       value={{
@@ -133,6 +197,13 @@ export const LoginProvider = ({ children }) => {
         handleChange,
         isLoading,
         handleSubmit,
+        updateResetState,
+        handleResetChange,
+        resetState,
+        resetPassData,
+        updateResetData,
+        handleConfirmResetOtp,
+        handleRestOtp,
       }}
     >
       {children}

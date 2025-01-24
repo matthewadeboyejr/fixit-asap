@@ -63,7 +63,14 @@ const App = () => {
                       }
                     />
 
-                    <Route path="reset-password" element={<Resetpass />} />
+                    <Route
+                      path="reset-password"
+                      element={
+                        <LoginProvider>
+                          <Resetpass />
+                        </LoginProvider>
+                      }
+                    />
 
                     {/*    {Needs to be protected} */}
 
