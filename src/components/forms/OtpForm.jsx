@@ -3,9 +3,9 @@ import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axios";
-
 import useSignupContext from "../../hooks/useSignupContext";
 import toast, { Toaster } from "react-hot-toast";
+import Icon from "../../Images/Icon-spin.png";
 
 const OtpForm = () => {
   const { userRegData, handleSubmit, isLoading } = useSignupContext();
@@ -82,7 +82,7 @@ const OtpForm = () => {
           className="text-secondary hover:underline t"
         >
           {isLoading ? (
-            <CgSpinnerTwo className="animate-spin text-2xl" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-5" />
           ) : (
             "Resend Otp"
           )}

@@ -1,6 +1,5 @@
 import React from "react";
 import { LandingHeader } from "../components/general/Header";
-import mockup from "../Images/mockup.png";
 import artisansApp from "../Images/artisansApp.png";
 import usersApp from "../Images/usersApp.png";
 import HeaderPic from "../Images/HeaderPics2.jpg";
@@ -20,7 +19,7 @@ const Landing = () => {
         <LandingHeader />
       </section>
 
-      <header className="bg-light space-y-10 md:pt-20 pt-10 ">
+      <header className="bg-light space-y-10 md:pt-20 pt-10 h-[48rem] overflow-y-clip ">
         <div>
           <motion.h1
             initial={{

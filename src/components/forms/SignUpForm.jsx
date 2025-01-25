@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Otp from "../Modal/Otp";
 import useSignupContext from "../../hooks/useSignupContext";
 import { Toaster } from "react-hot-toast";
+import Icon from "../../Images/Icon-spin.png";
 
 const SignUpForm = () => {
   const {
@@ -183,7 +184,7 @@ const SignUpForm = () => {
       >
         <div className="flex justify-center items-center">
           {isLoading ? (
-            <CgSpinnerTwo className="animate-spin text-2xl" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-5" />
           ) : (
             "Sign up"
           )}

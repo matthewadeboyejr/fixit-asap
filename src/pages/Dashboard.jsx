@@ -15,6 +15,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import DriverSteps from "../components/general/DriverObj";
 import ProfileModal from "../components/dashboard/Modal/ProfileModal";
 import RequestServiceModal from "../components/dashboard/Modal/RequestServiceModal";
+import Icon from "../Images/Icon-spin.png";
 
 const Dashboard = () => {
   const { setOpenRequest } = useOpenModalContext();
@@ -69,7 +70,7 @@ const Dashboard = () => {
   }, [isLoading, driverObj]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-secondary/5">
       <main className="pb-20 sm:pb-5">
         <section className="space-y-5 rounded-b-3xl sticky top-0 z-20 bg-secondary p-5">
           <Header />
@@ -96,7 +97,7 @@ const Dashboard = () => {
         {/* Loading Spinner */}
         {loadingProviderDetails && (
           <div className="fixed flex items-center justify-center z-20 inset-0 bg-black/50 h-screen">
-            <CgSpinnerTwo className="text-secondary animate-spin text-4xl" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-10" />
           </div>
         )}
       </main>

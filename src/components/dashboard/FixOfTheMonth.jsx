@@ -3,6 +3,7 @@ import { GoPerson } from "react-icons/go";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import ServiceCardSkeleton from "../skeleton/ServiceCardSkeleton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { motion } from "framer-motion";
 
 const FixOfTheMonth = () => {
   const { fixOFTheMonth, isLoading, getProviderDetail } = useArtisanContext();
@@ -27,13 +28,21 @@ const FixOfTheMonth = () => {
           {isLoading && <ServiceCardSkeleton cards={7} />}
           {fixOFTheMonth.map((service) => (
             <div
-              className="bg-white rounded-lg  md:shadow-none shadow-md hover:shadow-md min-w-[200px] max-w-[200px] flex-shrink-0"
+              className="bg-white rounded-lg    hover:shadow-md min-w-[200px] max-w-[200px] flex-shrink-0"
               key={service.id}
               onClick={() => {
                 getProviderDetail(service?.id);
               }}
             >
-              <div>
+              <motion.div
+                initial={{
+                  x: 100,
+                  opacity: 0,
+                }}
+                whileInView={{ y: 0, x: 0, opacity: 1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 1, stiffnes: 1000, velocity: -100 }}
+              >
                 <div className="relative">
                   <LazyLoadImage
                     className="w-full h-44 object-cover rounded-2xl"
@@ -60,7 +69,7 @@ const FixOfTheMonth = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>

@@ -40,9 +40,6 @@ export const LoginProvider = ({ children }) => {
     setResetPassData((values) => ({ ...values, [name]: value }));
   };
 
-  console.log("resetPassData", resetPassData);
-  console.log("resetState", resetState);
-
   const updateResetState = (value) => {
     setResetState((prev) => ({ ...prev, ...value }));
   };

@@ -6,8 +6,9 @@ const About = () => {
   const about = providerDetail?.artisan?.business_detail;
 
   return (
-    <div className="space-y-3">
-      <div className="p-5 bg-secondary/10 ">{about}</div>
+    <div className="space-y-3 mt-4">
+      <h3 className="font-semibold text-sm">About Service</h3>
+      <p className=" text-sm opacity-50 ">{about}</p>
     </div>
   );
 };

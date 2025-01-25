@@ -5,6 +5,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import useLoginContext from "../../hooks/useLoginContext";
 import { Toaster } from "react-hot-toast";
+import Icon from "../../Images/Icon-spin.png";
 
 const LoginForm = () => {
   const { errMsg, loginData, handleChange, isLoading, handleSubmit } =
@@ -67,7 +68,7 @@ const LoginForm = () => {
       <button className={`btn-primary`} disabled={isLoading ? true : false}>
         <div className="flex justify-center items-center">
           {isLoading ? (
-            <CgSpinnerTwo className="animate-spin text-2xl" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-5" />
           ) : (
             "Log in"
           )}
@@ -85,3 +86,5 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+//<CgSpinnerTwo className="animate-spin text-2xl" />

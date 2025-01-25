@@ -10,6 +10,7 @@ import Service from "../components/serviceDetail/Service";
 import About from "../components/serviceDetail/About";
 import Review from "../components/serviceDetail/Review";
 import Summary from "../components/serviceDetail/Summary";
+import Catalogues from "../components/serviceDetail/ Catalogues";
 
 export const metadata = {
   title: "Users",
@@ -26,8 +27,14 @@ const ServiceDetail = () => {
 
   const navigate = useNavigate();
 
-  const titles = useMemo(() => ["Services", "About", "Reviews"], []);
-  const contents = useMemo(() => [<Service />, <About />, <Review />], []);
+  const titles = useMemo(
+    () => ["About", "Services", "Reviews", "Catalogues"],
+    []
+  );
+  const contents = useMemo(
+    () => [<About />, <Service />, <Review />, <Catalogues />],
+    []
+  );
 
   const [displayContent, setDisplayContent] = useState(0);
 
@@ -78,8 +85,8 @@ const ServiceDetail = () => {
               <li
                 key={index}
                 className={`cursor-pointer ${
-                  displayContent === index ? "border-b-4 border-secondary" : ""
-                } px-2 md:px-4`}
+                  displayContent === index ? "border-b-2 border-secondary " : ""
+                } md:text-sm  font-semibold`}
                 onClick={() => handleTabClick(index)}
               >
                 {title}

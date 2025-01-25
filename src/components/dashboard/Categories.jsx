@@ -1,6 +1,7 @@
 import React from "react";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import CategoriesSkeleton from "../skeleton/CategoriesSkeleton";
+import { motion } from "framer-motion";
 
 const Categories = () => {
   const { category, getByCategory, isLoading } = useArtisanContext();
@@ -16,7 +17,14 @@ const Categories = () => {
       <ul id="category" className=" flex gap-4 overflow-x-auto no-scrollbar  ">
         {isLoading && <CategoriesSkeleton cards={4} />}
         {category.map((item) => (
-          <li
+          <motion.li
+            initial={{
+              x: 100,
+              opacity: 0,
+            }}
+            whileInView={{ y: 0, x: 0, opacity: 1 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 1, stiffnes: 1000, velocity: -100 }}
             key={item.id}
             onClick={() => {
               getByCategory(item.id);
@@ -29,7 +37,7 @@ const Categories = () => {
               alt={item.category}
             />
             <span className="text-xs">{item?.category}</span>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </section>

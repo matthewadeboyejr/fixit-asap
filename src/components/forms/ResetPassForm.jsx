@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import useSignupContext from "../../hooks/useSignupContext";
-import axiosInstance from "../../api/axios";
+import { Link } from "react-router-dom";
 import useLoginContext from "../../hooks/useLoginContext";
-import toast, { Toaster } from "react-hot-toast";
-import { CgSpinnerTwo } from "react-icons/cg";
+import { Toaster } from "react-hot-toast";
+
+import Icon from "../../Images/Icon-spin.png";
 
 const ResetPassForm = () => {
   const { handleResetChange, resetPassData, resetState, handleRestOtp } =
@@ -47,7 +46,7 @@ const ResetPassForm = () => {
       <button className={`btn-primary`} disabled={sendingOtp ? true : false}>
         <div className="flex justify-center items-center">
           {sendingOtp ? (
-            <CgSpinnerTwo className="animate-spin text-2xl" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-5" />
           ) : (
             "Send otp"
           )}

@@ -10,9 +10,9 @@ import { PreHeader } from "../components/general/Header";
 const Login = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-screen h-screen bg-light">
+    <div className="w-screen h-screen bg-light flex flex-col justify-center">
       <PreHeader />
-      <section className=" flex justify-center    ">
+      <section className=" flex  items-center  justify-center flex-1 ">
         <div className="flex  flex-col w-full md:w-1/3 space-y-5 px-5 ">
           <div className="flex items-center gap-3 px-3">
             <IoIosArrowRoundBack
@@ -24,16 +24,17 @@ const Login = () => {
             </h1>{" "}
           </div>
 
-          <div className=" flex items-center justify-between border w-full md:justify-around p-4 rounded-md">
-            <p className=" font-medium text-sm">Social login's </p>
-            <p className=" font-medium">|</p>
-            <div className="flex items-center gap-5 text-2xl">
-              <FcGoogle onClick={GoogleLogin()} className="cursor-pointer" />
-              <IoLogoFacebook className="text-[#1877F2] cursor-pointer" />
-              <IoLogoApple className="cursor-pointer" />
-            </div>
+          <button className=" flex items-center bg-[#0266C8] justify-between border w-full md:justify-around p-4 rounded-md">
+            <span className="text-sm font-medium text-white">
+              Continue with Google
+            </span>
+            <span className="bg-white p-1 rounded-full">
+              <FcGoogle />
+            </span>
+          </button>
+          <div className="w-full border-b-secondary text-center font-medium text-sm opacity-65">
+            Or sign in with email
           </div>
-          <div className="border-b-2 w-20 border-b-secondary mx-3"></div>
           <LoginForm />
         </div>
       </section>
@@ -42,3 +43,15 @@ const Login = () => {
 };
 
 export default Login;
+
+{
+  /* <div className=" flex items-center justify-between border w-full md:justify-around p-4 rounded-md">
+  <p className=" font-medium text-sm">Social login's </p>
+  <p className=" font-medium">|</p>
+  <div className="flex items-center gap-5 text-2xl">
+    <FcGoogle onClick={GoogleLogin()} className="cursor-pointer" />
+    <IoLogoFacebook className="text-[#1877F2] cursor-pointer" />
+    <IoLogoApple className="cursor-pointer" />
+  </div>
+</div>; */
+}

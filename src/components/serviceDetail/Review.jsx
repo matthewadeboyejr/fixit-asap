@@ -14,6 +14,7 @@ const Review = () => {
   const rating = providerDetail?.overall_ratings || 0;
   const review = providerDetail?.total_reviews || 0;
 
+  console.log("catalogues", review);
   useEffect(() => {
     getReview();
   }, [providerDetail]);
@@ -66,10 +67,10 @@ const Review = () => {
         </div>
       </section> */}
 
-      <section className="space-y-4 overflow-y-auto h-80   ">
+      <section className="space-y-4 overflow-y-auto h-80 mt-4  ">
         <ul>
           {isLoading && <ReviewSkeleton card={5} />}
-          {reviews === 0 ? (
+          {reviews.length === 0 ? (
             <p className="flex items-center justify-center opacity-70 text-sm">
               No reviews for now
             </p>
