@@ -9,7 +9,7 @@ const FAQ = [
     id: "2",
     question: "Who can use this app?",
     answer:
-      "Service Rendering  is for anyone in need of skilled service providers, as well as professionals offering services in various fields like plumbing, electrical works, music instructors, private teachers, hairdressing , clothes mending, caterers and any  type of  services. Are you skilled in any area. Then you can turn your skill into cash or are you looking for   expert to give you a top notch service without hassle , then This is the place to be",
+      "Service Rendering  is for anyone in need of skilled service providers, as well as professionals offering services in various fields like plumbing, electrical works, music instructors, private teachers, hairdressing , clothes mending, caterers, Barbing , Food vendors/ catering services, Teaching services electronic repairs, event planning, music instructor, DJ, instrumentalist, MC, painting, Sports Instructors, immigration services, Real estate services and any  type of  services. Are you skilled in any area. Then you can turn your skill into cash or are you looking for   expert to give you a top notch service without hassle , then This is the place to be",
   },
   {
     id: "3",
