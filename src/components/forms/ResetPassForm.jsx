@@ -46,7 +46,7 @@ const ResetPassForm = () => {
       <button className={`btn-primary`} disabled={sendingOtp ? true : false}>
         <div className="flex justify-center items-center">
           {sendingOtp ? (
-            <img src={Icon} alt="icon spinner" className="animate-spin w-5" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-3" />
           ) : (
             "Send otp"
           )}

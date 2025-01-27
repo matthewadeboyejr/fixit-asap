@@ -42,8 +42,8 @@ const Landing = () => {
             transition={{ duration: 2, stiffnes: 1000, velocity: -100 }}
             className=" text-primary text-center py-4 text-lg font-medium"
           >
-            Need a professional artisan or Are you a skilled artisan looking to
-            connect?
+            Need a professional service provider? Or are you a skilled service
+            provider looking to connect?
           </motion.p>
         </div>
 
@@ -91,7 +91,7 @@ const Landing = () => {
             transition={{ duration: 1 }}
             className="text-center text-4xl  font-semibold flex flex-col"
           >
-            <span>Artisans on Your Schedule </span>
+            <span>Service providers on Your Schedule </span>
             <span>Quick Responses, On Your Time </span>
           </motion.h2>
           <motion.p
@@ -103,10 +103,10 @@ const Landing = () => {
             transition={{ duration: 2, stiffnes: 1000, velocity: -100 }}
             className=" text-primary text-center py-4 text-lg font-medium "
           >
-            No more waiting days for a response! Our artisans are ready to match
-            your timing, ensuring you get the help you need when you need it.
-            Reliable, prompt, and professional—your convenience is their
-            priority.
+            No more waiting days for a response! Our service providers are ready
+            to match your timing, ensuring you get the help you need when you
+            need it. Reliable, prompt, and professional—your convenience is
+            their priority.
           </motion.p>
         </div>
         <motion.div
@@ -140,7 +140,7 @@ const Landing = () => {
             className="flex flex-col md:text-left text-center  "
           >
             <span className="md:text-3xl text-xl text-white">
-              Reliable Artisans/Service provider,
+              Reliable Service provider,
             </span>
             <span className="italic md:text-4xl text-2xl text-secondary ">
               Showcase Your Skills & Grow Your Business
@@ -173,7 +173,7 @@ const Landing = () => {
               }}
               className=" border-primary bg-teriary p-2 rounded-full hover:scale-110 border-b-4 font-medium  py-3 px-10   text-primary  transition-transform duration-300 "
             >
-              Register as an Artisan
+              Register as service provider
             </button>
           </motion.div>
         </div>
@@ -191,7 +191,7 @@ const Landing = () => {
         <div>
           <p className="  flex justify-center text-primary text-center my-4  font-medium opacity-60 ">
             <span className="bg-gray-200 rounded-full w-fit p-2 text-xs font-semibold">
-              Artisans
+              service providers
             </span>
           </p>
           <h2 className="text-center md:text-4xl text-2xl  font-semibold flex flex-col">
@@ -238,7 +238,7 @@ const Landing = () => {
           </h2>
           <p className=" text-primary text-center py-4 text-sm font-medium ">
             Stay informed with tips, updates, and exclusive features for both
-            service users and artisans.
+            service users and service providers.
           </p>
         </div>
         <div className="flex md:flex-row flex-col gap-5">

@@ -24,7 +24,7 @@ const Faq = () => {
             Questions & Answers
           </span>
         </p>
-        <div className="flex items-center text-secondary pb-10">
+        <div className="flex gap-10 items-center text-secondary pb-10">
           <h2 className=" text-4xl  font-semibold ">
             Common questions to know before using service rendering
           </h2>

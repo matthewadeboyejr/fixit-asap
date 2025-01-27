@@ -18,7 +18,7 @@ export const AddressProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [postalCode, setPostalCode] = useState("");
 
-  const GetAddress = useCallback(async (latitude, longitude) => {
+  const getAddress = useCallback(async (latitude, longitude) => {
     const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
@@ -41,16 +41,19 @@ export const AddressProvider = ({ children }) => {
       (position) => {
         const { latitude, longitude } = position.coords;
         setCurrentCoordinate({ lat: latitude, lng: longitude });
-        GetAddress(latitude, longitude);
+        getAddress(latitude, longitude);
       },
       (error) => console.log(error),
       { enableHighAccuracy: true }
     );
-  }, [GetAddress]);
+  }, [getAddress]);
 
   useEffect(() => {
     GetCoordinate();
   }, [GetCoordinate]);
+
+  console.log("currentCoordinate", currentCoordinate);
+  console.log("address", address);
 
   return (
     <AddressContext.Provider

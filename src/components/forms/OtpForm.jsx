@@ -68,7 +68,7 @@ const OtpForm = () => {
       <button type="submit" className={`btn-primary`}>
         <div className="flex justify-center items-center">
           {loading ? (
-            <CgSpinnerTwo className="animate-spin text-2xl" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-3" />
           ) : (
             "Verify"
           )}
@@ -82,7 +82,7 @@ const OtpForm = () => {
           className="text-secondary hover:underline t"
         >
           {isLoading ? (
-            <img src={Icon} alt="icon spinner" className="animate-spin w-5" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-3" />
           ) : (
             "Resend Otp"
           )}

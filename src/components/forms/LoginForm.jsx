@@ -68,7 +68,7 @@ const LoginForm = () => {
       <button className={`btn-primary`} disabled={isLoading ? true : false}>
         <div className="flex justify-center items-center">
           {isLoading ? (
-            <img src={Icon} alt="icon spinner" className="animate-spin w-5" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-3" />
           ) : (
             "Log in"
           )}

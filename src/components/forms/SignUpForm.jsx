@@ -184,7 +184,7 @@ const SignUpForm = () => {
       >
         <div className="flex justify-center items-center">
           {isLoading ? (
-            <img src={Icon} alt="icon spinner" className="animate-spin w-5" />
+            <img src={Icon} alt="icon spinner" className="animate-spin w-3" />
           ) : (
             "Sign up"
           )}

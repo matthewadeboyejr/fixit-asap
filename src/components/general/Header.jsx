@@ -110,7 +110,12 @@ export const LandingHeader = () => {
         </NavLink>
       </nav>
       <div className="flex items-center gap-4 text-primary ">
-        <button></button>
+        <button className=" border-primary text-primary hover:bg-primary hover:text-teriary px-7 py-2 rounded-full  border-b-4 border ">
+          Login
+        </button>
+        <button className=" bg-primary text-teriary hover:bg-primary/90 px-7 py-2 rounded-full  border-b-4 border-teriary ">
+          Sign up
+        </button>
       </div>
     </header>
   );

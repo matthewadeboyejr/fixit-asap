@@ -9,7 +9,7 @@ const FAQ = [
     id: "2",
     question: "Who can use this app?",
     answer:
-      "Service Rendering  is for anyone in need of skilled service providers, as well as professionals offering services in various fields, like plumbing, electrical work, and general handyman services. It’s ideal for both personal users and businesses looking to find qualified help quickly.",
+      "Service Rendering  is for anyone in need of skilled service providers, as well as professionals offering services in various fields like plumbing, electrical works, music instructors, private teachers, hairdressing , clothes mending, caterers and any  type of  services. Are you skilled in any area. Then you can turn your skill into cash or are you looking for   expert to give you a top notch service without hassle , then This is the place to be",
   },
   {
     id: "3",
@@ -21,7 +21,7 @@ const FAQ = [
     id: "4",
     question: "How can I join as a service provider?",
     answer:
-      "If you’re a skilled professional, you can sign up as a service provider on the app. Once registered, you’ll gain access to job leads in your area, allowing you to connect with users who need your expertise.",
+      "If youre a skilled professional, you can sign up as a service provider on the app. Once registered, you’ll gain access to job leads in your area, allowing you to connect with users who need your expertise.",
   },
   {
     id: "5",
