@@ -77,13 +77,13 @@ export const LandingHeader = () => {
     <header className="flex items-center justify-between  px-10 ">
       <img
         onClick={() => {
-          navigate("/login");
+          navigate("/");
         }}
         src={LogoMain}
         className="w-28 h-auto "
         alt="logo"
       />
-      <nav className="hidden md:flex  bg-primary px-7 py-2 rounded-full gap-10 border-b-4 border-teriary  ">
+      <nav className="hidden md:fle  bg-primary px-7 py-2 rounded-full gap-10 border-b-4 border-teriary  ">
         <NavLink
           to={""}
           className="flex items-center gap-2 text-white text-sm hover:underline  "
@@ -109,7 +109,7 @@ export const LandingHeader = () => {
           Contact Us
         </NavLink>
       </nav>
-      <div className="flex items-center gap-4 text-primary ">
+      <div className=" items-center gap-4 text-primary hidden ">
         <button className=" border-primary text-primary hover:bg-primary hover:text-teriary px-7 py-2 rounded-full  border-b-4 border ">
           Login
         </button>
@@ -127,7 +127,7 @@ export const PreHeader = () => {
   return (
     <header className="p-10">
       <img
-        onClick={() => navigate("/login")}
+        onClick={() => navigate("/")}
         src={LogoMain}
         className="w-24 h-auto  hover:scale-110"
         alt="logo"

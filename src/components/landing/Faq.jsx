@@ -24,11 +24,11 @@ const Faq = () => {
             Questions & Answers
           </span>
         </p>
-        <div className="flex gap-10 items-center text-secondary pb-10">
-          <h2 className=" text-4xl  font-semibold ">
+        <div className="flex md:flex-row flex-col md:gap-10 items-center text-secondary pb-10">
+          <h2 className=" md:text-4xl text-2xl  font-semibold ">
             Common questions to know before using service rendering
           </h2>
-          <p className=" text-white py-4 text-lg font-medium ">
+          <p className=" text-white py-4 text-sm md:text-lg font-medium ">
             here are several common question and answer that could help you
             understand the use of our application
           </p>
@@ -53,7 +53,9 @@ const Faq = () => {
                 onClick={() => toggleDropdown(faq.id)}
                 className="flex items-center justify-between text-xl hover:cursor-pointer"
               >
-                <span className="text-white">{faq?.question}</span>
+                <span className="text-white md:text-lg text-sm">
+                  {faq?.question}
+                </span>
                 <span className="text-secondary">
                   {isDropdownOpen === faq?.id ? <IoRemove /> : <IoAdd />}
                 </span>

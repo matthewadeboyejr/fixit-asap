@@ -19,7 +19,7 @@ const Landing = () => {
         <LandingHeader />
       </section>
 
-      <header className="bg-light space-y-10 md:pt-20 pt-10 h-[48rem] overflow-y-clip ">
+      <header className="bg-light space-y-10 md:pt-20 pt-10 h-[48rem] overflow-y-clip px-8">
         <div>
           <motion.h1
             initial={{
