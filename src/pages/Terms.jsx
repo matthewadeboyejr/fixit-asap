@@ -63,7 +63,7 @@ const Terms = () => {
     {
       title: "Services Provided",
       content:
-        "Fix & Service Now connects users Customers with artisans and merchants Service Providers offering various repair, maintenance, and service solutions. The Company acts solely as a facilitator between Customers and Service Providers and is not directly involved in the provision of services.",
+        "Service rendering connects users Customers with artisans and merchants Service Providers offering various repair, maintenance, and service solutions. The Company acts solely as a facilitator between Customers and Service Providers and is not directly involved in the provision of services.",
     },
     {
       title: "User Conduct",
@@ -198,10 +198,10 @@ const Terms = () => {
       <header className="space-y-5">
         <span className="text-gray-600">Last Updated: October, 2024</span>
         <h1 className="text-4xl font-bold">
-          Terms and Conditions for Fix & Service Now App
+          Terms and Conditions for Service rendering
         </h1>
         <p className="text-gray-700">
-          These Terms and Conditions govern your use of the Fix & Service Now
+          These Terms and Conditions govern your use of the Service rendering
           mobile application operated by Eikon Peters. By accessing or using the
           App, you agree to comply with and be legally bound by these Terms. If
           you disagree with any part of these Terms, please do not use the App.

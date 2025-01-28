@@ -172,9 +172,9 @@ const PrivacyPolicy = () => {
         <p className="text-gray-700">
           This Privacy Policy explains how Eikon Peters collects, uses,
           discloses, and protects your personal information when you access or
-          use the Fix & Service Now mobile application. By using the App, you
-          agree to the collection and use of information in accordance with this
-          Privacy Policy.
+          use the service rendering mobile and web application. By using the
+          App, you agree to the collection and use of information in accordance
+          with this Privacy Policy.
         </p>
       </header>
 
