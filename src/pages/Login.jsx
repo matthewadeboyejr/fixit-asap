@@ -1,9 +1,7 @@
 import React from "react";
-import { FcGoogle } from "react-icons/fc";
-import { IoLogoApple, IoLogoFacebook } from "react-icons/io5";
 import LoginForm from "../components/forms/LoginForm";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { GoogleLogin } from "../api/socialLogin";
+import { GoogleSignupButton } from "../api/socialLogin";
 import { useNavigate } from "react-router-dom";
 import { PreHeader } from "../components/general/Header";
 
@@ -13,7 +11,7 @@ const Login = () => {
     <div className="w-screen h-screen bg-light flex flex-col justify-center">
       <PreHeader />
       <section className=" flex  items-center  justify-center flex-1 ">
-        <div className="flex  flex-col w-full md:w-1/3 space-y-5 px-5 ">
+        <div className="flex  flex-col w-full md:w-[450px] space-y-5 px-5  ">
           <div className="flex items-center gap-3 px-3">
             <IoIosArrowRoundBack
               onClick={() => navigate(-1)}
@@ -24,14 +22,8 @@ const Login = () => {
             </h1>{" "}
           </div>
 
-          <button className=" flex items-center bg-[#0266C8] justify-between border w-full md:justify-around p-4 rounded-md">
-            <span className="text-sm font-medium text-white">
-              Continue with Google
-            </span>
-            <span className="bg-white p-1 rounded-full">
-              <FcGoogle />
-            </span>
-          </button>
+          <GoogleSignupButton action="login" />
+
           <div className="w-full border-b-secondary text-center font-medium text-sm opacity-65">
             Or sign in with email
           </div>

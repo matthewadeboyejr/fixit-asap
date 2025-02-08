@@ -62,7 +62,6 @@ export const LoginProvider = ({ children }) => {
       setIsLoading(true);
 
       await toast.promise(
-        // Wrap all login operations in a promise
         new Promise(async (resolve, reject) => {
           try {
             const response = await axios.post(url, data);
@@ -72,12 +71,12 @@ export const LoginProvider = ({ children }) => {
             if (token && userID) {
               localStorage.setItem("accessToken", token);
               localStorage.setItem("userId", userID);
-              await login(); // Wait for login function to complete
+              await login();
               setLoginData({ email: "", password: "" });
-              resolve(response); // Resolve the promise on success
-              navigate("/dashboard"); // Navigate after successful login
+              resolve(response);
+              navigate("/dashboard");
             } else {
-              reject(new Error("Invalid login credentials")); // Reject if token or userID is missing
+              reject(new Error("Invalid login credentials"));
             }
           } catch (error) {
             let errorMessage = "Login failed";
@@ -87,7 +86,7 @@ export const LoginProvider = ({ children }) => {
               errorMessage = error.response.data.message;
             }
             setErrMsg(errorMessage);
-            reject(new Error(errorMessage)); // Reject with error message
+            reject(new Error(errorMessage));
           }
         }),
         {

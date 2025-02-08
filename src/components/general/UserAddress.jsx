@@ -21,15 +21,15 @@ const UserAddress = ({ color, bg, iconColor }) => {
         <div className="flex items-center gap-3">
           <p
             onClick={() => setOpenAddress(true)}
-            className={` ${color} text-sm font-medium `}
+            className={` ${color} text-xs font-medium `}
           >
             {sliceAddress}
           </p>
           <button
             onClick={() => setOpenAddress(true)}
-            className="text-sm font-medium  text-primary underline"
+            className="text-xs font-medium  text-primary hover:underline"
           >
-            Change Location
+            Change
           </button>
         </div>
       )}

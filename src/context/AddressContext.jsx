@@ -52,8 +52,8 @@ export const AddressProvider = ({ children }) => {
     GetCoordinate();
   }, [GetCoordinate]);
 
-  console.log("currentCoordinate", currentCoordinate);
-  console.log("address", address);
+  //console.log("currentCoordinate", currentCoordinate);
+  //console.log("address", address);
 
   return (
     <AddressContext.Provider

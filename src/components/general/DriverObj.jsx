@@ -4,7 +4,7 @@ const DriverSteps = [
     popover: {
       title: "Confirm/Change Address",
       description:
-        "Fixit-Asap will automatically detect your location, but you can change it by clicking on the address.",
+        "Service-Rendering will automatically detect your location, but you can change it by clicking on the address.",
       side: "right",
       align: "start",
     },
@@ -25,7 +25,7 @@ const DriverSteps = [
     popover: {
       title: "Get Notifications",
       description:
-        "Click here to view all your notifications and activities on Fixit-Asap",
+        "Click here to view all your notifications and activities on Service-Rendering",
       side: "left",
       align: "start",
     },

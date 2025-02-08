@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import axiosInstance from "../api/axios";
+import useAuthenticateContext from "../hooks/useAuthenticateContext";
 
 const ProfileContext = createContext({});
 

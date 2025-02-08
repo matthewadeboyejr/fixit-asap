@@ -11,7 +11,6 @@ import useArtisanContext from "../hooks/useArtisanContext";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import useProfileContext from "../hooks/useProfileContext";
-import { CgSpinnerTwo } from "react-icons/cg";
 import DriverSteps from "../components/general/DriverObj";
 import ProfileModal from "../components/dashboard/Modal/ProfileModal";
 import RequestServiceModal from "../components/dashboard/Modal/RequestServiceModal";
@@ -70,7 +69,7 @@ const Dashboard = () => {
   }, [isLoading, driverObj]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-secondary/5">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-secondary/5 h-screen">
       <main className="pb-20 sm:pb-5">
         <section className="space-y-5 rounded-b-3xl sticky top-0 z-20 bg-secondary p-5">
           <Header />

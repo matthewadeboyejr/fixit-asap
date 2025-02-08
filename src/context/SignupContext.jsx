@@ -114,6 +114,7 @@ export const SignupProvider = ({ children }) => {
         checkBox,
         setCheckBox,
         setIsSuccessful,
+        setErrMsg,
       }}
     >
       {children}

@@ -33,7 +33,7 @@ root.render(
   <React.StrictMode>
     <ViewportFix>
       <BrowserRouter>
-        <GoogleOAuthProvider clientId="975998885562-n2uri8u9clc914svec93ufjrvnio9giq.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="588771562453-c3a4j6ish3878fkdg6bskvse5kqu19h3.apps.googleusercontent.com">
           <AuthenticateProvider>
             <Routes>
               <Route path="/*" element={<App />} />
@@ -44,3 +44,5 @@ root.render(
     </ViewportFix>
   </React.StrictMode>
 );
+
+//975998885562 - n2uri8u9clc914svec93ufjrvnio9giq.apps.googleusercontent.com;
