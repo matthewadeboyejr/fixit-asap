@@ -19,7 +19,9 @@ export const GoogleSignupButton = ({ action }) => {
   };
 
   return (
-    <div className=" w-full flex justify-center">
+    <div className=" w-full border flex items-center justify-around p-2 rounded-md">
+      <div className="text-sm">Continue with Google</div>
+      <div>|</div>
       <GoogleLogin
         className="w-full"
         onSuccess={(credentialResponse) => {
@@ -32,6 +34,8 @@ export const GoogleSignupButton = ({ action }) => {
         }}
         useOneTap
         width={350}
+        theme="filled_blue"
+        type="icon"
       />
     </div>
   );

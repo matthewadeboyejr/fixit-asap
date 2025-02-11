@@ -25,6 +25,7 @@ const UserAddress = ({ color, bg, iconColor }) => {
           >
             {sliceAddress}
           </p>
+
           <button
             onClick={() => setOpenAddress(true)}
             className="text-xs font-medium  text-primary hover:underline"
