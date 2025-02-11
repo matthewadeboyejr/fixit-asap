@@ -2,6 +2,7 @@ import React from "react";
 import useAddressContext from "../../hooks/useAddressContext";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
 import { MdLocationPin } from "react-icons/md";
+import { IoChevronDown } from "react-icons/io5";
 
 const UserAddress = ({ color, bg, iconColor }) => {
   const { address, isLoading } = useAddressContext();
@@ -28,9 +29,9 @@ const UserAddress = ({ color, bg, iconColor }) => {
 
           <button
             onClick={() => setOpenAddress(true)}
-            className="text-xs font-medium  text-primary hover:underline"
+            className="text-lg font-medium  text-primary hover:underline"
           >
-            Change
+            <IoChevronDown />
           </button>
         </div>
       )}

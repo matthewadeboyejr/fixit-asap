@@ -200,6 +200,7 @@ export const LoginProvider = ({ children }) => {
         updateResetData,
         handleConfirmResetOtp,
         handleRestOtp,
+        setErrMsg,
       }}
     >
       {children}
