@@ -29,14 +29,16 @@ const Categories = () => {
             onClick={() => {
               getByCategory(item.id);
             }}
-            className="flex flex-col gap-3 items-center  "
+            className="flex flex-row gap-3 items-center  "
           >
-            <img
-              className="border w-16 h-16 rounded-full"
+            {/*  <img
+              className="border w-10 h-10 rounded-full"
               src={item?.image}
               alt={item.category}
-            />
-            <span className="text-xs">{item?.category}</span>
+            /> */}
+            <span className="text-xs text-nowrap bg-teriary px-4 py-2 rounded-3xl ">
+              {item?.category}
+            </span>
           </motion.li>
         ))}
       </ul>

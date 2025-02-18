@@ -10,8 +10,6 @@ const BookingDetails = () => {
 
   const { bookingDetail } = useBookingContext();
 
-  console.log(bookingDetail, "helllo hello hello ");
-
   const artisanName = bookingDetail?.artisan_name;
   const date = bookingDetail?.appointment_date;
   const time = bookingDetail?.appointment_time;
