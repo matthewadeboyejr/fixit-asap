@@ -21,6 +21,36 @@ export const AuthenticateProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
+  useEffect(() => {
+    let inactivityTimer;
+
+    const resetTimer = () => {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(logout, 5 * 60 * 1000);
+    };
+
+    const activityEvents = [
+      "mousemove",
+      "keydown",
+      "click",
+      "scroll",
+      "touchstart",
+    ];
+
+    activityEvents.forEach((event) =>
+      window.addEventListener(event, resetTimer)
+    );
+
+    resetTimer(); // Start timer initially
+
+    return () => {
+      clearTimeout(inactivityTimer);
+      activityEvents.forEach((event) =>
+        window.removeEventListener(event, resetTimer)
+      );
+    };
+  }, [logout]);
+
   return (
     <AuthenticateContext.Provider
       value={{ login, logout, setIsAuthenticated, isAuthenticated }}
