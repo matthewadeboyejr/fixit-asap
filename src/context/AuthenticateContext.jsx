@@ -26,7 +26,7 @@ export const AuthenticateProvider = ({ children }) => {
 
     const resetTimer = () => {
       clearTimeout(inactivityTimer);
-      inactivityTimer = setTimeout(logout, 5 * 60 * 1000);
+      inactivityTimer = setTimeout(logout, 1 * 60 * 1000);
     };
 
     const activityEvents = [
@@ -41,7 +41,7 @@ export const AuthenticateProvider = ({ children }) => {
       window.addEventListener(event, resetTimer)
     );
 
-    resetTimer(); // Start timer initially
+    resetTimer();
 
     return () => {
       clearTimeout(inactivityTimer);
