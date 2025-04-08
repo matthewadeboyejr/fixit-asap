@@ -27,6 +27,7 @@ deploy:
         - echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
         - echo -e "[profile default]\nrole_arn=${ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
 
+    
     script:
         - cat ~/.aws/config
         - aws sts get-caller-identity
