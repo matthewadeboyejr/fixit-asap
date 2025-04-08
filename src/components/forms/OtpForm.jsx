@@ -4,7 +4,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axios";
 import useSignupContext from "../../hooks/useSignupContext";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Icon from "../../Images/Icon-spin.png";
 
 const OtpForm = () => {
@@ -28,7 +28,7 @@ const OtpForm = () => {
     try {
       setLoading(true);
       const response = await axiosInstance.post(url, data);
-      if (response?.statusText === "OK" && response?.status === 200) {
+      if (response?.status === 200 || response?.status === 20) {
         toast.success("Otp Successfull");
         await new Promise((resolve) => setTimeout(resolve, 100));
         navigate("/login");
@@ -41,7 +41,6 @@ const OtpForm = () => {
 
   return (
     <form className="w-full space-y-5" onSubmit={handleOtpSubmit}>
-      <Toaster />
       <p
         className={
           errMsg

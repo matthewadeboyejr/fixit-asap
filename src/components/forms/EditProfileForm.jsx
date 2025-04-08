@@ -6,7 +6,7 @@ import { useMapsLibrary } from "@vis.gl/react-google-maps";
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import axiosInstance from "../../api/axios";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const EditProfileForm = () => {
   const { profileData } = useProfileContext();
@@ -120,9 +120,6 @@ const EditProfileForm = () => {
 
   return (
     <form className="w-full space-y-5 relative" onSubmit={handleSubmit}>
-      <div>
-        <Toaster />
-      </div>
       <p
         ref={errRef}
         className={

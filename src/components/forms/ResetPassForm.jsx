@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useLoginContext from "../../hooks/useLoginContext";
-import { Toaster } from "react-hot-toast";
 
 import Icon from "../../Images/Icon-spin.png";
 
@@ -20,7 +19,6 @@ const ResetPassForm = () => {
 
   return (
     <form onSubmit={handleRestOtp} className="w-full space-y-5">
-      <Toaster />
       <p
         ref={errRef}
         className={

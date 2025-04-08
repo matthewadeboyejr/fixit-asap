@@ -1,26 +1,3 @@
-/* import React, { memo, useEffect, useRef } from "react";
-import PreviousMessage from "./PreviousMessage";
-import LiveMessage from "./LiveMessage";
-
-const MessageList = memo(() => {
-  const messagesEndRef = useRef(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, []);
-
-  return (
-    <section className="h-screen overflow-y-auto bg-secondary/10 rounded-3xl p-4  ">
-      <PreviousMessage />
-      <LiveMessage />
-      <div ref={messagesEndRef} />
-    </section>
-  );
-});
-
-export default MessageList;
- */
-
 import React, { memo, useEffect, useRef, useState } from "react";
 import useChatContext from "../../hooks/useChatContext";
 import useWebSocket from "../../hooks/useWebSocket";
@@ -125,7 +102,7 @@ const MessageList = memo(() => {
                   Loading...
                 </div>
               }
-              effect="blur"
+              //effect="blur"
               className="rounded-md max-w-56 w-full"
             />
           )}

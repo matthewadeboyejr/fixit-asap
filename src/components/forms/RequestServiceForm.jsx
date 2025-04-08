@@ -4,10 +4,12 @@ import { IoChevronDown } from "react-icons/io5";
 import { MdCurrencyPound } from "react-icons/md";
 import useAddressContext from "../../hooks/useAddressContext";
 import useArtisanContext from "../../hooks/useArtisanContext";
-import { CgSpinnerTwo } from "react-icons/cg";
 import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import { useNavigate } from "react-router-dom";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
+import Spinner from "../util/Spinner";
+import validate from "validate.js";
+import requestFormConstraints from "../util/Contraints";
 
 const RequestServiceForm = () => {
   const [category, setCategory] = useState([]);
@@ -18,6 +20,7 @@ const RequestServiceForm = () => {
     name: "",
   });
   const [description, setDescription] = useState("");
+  const [errors, setErrors] = useState({});
 
   const [isLoading, setIsLoading] = useState(false);
   const { postalCode } = useAddressContext();
@@ -39,11 +42,26 @@ const RequestServiceForm = () => {
 
   const handleCategorySelect = (categoryId, categoryName) => {
     setSelectedCategory({ id: categoryId, name: categoryName });
+    setErrors((prev) => ({ ...prev, selectedCategory: undefined }));
     setOpenList(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validationData = {
+      budget,
+      description,
+      selectedCategory: selectedCategory.id ? selectedCategory.name : null,
+    };
+
+    const validationErrors = validate(validationData, requestFormConstraints);
+    if (validationErrors) {
+      setErrors(validationErrors);
+      return;
+    } else {
+      setErrors({});
+    }
 
     const url = `/service-user/api/v1/available-service/?category_id=${selectedCategory.id}&postcode=${postalCode}`;
     const data = { budget, description };
@@ -85,14 +103,22 @@ const RequestServiceForm = () => {
           placeholder="Budget(Optional)"
           type="number"
           value={budget}
-          onChange={(e) => setBudget(e.target.value)}
+          onChange={(e) => {
+            setBudget(e.target.value);
+            setErrors((prev) => ({ ...prev, budget: undefined }));
+          }}
         />
       </div>
+      {errors.budget && (
+        <p className="text-red-500 text-sm">{errors.budget[0]}</p>
+      )}
       <div className="relative ">
-        <div className="bg-secondary/10 flex items-center  rounded-md  pr-3">
+        <div
+          className="bg-secondary/10 flex items-center  rounded-md  pr-3"
+          onClick={() => setOpenList(!openList)}
+        >
           <input
             className="p-5 bg-transparent w-full placeholder:text-sm pl-5 outline-none placeholder:text-primary"
-            onClick={() => setOpenList(!openList)}
             placeholder="Category"
             type="text"
             value={selectedCategory.name}
@@ -118,20 +144,25 @@ const RequestServiceForm = () => {
           </ul>
         )}
       </div>
+      {errors.selectedCategory && (
+        <p className="text-red-500 text-sm">{errors.selectedCategory[0]}</p>
+      )}
       <textarea
-        className="w-full p-5 bg-secondary/10 rounded-md"
+        className="w-full p-5 bg-secondary/10 rounded-md resize-none"
         placeholder="Service Description "
         value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={(e) => {
+          setDescription(e.target.value);
+          setErrors((prev) => ({ ...prev, description: undefined }));
+        }}
       ></textarea>
+      {errors.description && (
+        <p className="text-red-500 text-sm">{errors.description[0]}</p>
+      )}
 
-      <button className={`btn-primary`} disabled={isLoading ? true : false}>
+      <button className={`btn-primary`} disabled={isLoading}>
         <div className="flex justify-center items-center">
-          {isLoading ? (
-            <CgSpinnerTwo className="animate-spin text-2xl" />
-          ) : (
-            "Post Request"
-          )}
+          {isLoading ? <Spinner /> : "Post Request"}
         </div>
       </button>
     </form>

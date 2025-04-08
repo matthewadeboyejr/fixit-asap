@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuthenticateContext from "../hooks/useAuthenticateContext";
 import toast from "react-hot-toast";
-import axiosInstance from "../api/axios";
+import axiosInstance, { baseUrl } from "../api/axios";
 
 const LoginContext = createContext({});
 export default LoginContext;
@@ -51,8 +51,7 @@ export const LoginProvider = ({ children }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url =
-      "https://artisanapi-48408c1be722.herokuapp.com/account/api/v1/login/?login_type=user";
+    const url = `${baseUrl}/account/api/v1/login/?login_type=user`;
     const data = {
       username: loginData.email.toLowerCase(),
       password: loginData.password,

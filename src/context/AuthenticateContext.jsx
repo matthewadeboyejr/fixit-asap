@@ -26,7 +26,7 @@ export const AuthenticateProvider = ({ children }) => {
 
     const resetTimer = () => {
       clearTimeout(inactivityTimer);
-      inactivityTimer = setTimeout(logout, 1 * 60 * 1000);
+      inactivityTimer = setTimeout(logout, 15 * 60 * 1000);
     };
 
     const activityEvents = [

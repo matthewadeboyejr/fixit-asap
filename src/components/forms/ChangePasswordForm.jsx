@@ -79,7 +79,7 @@ const ChangePasswordForm = () => {
         <input
           ref={oldPasswordRef}
           className="bg-transparent p-5 w-full  placeholder:text-sm  placeholder:text-primary pl-5 outline-none"
-          placeholder="Password"
+          placeholder="Old Password"
           type="password"
           name="password"
           value={oldPassword}

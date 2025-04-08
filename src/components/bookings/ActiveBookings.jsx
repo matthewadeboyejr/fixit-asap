@@ -10,19 +10,20 @@ const ActiveBookings = () => {
   const [openDetail, setOpenDetail] = useState(false);
   const { bookings, loading } = useBookingContext();
   const { getProviderDetail } = useArtisanContext();
+  const [openDetailId, setOpenDetailId] = useState(null);
 
   return (
-    <section className="">
+    <section className="space-y-2">
       <h4 className="pb-5 text-sm">Active services</h4>
       {loading && <ActiveServiceSkeleton card={2} />}
       {bookings?.map((booking) => (
         <div
           key={booking?.id}
-          className={` ${
+          className={`${
             booking?.booking_status
               ? "border-r-yellow-500"
               : "border-r-gray-500"
-          } border  rounded-lg flex flex-col border-r-4  justify-between px-5  bg-white space-y-6 py-6`}
+          } border rounded-lg flex flex-col border-r-4 justify-between px-5 space-y-6 py-6`}
         >
           <section className=" flex flex-col md:flex-row gap-5  md:items-start  ">
             <div className="space-y-5">
@@ -30,7 +31,7 @@ const ActiveBookings = () => {
                 <img
                   className="object-cover w-10 h-10  rounded-md "
                   src={booking?.service_image}
-                  alt=""
+                  alt="provider picture"
                 />
 
                 <p className="text-sm">
@@ -62,7 +63,9 @@ const ActiveBookings = () => {
             </div>
             <button
               onClick={() => {
-                setOpenDetail(!openDetail);
+                setOpenDetailId(
+                  openDetailId === booking?.id ? null : booking?.id
+                );
               }}
               className="flex items-center pt-2 gap-3 md:pl-20"
             >
@@ -72,8 +75,9 @@ const ActiveBookings = () => {
               </span>
             </button>
           </section>
-          {openDetail && (
-            <section className={`space-y-7 border-t  pt-10 `}>
+
+          {openDetailId === booking?.id && (
+            <section className="space-y-7 border-t  pt-10 ">
               <div className=" space-y-3   ">
                 <h4 className="opacity-70 text-sm">Category</h4>
                 <div className="flex gap-3">

@@ -46,7 +46,7 @@ const UpcomingBookings = () => {
 
                     <p className="text-sm">
                       Fixit session with{" "}
-                      <span className="text-secondary font-semibold">
+                      <span className="text-secondary font-semibold cursor-pointer">
                         {booking?.artisan_name}
                       </span>
                     </p>

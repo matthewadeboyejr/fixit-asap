@@ -5,6 +5,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useAddressContext from "../../hooks/useAddressContext";
+import toast from "react-hot-toast";
 
 const PlaceAutocompleteForm = () => {
   const { setSuggestAddress, setSuggestCordinate, setSuggestPostalCode } =
@@ -28,8 +29,19 @@ const PlaceAutocompleteForm = () => {
       const results = await getGeocode({ address: description });
       const { lat, lng } = await getLatLng(results[0]);
 
-      setSuggestCordinate({ lat: lat, lng: lng });
+      setSuggestCordinate({ lat, lng });
       setSuggestAddress(results[0].formatted_address);
+
+      const reverseResults = await getGeocode({ location: { lat, lng } });
+      const postalComponent = reverseResults[0].address_components.find(
+        (comp) => comp.types.includes("postal_code")
+      );
+      const postalCode = postalComponent?.long_name;
+      if (!postalCode) {
+        toast.error(
+          "Please select a more specific location to get the postal code."
+        );
+      }
       setSuggestPostalCode(results[0].address_components[5].long_name);
     } catch (error) {
       console.error("Error: ", error);
@@ -55,7 +67,7 @@ const PlaceAutocompleteForm = () => {
             <li
               className="cursor-pointer p-2 hover:bg-primary/20 rounded-md"
               key={place_id}
-              onClick={() => handleSelect(description)}
+              onClick={() => handleSelect(description, place_id)}
             >
               {description}
             </li>

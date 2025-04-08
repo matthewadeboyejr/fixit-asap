@@ -28,16 +28,19 @@ import NetworkError from "./pages/NetworkError";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import { APIProvider } from "@vis.gl/react-google-maps";
+import { googleMapApiKey } from "./components/map/ProvidersLocationMap";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
-    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+    <APIProvider apiKey={googleMapApiKey}>
       <ProfileProvider>
         <ArtisanProvider>
           <AddressProvider>
             <OpenModalProvider>
               <ChatProvider>
                 <div>
+                  <Toaster position="top-right" />
                   <Routes>
                     <Route path="/" element={<Landing />} />
                     <Route path="*" element={<NotFound />} />

@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
+import { googleMapApiKey } from "../components/map/ProvidersLocationMap";
 
 const AddressContext = createContext({});
 export const AddressProvider = ({ children }) => {
@@ -19,15 +20,22 @@ export const AddressProvider = ({ children }) => {
   const [postalCode, setPostalCode] = useState("");
 
   const getAddress = useCallback(async (latitude, longitude) => {
-    const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const apiKey = googleMapApiKey;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
     try {
       setIsLoading(true);
       const response = await axios.get(url);
-      const postal = response.data.results[0].address_components[5].long_name;
-      const formattededAddress = response.data.results[0].formatted_address;
-      setAddress(formattededAddress);
+      const result = response.data.results[0];
+
+      const postalComponent = result.address_components.find((comp) =>
+        comp.types.includes("postal_code")
+      );
+
+      const postal = postalComponent?.long_name || "";
+      const formattedAddress = result.formatted_address;
+
+      setAddress(formattedAddress);
       setPostalCode(postal);
     } catch (error) {
       console.log(error);
@@ -52,8 +60,9 @@ export const AddressProvider = ({ children }) => {
     GetCoordinate();
   }, [GetCoordinate]);
 
-  //console.log("currentCoordinate", currentCoordinate);
-  //console.log("address", address);
+  console.log("currentCoordinate", currentCoordinate);
+  console.log("address", address);
+  console.log("postalCode", postalCode);
 
   return (
     <AddressContext.Provider

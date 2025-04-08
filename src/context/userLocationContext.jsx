@@ -1,6 +1,7 @@
 import createContext from "react";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
+import { googleMapApiKey } from "../components/map/ProvidersLocationMap";
 
 const UserLocationContext = createContext({});
 
@@ -24,7 +25,7 @@ export const UserLocationProvider = ({ children }) => {
   }, []);
 
   const GetAddress = async (latitude, longitude) => {
-    const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const apiKey = googleMapApiKey;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
 
     try {

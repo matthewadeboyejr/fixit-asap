@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createContext } from "react";
-import axios from "../api/axios";
+import axios, { baseUrl } from "../api/axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
@@ -42,8 +42,7 @@ export const SignupProvider = ({ children }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url =
-      "https://artisanapi-48408c1be722.herokuapp.com/account/api/v1/register/?user_type=user";
+    const url = `${baseUrl}/account/api/v1/register/?user_type=user`;
     const data = {
       email: registerData.email.toLowerCase(),
       first_name: registerData.first_name,
@@ -58,7 +57,7 @@ export const SignupProvider = ({ children }) => {
       const response = await axios.post(url, data);
       const regData = response?.data;
 
-      if (response?.statusText === "OK" && response?.status === 200) {
+      if (response?.status === 200 || response?.status === 201) {
         setUserRegData(regData);
         toast.success(response?.data?.message || "Otp sent successfully");
 

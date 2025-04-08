@@ -19,10 +19,12 @@ export const ArtisanProvider = ({ children }) => {
   const [providerDetail, setProviderDetail] = useState({});
   const [loadingProviderDetails, setLoadingProviderDetails] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState([]);
+  const [gettingByCategory, setGettingByCategory] = useState(false);
 
   const navigate = useNavigate();
 
   const getByCategory = async (categoryId) => {
+    setGettingByCategory(true);
     const url = `/service-user/api/v1/get-services-by-category/?category_id=${categoryId}`;
     try {
       const response = await axiosInstance.get(url);
@@ -30,7 +32,18 @@ export const ArtisanProvider = ({ children }) => {
         navigate("/selected-category");
         setSelectedCategory(response?.data?.results);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error getting by category data", error);
+      if (error) {
+        if (error?.code === "ERR_NETWORK") {
+          navigate("/error");
+        } else if (error?.code === "ECONNABORTED") {
+          navigate("/error");
+        }
+      }
+    } finally {
+      setGettingByCategory(false);
+    }
     /* 
     if (selectedCategory) {
       navigate("/selected-category");
@@ -48,6 +61,7 @@ export const ArtisanProvider = ({ children }) => {
       }
       setLoadingProviderDetails(false);
     } catch (error) {
+      console.log(error);
     } finally {
       setLoadingProviderDetails(false);
     }
@@ -116,6 +130,8 @@ export const ArtisanProvider = ({ children }) => {
         setLoadingProviderDetails,
         handleContactList,
         loadingContactList,
+        gettingByCategory,
+        setGettingByCategory,
       }}
     >
       {children}

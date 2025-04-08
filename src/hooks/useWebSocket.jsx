@@ -7,7 +7,7 @@ const useWebSocket = (id) => {
   const reconnectTimeoutRef = useRef(null);
 
   const token = localStorage.getItem("accessToken");
-  const url = `wss://artisanapi-48408c1be722.herokuapp.com/ws/chat/${id}/?token=${token}`;
+  const url = `wss://api.service-rendering.co.uk/ws/chat/${id}/?token=${token}`;
 
   const connect = useCallback(() => {
     webSocketRef.current = new WebSocket(url);

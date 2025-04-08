@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import useAuthenticateContext from "../hooks/useAuthenticateContext";
 import { useNavigate } from "react-router-dom";
 import useLoginContext from "../hooks/useLoginContext";
+import { baseUrl } from "./axios";
 
 export const GoogleSignupButton = ({ action }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export const GoogleSignupButton = ({ action }) => {
   const { setErrMsg } = useLoginContext();
 
   const handleGoogleLogin = async (accessId) => {
-    const url = `https://artisanapi-48408c1be722.herokuapp.com/account/api/v1/google/${action}/?login_type=user`;
+    const url = `${baseUrl}/account/api/v1/google/${action}/?login_type=user`;
     const data = { access_token: accessId };
     try {
       const response = await axios.post(url, data);

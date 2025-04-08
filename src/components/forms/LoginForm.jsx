@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import useLoginContext from "../../hooks/useLoginContext";
-import { Toaster } from "react-hot-toast";
 import Icon from "../../Images/Icon-spin.png";
 
 const LoginForm = () => {
@@ -16,9 +15,6 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="w-full space-y-4">
-      <div>
-        <Toaster />
-      </div>
       <p
         ref={errRef}
         className={
@@ -67,7 +63,11 @@ const LoginForm = () => {
       <button className={`btn-primary`} disabled={isLoading ? true : false}>
         <div className="flex justify-center items-center">
           {isLoading ? (
-            <img src={Icon} alt="icon spinner" className="animate-spin w-3" />
+            <img
+              src={Icon}
+              alt="icon spinner"
+              className="animate-spin w-5 h-5"
+            />
           ) : (
             "Log in"
           )}

@@ -12,18 +12,21 @@ import {
 import useAddressContext from "../../hooks/useAddressContext";
 import useArtisanContext from "../../hooks/useArtisanContext";
 
+export const googleMapApiKey = "AIzaSyD84BvnJGsGjKWLXVUHYJ1DidTvafy7cAw";
+export const googleMapId = "6c9f551e62d5c50a";
+
 const ProvidersLocationMap = () => {
   const { currentCoordinate } = useAddressContext();
   const { availableService } = useArtisanContext();
 
   return (
-    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+    <APIProvider apiKey={googleMapApiKey}>
       <div className="absolute inset-0">
         <Map
           style={{ width: "100%", height: "100%" }}
           center={currentCoordinate}
           zoom={10}
-          mapId={process.env.REACT_APP_GOOGLE_MAPS_ID}
+          mapId={googleMapId}
           fullscreenControl={false}
           disableDefaultUI={true}
         >

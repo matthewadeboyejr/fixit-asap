@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import useSignupContext from "../../hooks/useSignupContext";
-import axiosInstance from "../../api/axios";
 import useLoginContext from "../../hooks/useLoginContext";
-import toast, { Toaster } from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
@@ -27,8 +23,6 @@ const ConfirmResetOtp = () => {
 
   return (
     <form onSubmit={handleConfirmResetOtp} className="w-full space-y-5">
-      <Toaster />
-
       <p
         ref={errRef}
         className={

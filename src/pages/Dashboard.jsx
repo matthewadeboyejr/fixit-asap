@@ -15,6 +15,7 @@ import DriverSteps from "../components/general/DriverObj";
 import ProfileModal from "../components/dashboard/Modal/ProfileModal";
 import RequestServiceModal from "../components/dashboard/Modal/RequestServiceModal";
 import Icon from "../Images/Icon-spin.png";
+import AllCategoryModal from "../components/dashboard/Modal/AllCategoryModal";
 
 const Dashboard = () => {
   const { setOpenRequest } = useOpenModalContext();
@@ -25,6 +26,7 @@ const Dashboard = () => {
     fixOFTheMonth,
     category,
     loadingProviderDetails,
+    gettingByCategory,
   } = useArtisanContext();
   const { handleProfileData, profileData } = useProfileContext();
 
@@ -94,8 +96,8 @@ const Dashboard = () => {
         </section>
 
         {/* Loading Spinner */}
-        {loadingProviderDetails && (
-          <div className="fixed flex items-center justify-center z-20 inset-0 bg-black/50 h-screen">
+        {(loadingProviderDetails || gettingByCategory) && (
+          <div className="fixed flex items-center justify-center z-50 inset-0 bg-black/50 h-screen">
             <img src={Icon} alt="icon spinner" className="animate-spin w-10" />
           </div>
         )}
@@ -122,6 +124,7 @@ const Dashboard = () => {
       {/* Modals */}
       <RequestServiceModal />
       <ProfileModal />
+      <AllCategoryModal />
     </div>
   );
 };

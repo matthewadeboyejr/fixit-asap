@@ -14,8 +14,8 @@ const Otp = () => {
   return (
     <div className="fixed inset-0  w-screen min-h-screen  bg-light ">
       <PreHeader />
-      <section className=" flex justify-center md:items-center">
-        <div className="flex flex-col items-left md:w-1/3 w-full space-y-3 py-20 px-5 md:px-14">
+      <section className="flex flex-1 items-center justify-center">
+        <div className="flex flex-col w-full max-w-md space-y-5 py-5 px-4 sm:px-8 lg:px-14">
           <div className="  ">
             <IoIosArrowRoundBack
               onClick={() => setIsSuccessful(false)}
