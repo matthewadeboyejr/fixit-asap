@@ -2,7 +2,6 @@ import React from "react";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import CategoriesSkeleton from "../skeleton/CategoriesSkeleton";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 const Categories = () => {
