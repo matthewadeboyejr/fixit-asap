@@ -8,8 +8,6 @@ import useSignupContext from "../../hooks/useSignupContext";
 const Otp = () => {
   const { userRegData, setIsSuccessful } = useSignupContext();
 
-  const navigate = useNavigate();
-
   const welcomeMessage = userRegData.message;
   return (
     <div className="fixed inset-0  w-screen min-h-screen  bg-light ">

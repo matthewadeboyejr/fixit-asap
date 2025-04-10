@@ -1,14 +1,9 @@
 import React, { useEffect, useCallback, useState } from "react";
-import {
-  RiMapPinUserFill,
-  RiChat3Line,
-  RiStarFill,
-  RiLoader4Line,
-} from "react-icons/ri";
+import { RiMapPinUserFill, RiChat3Line, RiStarFill } from "react-icons/ri";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import axiosInstance from "../../api/axios";
 import useOpenModalContext from "../../hooks/useOpenModalContext";
-import { ProviderSkeleton } from "../skeleton/ProviderSkeleton";
+
 import useChatContext from "../../hooks/useChatContext";
 import Spinner from "../util/Spinner";
 

@@ -11,7 +11,7 @@ const Review = () => {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const rating = providerDetail?.overall_ratings || 0;
+  //const rating = providerDetail?.overall_ratings || 0;
   const review = providerDetail?.total_reviews || 0;
 
   console.log("catalogues", review);
@@ -35,7 +35,7 @@ const Review = () => {
     }
   };
 
-  const renderStars = () => {
+  /* const renderStars = () => {
     const stars = [];
     const maxStars = 5;
 
@@ -50,7 +50,7 @@ const Review = () => {
     }
 
     return stars;
-  };
+  }; */
 
   return (
     <div className="space-y-5 ">

@@ -35,15 +35,3 @@ const Login = () => {
 };
 
 export default Login;
-
-{
-  /* <div className=" flex items-center justify-between border w-full md:justify-around p-4 rounded-md">
-  <p className=" font-medium text-sm">Social login's </p>
-  <p className=" font-medium">|</p>
-  <div className="flex items-center gap-5 text-2xl">
-    <FcGoogle onClick={GoogleLogin()} className="cursor-pointer" />
-    <IoLogoFacebook className="text-[#1877F2] cursor-pointer" />
-    <IoLogoApple className="cursor-pointer" />
-  </div>
-</div>; */
-}
