@@ -3,7 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { FiEyeOff, FiEye } from "react-icons/fi";
-import { CgSpinnerTwo } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import Otp from "../Modal/Otp";
 import useSignupContext from "../../hooks/useSignupContext";

@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:23-alpine3.20
 
 WORKDIR /app
 
@@ -10,6 +10,12 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 3001
+EXPOSE 3000
+
+
+RUN apk add --no-cache curl
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD curl --fail http://localhost:3000 || exit 1
 
 CMD ["npm",  "start"]

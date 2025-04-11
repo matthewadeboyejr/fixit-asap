@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import useProfileContext from "../../hooks/useProfileContext";
@@ -14,9 +14,9 @@ const EditProfileForm = () => {
   const { setOpenEditProfile } = useOpenModalContext();
   const { handleProfileData } = useProfileContext();
 
-  const errRef = useRef();
+  // const errRef = useRef();
   const firstNameRef = useRef();
-  const [errMsg, setErrMsg] = useState("");
+  //const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [editData, setEditData] = useState({
     phone: phone || "",
@@ -34,8 +34,8 @@ const EditProfileForm = () => {
   const places = useMapsLibrary("places");
 
   const {
-    ready,
-    value,
+    /* ready,
+    value, */
     setValue,
     suggestions: { status, data },
     clearSuggestions,
@@ -120,7 +120,7 @@ const EditProfileForm = () => {
 
   return (
     <form className="w-full space-y-5 relative" onSubmit={handleSubmit}>
-      <p
+      {/*  <p
         ref={errRef}
         className={
           errMsg
@@ -129,7 +129,7 @@ const EditProfileForm = () => {
         }
       >
         {errMsg}
-      </p>
+      </p> */}
 
       <div>
         <input

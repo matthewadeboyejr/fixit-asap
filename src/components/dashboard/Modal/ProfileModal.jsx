@@ -14,22 +14,16 @@ import AnimationConfig from "../../animation/AnimationConfig";
 import { useEffect } from "react";
 
 const ProfileModal = () => {
-  const {
-    setOpenProfile,
-    openProfile,
-    setOpenChangePassword,
-    openChangePassword,
-  } = useOpenModalContext();
+  const { setOpenProfile, openProfile, setOpenChangePassword } =
+    useOpenModalContext();
   const { profileData } = useProfileContext();
 
   const fName = profileData?.user?.first_name;
   const lName = profileData?.user?.last_name;
 
   useEffect(() => {
-    if (openChangePassword) {
-      setOpenChangePassword(false);
-    }
-  }, []);
+    setOpenChangePassword(false);
+  }, [setOpenChangePassword]);
 
   return (
     <>

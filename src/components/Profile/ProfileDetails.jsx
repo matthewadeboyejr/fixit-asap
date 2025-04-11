@@ -6,8 +6,8 @@ import useOpenModalContext from "../../hooks/useOpenModalContext";
 import EditProfile from "../Modal/EditProfile";
 
 const ProfileDetails = () => {
-  const { handleProfileData, profileData } = useProfileContext();
-  const { openEditProfile, setOpenEditProfile } = useOpenModalContext();
+  const { /* handleProfileData, */ profileData } = useProfileContext();
+  const { setOpenEditProfile } = useOpenModalContext();
 
   const fName = profileData?.user?.first_name;
   const lName = profileData?.user?.last_name;
@@ -17,10 +17,8 @@ const ProfileDetails = () => {
   const address = profileData?.address;
 
   useEffect(() => {
-    if (openEditProfile) {
-      setOpenEditProfile(false);
-    }
-  }, []);
+    setOpenEditProfile(false);
+  }, [setOpenEditProfile]);
 
   return (
     <>

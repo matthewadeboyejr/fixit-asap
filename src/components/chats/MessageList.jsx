@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import useChatContext from "../../hooks/useChatContext";
 import useWebSocket from "../../hooks/useWebSocket";
 import UseFormatTime from "../../hooks/UseFormatTime";
@@ -6,7 +6,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const MessageList = memo(() => {
   const { contactDetail, listRef } = useChatContext();
-  const messageSet = contactDetail?.message_set || [];
+
+  const messageSet = useMemo(() => {
+    return contactDetail?.message_set || [];
+  }, [contactDetail?.message_set]);
+
   const { messages: liveMessages } = useWebSocket(contactDetail?.id);
   const userID = localStorage.getItem("userId");
 
@@ -74,7 +78,7 @@ const MessageList = memo(() => {
         lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [liveMessages.length]);
+  }, [liveMessages.length, listRef]);
 
   // Message component
   const Message = memo(({ message, isLast }) => {

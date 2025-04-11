@@ -1,7 +1,6 @@
 import React from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import OtpForm from "../forms/OtpForm";
-import { useNavigate } from "react-router-dom";
 import { PreHeader } from "../general/Header";
 import useSignupContext from "../../hooks/useSignupContext";
 

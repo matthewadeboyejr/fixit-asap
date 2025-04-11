@@ -7,7 +7,6 @@ import ActiveServiceSkeleton from "../skeleton/ActiveServiceSkeleton";
 import useArtisanContext from "../../hooks/useArtisanContext";
 
 const ActiveBookings = () => {
-  const [openDetail, setOpenDetail] = useState(false);
   const { bookings, loading } = useBookingContext();
   const { getProviderDetail } = useArtisanContext();
   const [openDetailId, setOpenDetailId] = useState(null);
@@ -31,7 +30,7 @@ const ActiveBookings = () => {
                 <img
                   className="object-cover w-10 h-10  rounded-md "
                   src={booking?.service_image}
-                  alt="provider picture"
+                  alt="provider"
                 />
 
                 <p className="text-sm">

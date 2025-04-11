@@ -1,5 +1,5 @@
 import { RiMapPinUserFill } from "react-icons/ri";
-import { RiChat3Line, RiStarFill, RiInfoI } from "react-icons/ri";
+import { RiChat3Line, RiStarFill } from "react-icons/ri";
 import useArtisanContext from "../../hooks/useArtisanContext";
 import useAddressContext from "../../hooks/useAddressContext";
 import { ProviderSkeleton } from "../skeleton/ProviderSkeleton";

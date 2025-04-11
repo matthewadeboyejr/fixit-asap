@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 
 const AuthenticateContext = createContext({});
 
@@ -15,11 +15,11 @@ export const AuthenticateProvider = ({ children }) => {
   }, []);
 
   const login = () => setIsAuthenticated(true);
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userId");
     setIsAuthenticated(false);
-  };
+  }, []);
 
   useEffect(() => {
     let inactivityTimer;

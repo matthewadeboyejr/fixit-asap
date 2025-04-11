@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import axiosInstance from "../../api/axios";
-import { ReviewSkeleton } from "../skeleton/ReviewSkeleton";
+//import axiosInstance from "../../api/axios";
+//import { ReviewSkeleton } from "../skeleton/ReviewSkeleton";
 import useArtisanContext from "../../hooks/useArtisanContext";
-import { RiStarFill, RiStarLine } from "react-icons/ri";
-import { IoPerson } from "react-icons/io5";
+//import { RiStarFill, RiStarLine } from "react-icons/ri";
+//import { IoPerson } from "react-icons/io5";
 import { AsyncImage } from "loadable-image";
-import { Blur, Grow, Slide } from "transitions-kit";
+import { Grow } from "transitions-kit";
 
 const Catalogues = () => {
   const { providerDetail } = useArtisanContext();
