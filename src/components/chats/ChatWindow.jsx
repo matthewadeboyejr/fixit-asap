@@ -13,33 +13,50 @@ const ChatWindow = () => {
   const { setOpenPreviewFile } = useOpenModalContext();
   const [inputMessage, setInputMessage] = useState("");
   const [file, setFile] = useState("");
+  const [isSending, setIsSending] = useState(false);
   const { isConnected, sendMessage } = useWebSocket(contactDetail?.id);
 
+  console.log("contact details", contactDetail);
+
   const handleSendMessage = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
-      if (inputMessage && isConnected) {
-        sendMessage({ message: inputMessage });
-        console.log("sending message:", inputMessage);
-        setInputMessage("");
-      } else if (!isConnected) {
-        console.error("WebSocket is not connected. Cannot send message.");
+      if (!inputMessage.trim() || isSending || !isConnected) return;
+
+      setIsSending(true);
+      try {
+        const success = sendMessage({ message: inputMessage });
+        if (success) {
+          console.log("Message sent:", inputMessage);
+          setInputMessage("");
+        }
+      } catch (error) {
+        console.error("Error sending message:", error);
+      } finally {
+        setIsSending(false);
       }
     },
-    [inputMessage, isConnected, sendMessage]
+    [inputMessage, isConnected, sendMessage, isSending]
   );
   const handleSendFile = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
-      if (file && isConnected) {
-        sendMessage({ message: "", attachment: file });
-        setFile("");
-        setOpenPreviewFile(false);
-      } else if (!isConnected) {
-        console.error("WebSocket is not connected. Cannot send message.");
+      if (!file || isSending || !isConnected) return;
+
+      setIsSending(true);
+      try {
+        const success = sendMessage({ message: "", attachment: file });
+        if (success) {
+          setFile("");
+          setOpenPreviewFile(false);
+        }
+      } catch (error) {
+        console.error("Error sending file:", error);
+      } finally {
+        setIsSending(false);
       }
     },
-    [file, isConnected, sendMessage, setOpenPreviewFile]
+    [file, isConnected, sendMessage, setOpenPreviewFile, isSending]
   );
 
   const handleFileChange = (e) => {

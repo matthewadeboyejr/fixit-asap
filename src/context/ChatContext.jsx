@@ -2,12 +2,14 @@ import React, { createContext, useState, useCallback, useRef } from "react";
 import axiosInstance from "../api/axios";
 import useArtisanContext from "../hooks/useArtisanContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const ChatContext = createContext({});
 
 export const ChatProvider = ({ children }) => {
   const [contactDetail, setContactDetail] = useState(null);
   const [selectedContactId, setSelectedContactId] = useState(null);
+  const [startingMsg, setStartingMsg] = useState(false);
   const [loading, setLoading] = useState(false);
   const { availableService } = useArtisanContext();
   const navigate = useNavigate();
@@ -21,11 +23,12 @@ export const ChatProvider = ({ children }) => {
       }
       setLoading(true);
       setSelectedContactId(contactId);
+      console.log("Select Contact id ", contactId);
       try {
         const url = `/service-user/api/v1/service-conversation/${contactId}/`;
         const response = await axiosInstance.get(url);
         if (response?.data?.data) {
-          setContactDetail(response.data.data);
+          setContactDetail(response?.data?.data);
         }
       } catch (error) {
         console.error("Error fetching contact detail:", error);
@@ -37,6 +40,40 @@ export const ChatProvider = ({ children }) => {
     [selectedContactId, contactDetail]
   );
 
+  /* start message function */
+
+  const handleStartMessage = useCallback(
+    async (artisan_id, service_id) => {
+      setStartingMsg(true);
+      const url = `/service-user/api/v1/start-messaging/`;
+      const payload = { artisan_id, service_id };
+
+      try {
+        const response = await axiosInstance.post(url, payload);
+        const contactId = response?.data?.data?.id;
+
+        console.log("from start message", contactId);
+
+        if (contactId) {
+          navigate("/chat", { state: { contactId } });
+        } else {
+          toast.error("Unable to initiate chat, try again");
+        }
+      } catch (error) {
+        if (error?.code === "ERR_NETWORK" || error?.code === "ECONNABORTED") {
+          navigate("/error");
+        } else {
+          toast.error(error?.response?.data?.message || "Something went wrong");
+        }
+      } finally {
+        setStartingMsg(false);
+      }
+    },
+    [selectedContactId, contactDetail]
+  );
+
+  /* Initiate chat function */
+
   const handleinitiateChat = useCallback(
     async (providerID) => {
       const url = "/service-user/api/v1/service-conversation/";
@@ -47,7 +84,7 @@ export const ChatProvider = ({ children }) => {
       };
       try {
         const response = await axiosInstance.post(url, data);
-        const contactId = response.data?.data?.id;
+        const contactId = response?.data?.data?.id;
         if (contactId) {
           navigate("/chat", { state: { contactId } });
         }
@@ -74,6 +111,8 @@ export const ChatProvider = ({ children }) => {
     loading,
     handleinitiateChat,
     listRef,
+    handleStartMessage,
+    startingMsg,
   };
 
   return (

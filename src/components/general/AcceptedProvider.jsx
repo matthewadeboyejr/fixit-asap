@@ -6,6 +6,7 @@ import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 import useChatContext from "../../hooks/useChatContext";
 import Spinner from "../util/Spinner";
+import { SubHeader } from "./Header";
 
 // Configurable settings
 const POLLING_INTERVAL = 5000; // 5 seconds
@@ -88,6 +89,9 @@ const AcceptedProvider = () => {
 
   return (
     <>
+      <div className=" pb-5">
+        <SubHeader title={"Requested service"} />
+      </div>
       <h2 className="py-3 border-b">
         List of Merchant interest in your request
       </h2>
@@ -109,7 +113,7 @@ const AcceptedProvider = () => {
             return (
               <div
                 key={provider.id}
-                className="flex justify-between py-5 border-b"
+                className="flex justify-between py-5 border-b items-center "
               >
                 <div className="flex gap-5 items-center">
                   <img
@@ -141,7 +145,7 @@ const AcceptedProvider = () => {
                 <div className="flex gap-1 h-fit">
                   <button
                     onClick={() => handleChatInitiation(receiver?.id)}
-                    className="bg-secondary p-2 rounded-sm"
+                    className="bg-secondary p-2 rounded-md"
                   >
                     <RiChat3Line />
                   </button>

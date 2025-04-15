@@ -40,7 +40,7 @@ const App = () => {
             <OpenModalProvider>
               <ChatProvider>
                 <div>
-                  <Toaster position="top-right" />
+                  <Toaster />
                   <Routes>
                     <Route path="/" element={<Landing />} />
                     <Route path="*" element={<NotFound />} />

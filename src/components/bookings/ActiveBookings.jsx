@@ -5,16 +5,29 @@ import { RiTimeLine } from "react-icons/ri";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import ActiveServiceSkeleton from "../skeleton/ActiveServiceSkeleton";
 import useArtisanContext from "../../hooks/useArtisanContext";
+import { useNavigate } from "react-router-dom";
 
 const ActiveBookings = () => {
   const { bookings, loading } = useBookingContext();
   const { getProviderDetail } = useArtisanContext();
   const [openDetailId, setOpenDetailId] = useState(null);
 
+  const navigate = useNavigate();
   return (
     <section className="space-y-2">
       <h4 className="pb-5 text-sm">Active services</h4>
       {loading && <ActiveServiceSkeleton card={2} />}
+      {!loading && bookings.length === 0 && (
+        <div className="flex flex-col items-center justify-center gap-3">
+          <p className=" opacity-50 text-sm">No Active services .</p>
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="px-3 py-2 text-sm font-semibold bg-secondary text-white rounded-md"
+          >
+            Explore services
+          </button>
+        </div>
+      )}
       {bookings?.map((booking) => (
         <div
           key={booking?.id}

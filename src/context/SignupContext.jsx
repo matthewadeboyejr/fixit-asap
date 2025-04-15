@@ -58,12 +58,14 @@ export const SignupProvider = ({ children }) => {
       const regData = response?.data;
 
       if (response?.status === 200 || response?.status === 201) {
+        console.log("signup responses", response);
         setUserRegData(regData);
-        toast.success(response?.data?.message || "Otp sent successfully");
-
+        await toast.success(response?.data?.message || "Otp sent successfully");
         await new Promise((resolve) => setTimeout(resolve, 100));
+        setIsSuccessful("false");
       } else {
-        const errorMessage = response?.data?.message || "Unexpected response.";
+        const errorMessage = "Unexpected response.";
+        toast.error(errorMessage);
         setErrMsg(errorMessage);
         throw new Error(errorMessage);
       }

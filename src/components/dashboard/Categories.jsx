@@ -6,7 +6,7 @@ import useOpenModalContext from "../../hooks/useOpenModalContext";
 
 const Categories = () => {
   const { category, getByCategory, isLoading } = useArtisanContext();
-  const { setOpenAllCategory, openAllCategory } = useOpenModalContext();
+  const { setOpenAllCategory } = useOpenModalContext();
 
   return (
     <section className="space-y-5 ">
@@ -16,7 +16,6 @@ const Categories = () => {
           className="text-secondary hover:underline text-sm font-medium"
           onClick={() => {
             setOpenAllCategory(true);
-            console.log("openAllCategory", openAllCategory);
           }}
         >
           View all

@@ -128,10 +128,8 @@ export const LoginProvider = ({ children }) => {
       updateResetState({ confirmingOtp: true });
       const response = await axiosInstance.post(url, data);
 
-      if (response?.statusText === "OK" && response?.status === 200) {
-        toast.success(
-          response?.data?.message || "password changed successfully"
-        );
+      if (response?.statusText === 201 || response?.status === 200) {
+        toast.success(response?.data?.message || "password reset successfully");
 
         await new Promise((resolve) => setTimeout(resolve, 100));
 
@@ -139,7 +137,7 @@ export const LoginProvider = ({ children }) => {
         updateResetData({ email: "", otp: "", new_password: "" });
         navigate("/login");
       } else {
-        const errorMessage = response?.data?.message || "Unexpected response.";
+        const errorMessage = "Unexpected response.";
         throw new Error(errorMessage);
       }
     } catch (error) {
@@ -163,7 +161,7 @@ export const LoginProvider = ({ children }) => {
       updateResetState({ sendingOtp: true });
       const response = await axiosInstance.post(url, data);
 
-      if (response?.statusText === "OK" && response?.status === 200) {
+      if (response?.status === 201 || response?.status === 200) {
         toast.success(response?.data?.message || "Otp sent successfully");
 
         await new Promise((resolve) => setTimeout(resolve, 100));
@@ -171,7 +169,9 @@ export const LoginProvider = ({ children }) => {
         updateResetState({ data: response.data });
         updateResetState({ otpSent: true });
       } else {
-        const errorMessage = response?.data?.message || "Unexpected response.";
+        const errorMessage = "Unexpected response.";
+        toast.error(errorMessage);
+        updateResetState({ errMsg: errorMessage });
         throw new Error(errorMessage);
       }
     } catch (error) {

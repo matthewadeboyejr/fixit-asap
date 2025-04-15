@@ -51,7 +51,8 @@ const ExploreOption = () => {
                   <IoInformationCircleOutline />
                 </div>
                 <p className="text-xl text-center w-2/3">
-                  No artisans close to you accept your request
+                  No available artisans nearby to accept your request at the
+                  moment.
                 </p>
                 <p className="text-sm opacity-50 text-center">
                   Explore other artisan offering same service

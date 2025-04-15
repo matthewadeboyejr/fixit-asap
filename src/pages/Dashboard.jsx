@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import { RiSearch2Line } from "react-icons/ri";
 import Header, { MobileNav } from "../components/general/Header";
@@ -14,10 +14,12 @@ import useProfileContext from "../hooks/useProfileContext";
 import DriverSteps from "../components/general/DriverObj";
 import ProfileModal from "../components/dashboard/Modal/ProfileModal";
 import RequestServiceModal from "../components/dashboard/Modal/RequestServiceModal";
-import Icon from "../Images/Icon-spin.png";
 import AllCategoryModal from "../components/dashboard/Modal/AllCategoryModal";
+import { debounce } from "lodash";
+import LoadingSpinner from "../components/animation/LoadingSpinner";
 
 const Dashboard = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const { setOpenRequest } = useOpenModalContext();
   const {
     handleDashData,
@@ -70,6 +72,43 @@ const Dashboard = () => {
     }
   }, [isLoading, driverObj]);
 
+  /* filters */
+  const filteredArtisans = closestArtisan?.filter((artisan) => {
+    if (!searchTerm) return true;
+
+    const businessName = artisan?.business_name?.toLowerCase() || "";
+    const categoryName =
+      artisan?.service_category?.category?.toLowerCase() || "";
+    const description = artisan?.description?.toLowerCase() || "";
+    const searchTermLower = searchTerm.toLowerCase();
+
+    return (
+      businessName.includes(searchTermLower) ||
+      categoryName.includes(searchTermLower) ||
+      description.includes(searchTermLower)
+    );
+  });
+
+  const filteredFixOfTheMonth = fixOFTheMonth?.filter((artisan) => {
+    if (!searchTerm) return true;
+
+    const businessName = artisan?.business_name?.toLowerCase() || "";
+    const categoryName =
+      artisan?.service_category?.category?.toLowerCase() || "";
+    const description = artisan?.description?.toLowerCase() || "";
+    const searchTermLower = searchTerm.toLowerCase();
+
+    return (
+      businessName.includes(searchTermLower) ||
+      categoryName.includes(searchTermLower) ||
+      description.includes(searchTermLower)
+    );
+  });
+
+  const handleSearch = debounce((term) => {
+    setSearchTerm(term);
+  }, 300);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-secondary/5 h-screen">
       <main className="pb-20 sm:pb-5">
@@ -83,6 +122,8 @@ const Dashboard = () => {
                   className="bg-transparent w-full rounded-md placeholder:text-sm pl-3 outline-none placeholder:text-primary/50"
                   placeholder="Search e.g cleaner"
                   type="text"
+                  value={searchTerm}
+                  onChange={(e) => handleSearch(e.target.value)}
                 />
               </div>
             </div>
@@ -91,16 +132,18 @@ const Dashboard = () => {
 
         <section className="my-5 space-y-8 rounded-t-2xl">
           <Categories />
-          <FixOfTheMonth />
-          <ArtisanCloseToYou />
+          <FixOfTheMonth
+            artisans={filteredFixOfTheMonth}
+            searchTerm={searchTerm}
+          />
+          <ArtisanCloseToYou
+            artisans={filteredArtisans}
+            searchTerm={searchTerm}
+          />
         </section>
 
         {/* Loading Spinner */}
-        {(loadingProviderDetails || gettingByCategory) && (
-          <div className="fixed flex items-center justify-center z-50 inset-0 bg-black/50 h-screen">
-            <img src={Icon} alt="icon spinner" className="animate-spin w-10" />
-          </div>
-        )}
+        {(loadingProviderDetails || gettingByCategory) && <LoadingSpinner />}
       </main>
 
       {/* Floating Action Button */}

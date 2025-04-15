@@ -5,27 +5,35 @@ import ServiceCardSkeleton from "../skeleton/ServiceCardSkeleton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { motion } from "framer-motion";
 
-const FixOfTheMonth = () => {
-  const { fixOFTheMonth, isLoading, getProviderDetail } = useArtisanContext();
+const FixOfTheMonth = ({ artisans = null, searchTerm = "" }) => {
+  const {
+    fixOFTheMonth: contextfixOFTheMonth,
+    isLoading,
+    getProviderDetail,
+  } = useArtisanContext();
+  const fixOFTheMonth = artisans !== null ? artisans : contextfixOFTheMonth;
+
+  if (isLoading) return <ServiceCardSkeleton cards={7} />;
 
   return (
     <section className="space-y-10">
       <div className="flex items-center justify-between px-3">
         <h2 className="ext-lg  font-semibold border-primary ">
-          Fix of the Month
+          Service of the Month
         </h2>
       </div>
 
       {fixOFTheMonth.length === 0 && !isLoading ? (
         <div className="text-center opacity-40 py-3">
-          No fix of the month available
+          {searchTerm.trim()
+            ? `No services match "${searchTerm}"`
+            : "No services of the month available"}
         </div>
       ) : (
         <div
           id="fix"
           className="  flex gap-4 overflow-x-auto no-scrollbar pb-4"
         >
-          {isLoading && <ServiceCardSkeleton cards={7} />}
           {fixOFTheMonth.map((service) => (
             <div
               className="bg-white rounded-lg    hover:shadow-md min-w-[200px] max-w-[200px] flex-shrink-0"

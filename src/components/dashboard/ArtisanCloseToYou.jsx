@@ -5,11 +5,18 @@ import ServiceCardSkeleton from "../skeleton/ServiceCardSkeleton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { motion } from "framer-motion";
 
-const ArtisanCloseToYou = () => {
-  const { closestArtisan, isLoading, getProviderDetail } = useArtisanContext();
+const ArtisanCloseToYou = ({ artisans = null, searchTerm = "" }) => {
+  const {
+    closestArtisan: contextClosestArtisan,
+    isLoading,
+    getProviderDetail,
+  } = useArtisanContext();
+  const closestArtisan = artisans !== null ? artisans : contextClosestArtisan;
 
   const imgHolder =
     "https://archive.org/download/placeholder-image/placeholder-image.jpg";
+
+  if (isLoading) return <ServiceCardSkeleton cards={7} />;
 
   return (
     <section className="space-y-10">
@@ -19,14 +26,15 @@ const ArtisanCloseToYou = () => {
 
       {closestArtisan.length === 0 && !isLoading ? (
         <div className="text-center opacity-40 py-3">
-          No artisan is closed to you
+          {searchTerm.trim()
+            ? `No providers match "${searchTerm}"`
+            : "No providers nearby"}
         </div>
       ) : (
         <div
           id="recommended"
           className="flex gap-4 overflow-x-auto no-scrollbar pb-4"
         >
-          {isLoading && <ServiceCardSkeleton cards={7} />}
           {closestArtisan.map((item, index) => (
             <motion.div
               initial={{

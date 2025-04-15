@@ -11,20 +11,20 @@ import About from "../components/serviceDetail/About";
 import Review from "../components/serviceDetail/Review";
 import Summary from "../components/serviceDetail/Summary";
 import Catalogues from "../components/serviceDetail/ Catalogues";
-
-export const metadata = {
-  title: "Users",
-  description: "",
-};
+import LoadingSpinner from "../components/animation/LoadingSpinner";
+import useChatContext from "../hooks/useChatContext";
 
 const ServiceDetail = () => {
   const { providerDetail } = useArtisanContext();
+  const { handleStartMessage, startingMsg } = useChatContext();
   const businesName = providerDetail?.artisan?.business_name;
   const category = providerDetail?.service_category?.category;
   const address = providerDetail?.artisan?.address || "";
   const image = providerDetail?.image;
-  const contactId = providerDetail?.artisan?.id;
+  const artisan_id = providerDetail?.artisan?.id;
+  const service_id = providerDetail?.id;
 
+  console.log("provider details", providerDetail);
   const navigate = useNavigate();
 
   const titles = useMemo(
@@ -35,9 +35,7 @@ const ServiceDetail = () => {
     () => [<About />, <Service />, <Review />, <Catalogues />],
     []
   );
-
   const [displayContent, setDisplayContent] = useState(0);
-
   const handleTabClick = (index) => setDisplayContent(index);
 
   return (
@@ -85,7 +83,9 @@ const ServiceDetail = () => {
               <li
                 key={index}
                 className={`cursor-pointer ${
-                  displayContent === index ? "border-b-2 border-secondary " : ""
+                  displayContent === index
+                    ? "border-b-2  border-secondary "
+                    : ""
                 } md:text-sm  font-semibold`}
                 onClick={() => handleTabClick(index)}
               >
@@ -98,9 +98,10 @@ const ServiceDetail = () => {
           </div>
 
           {/* Chat Button for larger screens */}
-          {contactId && (
+          {artisan_id && (
             <motion.div
-              onClick={() => navigate("/chat", { state: { contactId } })}
+              //onClick={() => navigate("/chat", { state: { artisan_id } })}
+              onClick={() => handleStartMessage(artisan_id, service_id)}
               whileHover={{ scale: 1.1, rotate: 10 }}
               className="hidden lg:block absolute bottom-6 right-6 z-10 cursor-pointer drop-shadow-lg"
             >
@@ -110,12 +111,15 @@ const ServiceDetail = () => {
             </motion.div>
           )}
         </section>
+
+        {startingMsg && <LoadingSpinner />}
       </main>
 
       {/* Chat Button for smaller screens */}
-      {contactId && (
+      {artisan_id && (
         <motion.div
-          onClick={() => navigate("/chat", { state: { contactId } })}
+          //onClick={() => navigate("/chat", { state: { artisan_id } })}
+          onClick={() => handleStartMessage(artisan_id, service_id)}
           whileHover={{ scale: 1.1, rotate: 10 }}
           className="lg:hidden fixed z-50 bottom-20 right-4 cursor-pointer drop-shadow-lg"
         >

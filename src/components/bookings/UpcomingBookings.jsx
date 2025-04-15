@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { IoCalendarClearOutline, IoPerson } from "react-icons/io5";
 import UpcomingServiceSkeleton from "../skeleton/UpcomingServiceSkeleton";
-
+import Nobooking from "../../Images/Nobooking.gif";
 const UpcomingBookings = () => {
   const [openDetail, setOpenDetail] = useState(false);
   const { bookings, loading, handleAcceptService, handleGetBookings } =
@@ -24,9 +24,12 @@ const UpcomingBookings = () => {
       <h4 className="pb-5 text-sm">Upcoming Service</h4>
       {loading && <UpcomingServiceSkeleton cards={1} />}
       {!loading && !hasUpcomingServices && (
-        <p className="text-center py-4 opacity-50">
-          No upcoming services to accept yet.
-        </p>
+        <div className="flex flex-col items-center justify-center gap-3">
+          <img src={Nobooking} />
+          <p className=" opacity-50 text-sm">
+            No upcoming services to accept yet.
+          </p>
+        </div>
       )}
       {bookings?.map((booking) => (
         <>

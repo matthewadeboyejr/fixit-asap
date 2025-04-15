@@ -82,6 +82,7 @@ export const ArtisanProvider = ({ children }) => {
       setLoadingContactList(false);
     }
   }, []);
+
   const handleDashData = async () => {
     setIsLoading(true);
     const url = "/service-user/api/v1/user-dashboard/";
@@ -91,7 +92,6 @@ export const ArtisanProvider = ({ children }) => {
       setFixOFTheMonth(response?.data?.data?.fix_of_month);
       setCategory(response?.data?.data?.feature_category);
     } catch (error) {
-      console.error("Error fetching dashboard data", error);
       if (error) {
         if (error?.code === "ERR_NETWORK") {
           navigate("/error");
@@ -102,6 +102,7 @@ export const ArtisanProvider = ({ children }) => {
     }
     setIsLoading(false);
   };
+
   return (
     <ArtisanContext.Provider
       value={{

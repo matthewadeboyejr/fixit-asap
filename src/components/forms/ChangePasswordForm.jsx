@@ -4,6 +4,7 @@ import { FiEyeOff, FiEye } from "react-icons/fi";
 import { CgSpinnerTwo } from "react-icons/cg";
 import axiosInstance from "../../api/axios";
 import useAuthenticateContext from "../../hooks/useAuthenticateContext";
+import toast from "react-hot-toast";
 
 const ChangePasswordForm = () => {
   const { logout } = useAuthenticateContext();
@@ -47,16 +48,17 @@ const ChangePasswordForm = () => {
       const response = await axiosInstance.post(url, data);
 
       if (response) {
-        alert("Change password Successfull");
+        await toast.success("You've successfully changed your password.");
         logout();
       }
       //clear form
-      if (!response && !response === "OK") {
+      if (!response.status === 200 || !response.status === 201) {
         setOldPassword("");
         setPassword("");
         setPassword2("");
       }
     } catch (error) {
+      toast.error(error.response.data.old_password?.detail);
       setErrMsg(error.response.data.old_password?.detail);
     }
     setIsLoading(false);

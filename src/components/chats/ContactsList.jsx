@@ -17,6 +17,9 @@ const ContactsList = () => {
   useEffect(() => {
     handleContactList();
   }, [handleContactList]);
+  if (loadingContactList) return <ChatListSkeleton cards={3} />;
+
+  console.log("contact list from contact list", contactList);
 
   return (
     <div className="p-3 bg-secondary/5 h-full ">
@@ -41,7 +44,6 @@ const ContactsList = () => {
           </form>
 
           <ul className="space-y-3 m-2">
-            {loadingContactList && <ChatListSkeleton cards={3} />}
             {contactList?.map((contact) => {
               const receiver = contact?.receiver;
               const lastMessage = contact?.last_message?.text;
